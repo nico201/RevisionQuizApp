@@ -27,12 +27,12 @@ public class LoginOrRegister
       boolean isAdmin;
       isAdmin = false;
       String studentName;
-      int studentID;
+      String studentID;
       System.out.println("Welcome to Student Sign-Up!");
       System.out.println("Please enter your name: ");
       studentName = keyboard.next();
       System.out.println("Please enter your Student ID");
-      studentID = keyboard.nextInt();
+      studentID = keyboard.nextLine();
       if (isStudentIDUnique(studentID))
       {
          Student newStudent = new Student(false,studentName,studentID);
@@ -41,9 +41,9 @@ public class LoginOrRegister
    }
 
    public static void existingStudentLogin(){
-      int studentID;
+      String studentID;
       System.out.println("Welcome back! Please enter your student ID: ");
-      studentID = keyboard.nextInt();
+      studentID = keyboard.nextLine();
    }
 
 
@@ -52,7 +52,7 @@ public class LoginOrRegister
       return mainMenuChoice;
    }
 
-   public static boolean isStudentIDUnique(int studentID){
+   public static boolean isStudentIDUnique(String studentID){
       return true;
    }
 

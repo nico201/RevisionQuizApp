@@ -7,14 +7,14 @@
 public class Student extends User
 {
    private String studentName;
-   private int studentID;
+   private String studentID;
    private int highestScore;
 
    public Student()
    {
    }
 
-   public Student(boolean isAdmin, String studentName, int studentID)
+   public Student(boolean isAdmin, String studentName, String studentID)
    {
       super(isAdmin);
       this.studentName = studentName;
@@ -26,7 +26,7 @@ public class Student extends User
       this.studentName = studentName;
    }
 
-   public void setStudentID(int studentID)
+   public void setStudentID(String studentID)
    {
       this.studentID = studentID;
    }
