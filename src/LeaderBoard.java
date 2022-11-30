@@ -15,7 +15,7 @@ public class LeaderBoard
 
     public static void printLeaderboard() //SHOULD THIS BE A TOSTRING() METHOD?
     {
-        System.out.println("Leader Board");
+        System.out.println("\nLeader Board");
         System.out.println("*******************");
         System.out.println("Name\t\t\tScore");
         System.out.println("1st: " + slot1Name + "\t\t\t" + slot1Score);

@@ -60,8 +60,7 @@ public class Main
                 }
                 System.out.println("\nLet's begin the quiz!\n******************");
                 Globals.populateAllQuestions();
-                System.out.println("Please press ENTER to return to main menu");
-                keyboard.nextLine();
+                LeaderBoard.printLeaderboard();
             }
         } while (LoginOrRegister.getMainMenuChoice() != 3);
     }//main
