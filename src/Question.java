@@ -1,77 +1,55 @@
-
-import java.util.Scanner;
-
+import java.io.Serializable;
 /**
- * Created by Aaron McCloskey on 27/11/2022
- * Early attempt at new question. Likely to made redundant.
- * Class Name: quizPage.java
+ * Created by V.Campbell on 27/11/2022
+ * UPDATE  COMMENTS ABOUT PROGRAM HERE
  **/
-public class Question
+abstract public class Question implements Serializable
 {
-   public static Scanner keyboard = new Scanner(System.in);
 
-   private String questionTopic;
    private String questionText;
-   private static int questionCounter = 0;
-   private int uniqueID;
-
-
-   public static void addQuestion()
-   {
-      final int CORRECT_ANSWER_INT;
-      final String CORRECT_ANSWER_STRING;
-
-      String questionTopic, questionText, questionTypeSelection, addAdditionalQuestion;
-
-      System.out.println("Please enter the question topic: ");
-      questionTopic = keyboard.nextLine();
-      System.out.println("Please enter question text: ");
-      System.out.println("(If entering an MCQ, please include numerical options)");
-      questionText = keyboard.nextLine();
-      System.out.println("Question Type: Please enter (M) for MCQ, (S) for Single Word Answer or (T) for True or False");
-      questionTypeSelection = keyboard.nextLine();
-      if (questionTypeSelection.charAt(0) == 'M')
-      {
-         System.out.println("Please enter an integer for the correct answer");
-         CORRECT_ANSWER_INT = keyboard.nextInt();
-         MCQ newMCQ = new MCQ(questionTopic,questionText,CORRECT_ANSWER_INT);
-      }
-      else if (questionTypeSelection.charAt(0) == 'T')
-      {
-         System.out.println("Please enter true or false for the correct answer");
-         CORRECT_ANSWER_STRING = keyboard.next();
-         TOrF newTOrF = new TOrF(questionTopic,questionText,CORRECT_ANSWER_STRING);
-      }
-          else if (questionTypeSelection.charAt(0) == 'S')
-          {
-            System.out.println("Please enter a single word for the correct answer");
-            CORRECT_ANSWER_STRING = keyboard.next();
-            SW newSW = new SW(questionTopic,questionText,CORRECT_ANSWER_STRING);
-          }
-
-      System.out.println("Would you like to enter another question? Y or N");
-      addAdditionalQuestion = keyboard.next();
-      if (addAdditionalQuestion.charAt(0) == 'Y')
-         addQuestion();
-   }
+   private int points;
+   private String topic;
 
    public Question(){
+      questionText="";
+      points=0;
+   }
+   public Question(String QuestionText, int Points){
+      questionText = QuestionText;
+      points=Points;
+   }
+   public Question(String QuestionText, int Points, String Topic){
+      questionText = QuestionText;
+      points=Points;
+      topic=Topic;
    }
 
-   public Question(String questionTopic, String questionText)
+   public void setQuestionText(String QuestionText)
    {
-      this.questionTopic = questionTopic;
-      this.questionText = questionText;
-      this.uniqueID = questionCounter;
-      questionCounter++;
+      questionText = QuestionText;
    }
 
-   public void printQuestion(){
-      System.out.println(questionText);
+   public String getQuestionText()
+   {
+      return questionText;
    }
 
-   public String toString(){
-      return "This is a question";
+   public void setPoints(int Points)
+   {
+      points = Points;
+   }
+   public int getPoints()
+   {
+      return points;
+   }
+
+   public void setTopic(String Topic)
+   {
+      topic=Topic;
+   }
+   public String getTopic()
+   {
+      return topic;
    }
 
 }//class
