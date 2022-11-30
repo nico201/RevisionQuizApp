@@ -1,0 +1,16 @@
+Fibre optic cable has a high bandwidth
+1
+Network Technologies
+T
+Fibre optic cable transmits data as electrical signals
+1
+Network Technologies
+F
+Fibre optic cables are less susceptible to interference
+1
+Network Technologies
+T
+Data carried on fibre optic cables is easier to intercept than data carried on copper cables
+1
+Network Technologies
+F
