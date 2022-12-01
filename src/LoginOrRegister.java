@@ -26,13 +26,18 @@ public class LoginOrRegister
    public static void studentRegistration(){
       boolean isAdmin;
       isAdmin = false;
-      String studentName;
-      String studentID;
+      String studentName = "null";
+      String studentID = "null";
       System.out.println("Welcome to Student Sign-Up!");
       System.out.println("Please enter your name: ");
       studentName = keyboard.next();
-      System.out.println("Please enter your Student ID");
-      studentID = keyboard.nextLine();
+
+      while (studentID.length() != 6)
+      {
+         System.out.print("Please create a student id of 6 alphanumeric characters: ");
+         studentID = keyboard.next();
+      }
+
       if (isStudentIDUnique(studentID))
       {
          Student newStudent = new Student(false,studentName,studentID);
@@ -43,7 +48,7 @@ public class LoginOrRegister
    public static void existingStudentLogin(){
       String studentID;
       System.out.println("Welcome back! Please enter your student ID: ");
-      studentID = keyboard.nextLine();
+      studentID = keyboard.next();
    }
 
 
