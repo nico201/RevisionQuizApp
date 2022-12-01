@@ -117,7 +117,7 @@ public class Main
                 }
 
                 Globals.populateAllQuestions();
-                System.out.println("\nPress return to begin the quiz!\n******************");
+                System.out.println("\nPress return to begin the quiz!\n*******************************");
                 keyboard.nextLine(); keyboard.nextLine();
                 {
                    System.out.println("THE QUIZ GOES HERE...");
