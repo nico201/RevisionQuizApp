@@ -115,10 +115,16 @@ public class Main
                 {
                     LoginOrRegister.existingStudentLogin();
                 }
-                System.out.println("\nLet's begin the quiz!\n******************");
+
                 Globals.populateAllQuestions();
-                LeaderBoard.printLeaderboard();
+                System.out.println("\nPress return to begin the quiz!\n******************");
+                keyboard.nextLine(); keyboard.nextLine();
+                {
+                   System.out.println("THE QUIZ GOES HERE...");
+                   LeaderBoard.printLeaderboard();
+                }
+
             }
-        } while (LoginOrRegister.getMainMenuChoice() != 3);
+        } while (LoginOrRegister.getMainMenuChoice() == 3);
     }//main
 }//class
