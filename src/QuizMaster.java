@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -56,6 +57,11 @@ public class QuizMaster
       numTfQns = Math.min(numTfQns, Globals.tfQnList.size());
       numShortQns  = Math.min(numShortQns, Globals.shortQnList.size());
       numMCQns = Math.min(numMCQns, Globals.mcQnList.size());
+
+      // Randomize Question Banks
+      Collections.shuffle(Globals.tfQnList);
+      Collections.shuffle(Globals.shortQnList);
+      Collections.shuffle(Globals.mcQnList);
 
       // Ask specified number of T/F questions
       for ( int qNum = 0; qNum < numTfQns; qNum++)
