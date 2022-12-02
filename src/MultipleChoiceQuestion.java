@@ -8,7 +8,7 @@ import java.util.Scanner;
  **/
 public class MultipleChoiceQuestion extends Question
 {
-    private static ArrayList<MultipleChoiceQuestion> mcQnList = new ArrayList<MultipleChoiceQuestion>();
+    public static ArrayList<MultipleChoiceQuestion> mcQnList = new ArrayList<MultipleChoiceQuestion>();
     private static String multipleChoiceQnFilePath="multipleChoiceQns.txt";
     private static int count=0;
     private String option1;

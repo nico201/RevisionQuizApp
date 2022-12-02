@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class ShortQuestion extends Question
 {
    private static int count=0;
-   private static ArrayList<ShortQuestion> shortQnList = new ArrayList<ShortQuestion>();
+   public static ArrayList<ShortQuestion> shortQnList = new ArrayList<ShortQuestion>();
    private static String shortQnFilePath="shortQns.txt";
    private String answer;
 

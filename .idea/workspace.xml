@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a18898b-db13-45a9-b9b5-0ad25a7f1699" name="Changes" comment="Methods to populate, serialize and deserialize moved to TF Question.">
+    <list default="true" id="2a18898b-db13-45a9-b9b5-0ad25a7f1699" name="Changes" comment="Methods to populate, serialize and deserialize moved to Short answer question.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Globals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Globals.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MultipleChoiceQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MultipleChoiceQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/QuizMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QuizMaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ShortQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShortQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TrueFalseQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TrueFalseQuestion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +160,28 @@
       <option name="project" value="LOCAL" />
       <updated>1670006853185</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Methods to populate, serialize and deserialize moved to TF Question.">
+      <created>1670006927167</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1670006927167</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Methods to populate, serialize and deserialize moved to Multiple Choice Question.">
+      <created>1670007053489</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1670007053489</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Methods to populate, serialize and deserialize moved to Short answer question.">
+      <created>1670007149362</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1670007149362</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,7 +239,9 @@
     <MESSAGE value="Fixed bug where application quits after quiz" />
     <MESSAGE value="Removed the year from the question as not relevant." />
     <MESSAGE value="Methods to populate, serialize and deserialize moved to TF Question." />
-    <option name="LAST_COMMIT_MESSAGE" value="Methods to populate, serialize and deserialize moved to TF Question." />
+    <MESSAGE value="Methods to populate, serialize and deserialize moved to Multiple Choice Question." />
+    <MESSAGE value="Methods to populate, serialize and deserialize moved to Short answer question." />
+    <option name="LAST_COMMIT_MESSAGE" value="Methods to populate, serialize and deserialize moved to Short answer question." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

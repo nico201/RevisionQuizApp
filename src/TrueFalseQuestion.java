@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class TrueFalseQuestion extends Question
 {
     private static int count=0;
-    private static ArrayList<TrueFalseQuestion> tfQnList = new ArrayList<TrueFalseQuestion>();
+    public static ArrayList<TrueFalseQuestion> tfQnList = new ArrayList<TrueFalseQuestion>();
     public static String tfQnFilePath="tfQns.txt";
     public static Scanner keyboard = new Scanner(System.in);
     private char answer;

@@ -43,9 +43,9 @@ public class QuizMaster
 
    public void runQuiz(){
       int maxTFQns, maxMCQns, maxShortQns;
-      maxTFQns = Globals.tfQnList.size();
-      maxShortQns = Globals.shortQnList.size();
-      maxMCQns = Globals.mcQnList.size();
+      maxTFQns = TrueFalseQuestion.tfQnList.size();
+      maxShortQns = ShortQuestion.shortQnList.size();
+      maxMCQns = MultipleChoiceQuestion.mcQnList.size();
       // Run quiz and ask all questions in question bank
       runQuiz(maxTFQns, maxShortQns, maxMCQns);
    }
@@ -54,14 +54,14 @@ public class QuizMaster
       QuizMaster quizMaster;
 
       // Limit max number of questions asked by number of question in question bank
-      numTfQns = Math.min(numTfQns, Globals.tfQnList.size());
-      numShortQns  = Math.min(numShortQns, Globals.shortQnList.size());
-      numMCQns = Math.min(numMCQns, Globals.mcQnList.size());
+      numTfQns = Math.min(numTfQns, TrueFalseQuestion.tfQnList.size());
+      numShortQns  = Math.min(numShortQns, ShortQuestion.shortQnList.size());
+      numMCQns = Math.min(numMCQns, MultipleChoiceQuestion.mcQnList.size());
 
       // Randomize Question Banks
-      Collections.shuffle(Globals.tfQnList);
-      Collections.shuffle(Globals.shortQnList);
-      Collections.shuffle(Globals.mcQnList);
+      Collections.shuffle(TrueFalseQuestion.tfQnList);
+      Collections.shuffle(ShortQuestion.shortQnList);
+      Collections.shuffle(MultipleChoiceQuestion.mcQnList);
 
       // Ask specified number of T/F questions
       for ( int qNum = 0; qNum < numTfQns; qNum++)
@@ -88,10 +88,10 @@ public class QuizMaster
    private void askTFQuestion(){
       String answer, correctAnswer;
       setMarkAvail(tfQnMark);
-      System.out.println("\n" + (numQuestionsAsked+1) + ". " + Globals.tfQnList.get(0).getQuestionText());
+      System.out.println("\n" + (numQuestionsAsked+1) + ". " + TrueFalseQuestion.tfQnList.get(0).getQuestionText());
       System.out.println("\nAnswer 'true' or 'false': ");
       answer = keyboard.next();
-      if (Globals.tfQnList.get(0).getAnswer() == 'T')
+      if (TrueFalseQuestion.tfQnList.get(0).getAnswer() == 'T')
          correctAnswer = "true";
       else
          correctAnswer = "false";
@@ -103,17 +103,17 @@ public class QuizMaster
       else
          this.ansCorrect = false;
       recordQuestionMark();
-      Globals.tfQnList.remove(0);
+      TrueFalseQuestion.tfQnList.remove(0);
       numQuestionsAsked++;
    }
 
    private void askShortQuestion(){
       String answer, correctAnswer;
       setMarkAvail(shortQnMark);
-      System.out.println("\n" + (numQuestionsAsked+1) + ". " + Globals.shortQnList.get(0).getQuestionText());
+      System.out.println("\n" + (numQuestionsAsked+1) + ". " + ShortQuestion.shortQnList.get(0).getQuestionText());
       System.out.println("\nPlease enter a one word answer: ");
       answer = keyboard.next();
-      correctAnswer = Globals.shortQnList.get(0).getAnswer();
+      correctAnswer = ShortQuestion.shortQnList.get(0).getAnswer();
       if (answer.equalsIgnoreCase(correctAnswer))
       {
          this.ansCorrect = true;
@@ -122,21 +122,21 @@ public class QuizMaster
       else
          this.ansCorrect = false;
       recordQuestionMark();
-      Globals.shortQnList.remove(0);
+      ShortQuestion.shortQnList.remove(0);
       numQuestionsAsked++;
    }
 
    private void askMCQuestion(){
       int answer, correctAnswer;
       setMarkAvail(mcQnMark);
-      System.out.println("\n" + (numQuestionsAsked+1) + ". " + Globals.mcQnList.get(0).getQuestionText());
-      System.out.println("\t1. " + Globals.mcQnList.get(0).getOption1());
-      System.out.println("\t2. " + Globals.mcQnList.get(0).getOption2());
-      System.out.println("\t3. " + Globals.mcQnList.get(0).getOption3());
-      System.out.println("\t4. " + Globals.mcQnList.get(0).getOption4());
+      System.out.println("\n" + (numQuestionsAsked+1) + ". " + MultipleChoiceQuestion.mcQnList.get(0).getQuestionText());
+      System.out.println("\t1. " + MultipleChoiceQuestion.mcQnList.get(0).getOption1());
+      System.out.println("\t2. " + MultipleChoiceQuestion.mcQnList.get(0).getOption2());
+      System.out.println("\t3. " + MultipleChoiceQuestion.mcQnList.get(0).getOption3());
+      System.out.println("\t4. " + MultipleChoiceQuestion.mcQnList.get(0).getOption4());
       System.out.println("\nEnter correct option: ");
       answer = keyboard.nextInt();
-      correctAnswer = Globals.mcQnList.get(0).getCorrectOption();
+      correctAnswer = MultipleChoiceQuestion.mcQnList.get(0).getCorrectOption();
       if (answer == correctAnswer)
       {
          this.ansCorrect = true;
@@ -145,7 +145,7 @@ public class QuizMaster
       else
          this.ansCorrect = false;
       recordQuestionMark();
-      Globals.mcQnList.remove(0);
+      MultipleChoiceQuestion.mcQnList.remove(0);
       numQuestionsAsked++;
    }
 
