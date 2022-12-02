@@ -121,6 +121,7 @@ public class Main
                quizMaster.runQuiz(1, 1, 1);
                QuizMaster.printQuizResult();
                LeaderBoard.printLeaderboard();
+               LoginOrRegister.menuPrompt();
             }
 
          }
