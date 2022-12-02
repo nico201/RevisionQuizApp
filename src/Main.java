@@ -29,20 +29,19 @@ public class Main
                System.out.println("\nPassword is Correct!");
                do
                {
-                  System.out.println("\nWelcome to the Admin Area");
-                  System.out.println("Please enter a selection: ");
+                  System.out.println("\nWelcome to the Admin Area\n*************************");
                   System.out.println("1: Show Leaderboard\n2: Add New Question\n3: Log Out");
+                  System.out.println("Please enter a selection: ");
                   adminMenuChoice = keyboard.nextInt();
                   if (adminMenuChoice == 1)
                      LeaderBoard.printLeaderboard();
-                  else if (adminMenuChoice == 2)
-                     do
-                     {
-                        System.out.println("\nPlease select a question type to be added: ");
-                        System.out.println("\n1. Multiple Choice Question\n2. True or False Question\n3. Short Answer Question\nor\n4. Go Back");
+                  else if (adminMenuChoice == 2) {
+                     do {
+                        System.out.println("\nWelcome to Add New Question menu\n*************************");
+                        System.out.println("1. Multiple Choice Question\n2. True or False Question\n3. Short Answer Question\n4. Go Back");
+                        System.out.println("Please enter a selection: ");
                         addNewQuestionMenuChoice = keyboard.nextInt();
-                        if (addNewQuestionMenuChoice == 1)
-                        {
+                        if (addNewQuestionMenuChoice == 1) {
                            MultipleChoiceQuestion mcq1 = new MultipleChoiceQuestion(null, -1, null, null, null, null, null, -1);
                            System.out.println("\nMCQ Question Creation");
                            System.out.println("Please enter the question text: ");
@@ -64,8 +63,7 @@ public class Main
                            mcq1.setCorrectOption(keyboard.nextInt());
                            System.out.println("New Question has been saved. Thank you!");
                         }//if
-                        if (addNewQuestionMenuChoice == 2)
-                        {
+                        if (addNewQuestionMenuChoice == 2) {
                            TrueFalseQuestion tf1 = new TrueFalseQuestion(null, -1, null, '0');
                            System.out.println("\nTrue or False Question Creation");
                            System.out.println("Please enter the question text: ");
@@ -79,8 +77,7 @@ public class Main
                            tf1.setAnswer(keyboard.next().charAt(0));
                            System.out.println("New Question has been saved. Thank you!");
                         }//if
-                        if (addNewQuestionMenuChoice == 3)
-                        {
+                        if (addNewQuestionMenuChoice == 3) {
                            ShortQuestion sq1 = new ShortQuestion(null, 0, null, null);
                            System.out.println("Short Answer Question Creation");
                            System.out.println("Please enter the question text: ");
@@ -97,14 +94,14 @@ public class Main
                         }//if
                      }//do
                      while (addNewQuestionMenuChoice != 4);
-
+                  }
                } while (adminMenuChoice != 3);
             } else
                System.out.println("Sorry that's incorrect");
          } else if (LoginOrRegister.getMainMenuChoice() == 1)
          {
-            System.out.println("\nWelcome Student");
-            System.out.println("Please enter a selection: \n1. New User\n2. Existing User");
+            System.out.println("\nWelcome Student\n*************************");
+            System.out.println("1. New User\n2. Existing User\nPlease enter your selection: ");
             int chooseNewOrExisting = keyboard.nextInt();
             if (chooseNewOrExisting == 1)
             {
@@ -113,7 +110,7 @@ public class Main
             {
                LoginOrRegister.existingStudentLogin();
             }
-            System.out.println("\nPress return to begin the quiz!\n*******************************");
+            System.out.println("\nPress return to begin the quiz!\n*************************");
             keyboard.nextLine();
             keyboard.nextLine();
             {

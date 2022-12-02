@@ -15,7 +15,7 @@ public class LoginOrRegister
    private static final String ADMIN_PASSWORD = "RosaleenIsALegend";
 
    public static void menuPrompt(){
-      System.out.println("\nPlease enter your selection:\n1. Student\n2. Teacher\n3. Quit");
+      System.out.println("\nWelcome to the Main Menu\n*************************\n1. Student\n2. Teacher\n3. Quit\nPlease enter your selection: ");
       mainMenuChoice = keyboard.nextInt();
    }
 
@@ -28,13 +28,13 @@ public class LoginOrRegister
       isAdmin = false;
       String studentName = "null";
       String studentID = "null";
-      System.out.println("Welcome to Student Sign-Up!");
+      System.out.println("\nWelcome to Student Sign-Up!\n*************************");
       System.out.println("Please enter your name: ");
       studentName = keyboard.next();
 
       while (studentID.length() != 6)
       {
-         System.out.print("Please create a student id of 6 alphanumeric characters: ");
+         System.out.println("Please enter a student ID of 6 alphanumeric characters: ");
          studentID = keyboard.next();
       }
 
