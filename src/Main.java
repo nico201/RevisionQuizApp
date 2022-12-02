@@ -9,6 +9,9 @@ public class Main
    public static Scanner keyboard = new Scanner(System.in);
    public static int addNewQuestionMenuChoice;
 
+   public static int adminMenuChoice;
+
+
    public static void main(String[] args)
    {
       do
@@ -24,7 +27,6 @@ public class Main
             if (LoginOrRegister.isPasswordCorrect(passwordAttempt))
             {
                System.out.println("\nPassword is Correct!");
-               int adminMenuChoice;
                do
                {
                   System.out.println("\nWelcome to the Admin Area");
@@ -90,6 +92,7 @@ public class Main
                            sq1.setTopic(keyboard.next());
                            System.out.println("Please enter the correct answer");
                            sq1.setAnswer(keyboard.next());
+                           sq1.setAnswer(keyboard.nextLine());
                            System.out.println("New Question has been saved. Thank you!");
                         }//if
                      }//do
@@ -100,7 +103,7 @@ public class Main
                System.out.println("Sorry that's incorrect");
          } else if (LoginOrRegister.getMainMenuChoice() == 1)
          {
-            System.out.println("Welcome Student");
+            System.out.println("\nWelcome Student");
             System.out.println("Please enter a selection: \n1. New User\n2. Existing User");
             int chooseNewOrExisting = keyboard.nextInt();
             if (chooseNewOrExisting == 1)
@@ -121,10 +124,8 @@ public class Main
                quizMaster.runQuiz(1, 1, 1);
                QuizMaster.printQuizResult();
                LeaderBoard.printLeaderboard();
-               LoginOrRegister.menuPrompt();
             }
-
-         }
-      } while (LoginOrRegister.getMainMenuChoice() == 3);
+         }//else if
+      } while (LoginOrRegister.getMainMenuChoice() != 3);
    }//main
 }//class
