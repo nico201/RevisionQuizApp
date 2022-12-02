@@ -1,15 +1,12 @@
 A type of software used to capture passwords, bank details and credit card details.
 1
 Hardware
-22
 spyware
 A program used by hackers to try to gain access to users’ systems.
 1
 Digital data
-22
 trojan horse
 A program that replicates itself using up memory space
 1
 Digital data
-22
 worm
