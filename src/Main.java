@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.Scanner;
 /**
  * Created by V.Campbell on 27/11/2022
@@ -7,14 +6,8 @@ import java.util.Scanner;
 
 public class Main
 {
-
     public static Scanner keyboard = new Scanner(System.in);
-
-    private static String passwordAttempt;
-    private static int chooseNewOrExisting;
-    private static int adminMenuChoice;
     public static int addNewQuestionMenuChoice;
-
 
     public static void main(String[] args)
     {
@@ -27,10 +20,11 @@ public class Main
             else if (LoginOrRegister.getMainMenuChoice() == 2)
             {
                 System.out.println("Please enter the admin password: ");
-                passwordAttempt = keyboard.next();
+                String passwordAttempt = keyboard.next();
                 if (LoginOrRegister.isPasswordCorrect(passwordAttempt))
                 {
                     System.out.println("\nPassword is Correct!");
+                    int adminMenuChoice;
                     do
                     {
                         System.out.println("\nWelcome to the Admin Area");
@@ -106,7 +100,7 @@ public class Main
             {
                 System.out.println("Welcome Student");
                 System.out.println("Please enter a selection: \n1. New User\n2. Existing User");
-                chooseNewOrExisting = keyboard.nextInt();
+                int chooseNewOrExisting = keyboard.nextInt();
                 if (chooseNewOrExisting == 1)
                 {
                     LoginOrRegister.studentRegistration();
@@ -120,7 +114,12 @@ public class Main
                 System.out.println("\nPress return to begin the quiz!\n*******************************");
                 keyboard.nextLine(); keyboard.nextLine();
                 {
-                   System.out.println("THE QUIZ GOES HERE...");
+                    // Re-populates Question ArrayLists on re-run
+                   Globals.populateAllQuestions();
+                   QuizMaster quizMaster = new QuizMaster();
+                   // Use quizMaster.runQuiz() to ask ALL questions in question bank or specify num in call as below
+                   quizMaster.runQuiz(1,1,1);
+                   QuizMaster.printQuizResult();
                    LeaderBoard.printLeaderboard();
                 }
 
