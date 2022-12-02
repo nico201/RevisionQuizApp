@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 /**
- * Filename: QuestionMaster
+ * Filename: QuizMaster
  * Created by: nsweeney-ortiz on 01/12/2022
- * Comment: UPDATE PROGRAM COMMENTS ABOUT PROGRAM HERE
+ * Comment: Class & Methods to run Quiz, record student answers, and output results
  **/
 public class QuizMaster
 {
