@@ -177,7 +177,7 @@ public class QuizMaster
    }
 
    public static int getQuizScore(){
-      return (QuizMaster.getTotalMarkAwarded()/QuizMaster.getTotalMarkAvailable()*100);
+      return (100*QuizMaster.getTotalMarkAwarded()/QuizMaster.getTotalMarkAvailable());
    }
 
 }//class
