@@ -29,7 +29,8 @@ public class Admin extends User
     }
 
     public String toString(){
-        return "This is the admin profile";
+        String adminDetails = "Admin username: "+getUsername()+"\n Admin Rights:"+"\nCan Delete Questions: "+String.valueOf(canDeleteQuestions)+"\nCan Delete Students: "+String.valueOf(canDeleteStudents)+"\nCan Reset Quiz Scores: "+String.valueOf(canResetScore);
+        return adminDetails;
     }
 
     public void assignRights()

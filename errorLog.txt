@@ -1,12 +1,2 @@
-null
-Password is not at least 8 characters
-Password does not contain a digit
-Password does not contain an Upper Case characternull
-Password is not at least 8 characters
-Password does not contain a digit
-Password does not contain an Upper Case characternull
-Password is not at least 8 charactersnull
-Password is not at least 8 characters
-Password is not at least 8 characters
-Password does not contain an Upper Case characterForename or Surname don't meet minimum length requirementsnull
-Password is not at least 8 characters
+Date/Time, Exception Detail
+03/12/2022 19:39:49, Forename or Surname don't meet minimum length requirements

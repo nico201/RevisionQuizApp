@@ -106,8 +106,6 @@ public class Main
                validLogin= StudentMenu.display();
             }while (!validLogin);
 
-
-
             System.out.println("\nPress return to begin the quiz!\n*************************");
             keyboard.nextLine();
             {

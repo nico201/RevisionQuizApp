@@ -1,8 +1,6 @@
-/**
- * Created by vcamp on 29/11/2022
- * UPDATE  COMMENTS ABOUT PROGRAM HERE
- **/
+import java.time.LocalDateTime;
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.FileWriter;
@@ -31,13 +29,17 @@ public class Globals
         MultipleChoiceQuestion.serialize();
         ShortQuestion.serialize();
     }
+    //method to log exceptions to file
     public static void logException(Exception ex)
     {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String currentDateAndTIme = dtf.format(now);
         try
         {
             File errorFile = new File("errorLog.txt");
             FileWriter fw = new FileWriter(errorFile, true);
-            fw.write(ex.getMessage());
+            fw.write("\n"+currentDateAndTIme+", "+ex.getMessage());
             fw.close();
         }
         catch (Exception e)

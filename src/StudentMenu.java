@@ -25,9 +25,7 @@ public class StudentMenu
             return existingStudentLogin();
          //break;
          case 3:
-            //TODO: Fix this mess!
-            //MainMenu.display();
-            //break;
+            LoginOrRegister.menuPrompt();//return to main menu
          default:
          {
             System.out.println("Invalid Menu Choice");
@@ -65,7 +63,7 @@ public class StudentMenu
           }
           else
           {
-             System.out.println("User is not unique. Please try again");
+             System.out.println("Error: User is not unique. Please try again");
              validRegistration = false;
           }
        } catch (PasswordException e)
@@ -78,7 +76,7 @@ public class StudentMenu
        {
           //Handle exception
           Globals.logException(e);
-          System.out.println(e.getMessage());
+          System.out.println("Error: "+e.getMessage());
           validRegistration = false;
 
        }
@@ -90,7 +88,7 @@ public class StudentMenu
     }
     public static boolean existingStudentLogin()
     {
-       boolean userFound = false;
+       boolean validUserLoggedIn = false;
 
        String inputUsername;
        String inputPassword;
@@ -104,11 +102,22 @@ public class StudentMenu
 
        for (Student std : Student.studentList)
        {
-          if (std.getUsername().equals(inputUsername)  && std.getPassword().equals(inputPassword))
+          if (std.getUsername().equals(inputUsername))
           {
-             userFound = true;
+             if (std.getPassword().equals(inputPassword))
+             {
+                validUserLoggedIn = true;
+             }
+             else {
+                System.out.println("User found - password incorrect. PLease try again");
+                break;
+             }
+          }
+          else
+          {
+             System.out.println("User not found. Please try again");
           }
        }
-       return userFound;
+       return validUserLoggedIn;
     }
 }//class
