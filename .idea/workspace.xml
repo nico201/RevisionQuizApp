@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a18898b-db13-45a9-b9b5-0ad25a7f1699" name="Changes" comment="Methods to populate, serialize and deserialize moved to Short answer question.">
+    <list default="true" id="2a18898b-db13-45a9-b9b5-0ad25a7f1699" name="Changes" comment="MC: LoginOrRegister - require new user to enter id of 6 alphanumeric characters">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Globals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Globals.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MultipleChoiceQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MultipleChoiceQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QuizMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QuizMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ShortQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShortQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TrueFalseQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TrueFalseQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/multipleChoiceQns.ser" beforeDir="false" afterPath="$PROJECT_DIR$/multipleChoiceQns.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LeaderBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeaderBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tfQns.ser" beforeDir="false" afterPath="$PROJECT_DIR$/tfQns.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +22,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -41,11 +41,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/aaron/IdeaProjects/COM809/JavaPrograms&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.notifications&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/aaron/IdeaProjects/RevisionQuizApp&quot;
   }
 }</component>
   <component name="RunManager" selected="Application.Main">
@@ -80,8 +76,7 @@
       <updated>1669671936048</updated>
       <workItem from="1669679521173" duration="2245000" />
       <workItem from="1669763646627" duration="25000" />
-      <workItem from="1669764221500" duration="10047000" />
-      <workItem from="1669825753324" duration="17856000" />
+      <workItem from="1669764221500" duration="2627000" />
     </task>
     <task id="LOCAL-00001" summary="Test Commit">
       <created>1669672042281</created>
@@ -111,77 +106,7 @@
       <option name="project" value="LOCAL" />
       <updated>1669680516377</updated>
     </task>
-    <task id="LOCAL-00005" summary="Attempt at amalgamation">
-      <created>1669767247887</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1669767247887</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Leaderboard now runs after quiz. Neatened layout slightly">
-      <created>1669848622315</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1669848622315</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Add new question functionality added (creating question objects)">
-      <created>1669888186973</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1669888186973</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Fixed bug where application quits after quiz">
-      <created>1669981272992</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1669981272992</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Fixed bug where application quits after quiz">
-      <created>1669982021667</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1669982021667</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Removed the year from the question as not relevant.">
-      <created>1670004341742</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1670004341742</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Methods to populate, serialize and deserialize moved to TF Question.">
-      <created>1670006853185</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1670006853185</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Methods to populate, serialize and deserialize moved to TF Question.">
-      <created>1670006927167</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1670006927167</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Methods to populate, serialize and deserialize moved to Multiple Choice Question.">
-      <created>1670007053489</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1670007053489</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Methods to populate, serialize and deserialize moved to Short answer question.">
-      <created>1670007149362</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1670007149362</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,15 +158,7 @@
     <MESSAGE value="Test Commit" />
     <MESSAGE value="Updating main method message from &quot;Hello Group 5&quot; to &quot;Hello Aaron&quot;" />
     <MESSAGE value="First upload of files" />
-    <MESSAGE value="Attempt at amalgamation" />
-    <MESSAGE value="Leaderboard now runs after quiz. Neatened layout slightly" />
-    <MESSAGE value="Add new question functionality added (creating question objects)" />
-    <MESSAGE value="Fixed bug where application quits after quiz" />
-    <MESSAGE value="Removed the year from the question as not relevant." />
-    <MESSAGE value="Methods to populate, serialize and deserialize moved to TF Question." />
-    <MESSAGE value="Methods to populate, serialize and deserialize moved to Multiple Choice Question." />
-    <MESSAGE value="Methods to populate, serialize and deserialize moved to Short answer question." />
-    <option name="LAST_COMMIT_MESSAGE" value="Methods to populate, serialize and deserialize moved to Short answer question." />
+    <option name="LAST_COMMIT_MESSAGE" value="First upload of files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -250,11 +167,12 @@
           <properties class="java.util.InputMismatchException" package="java.util" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
