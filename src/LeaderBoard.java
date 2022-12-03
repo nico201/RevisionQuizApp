@@ -11,64 +11,38 @@ public class LeaderBoard
 
     public static void printLeaderboard()
     {
-        System.out.println("\nLeader Board");
-        System.out.println("*******************");
-        System.out.println("Name\t\t\tScore");
+        System.out.println("\nLeaderboard");
+        System.out.println("***********");
+        System.out.println("Name\t\t\tScore (%)");
         System.out.println("1st: " + leaderNames[0] + "\t\t" + leaderScores[0]);
         System.out.println("2nd: " + leaderNames[1] + "\t\t" + leaderScores[1]);
         System.out.println("3rd: " + leaderNames[2] + "\t\t" + leaderScores[2]);
     }
 
-    /*public static void setSlot1Name(String newSlot1Name) { slot1Name = newSlot1Name; }
-    public static String getSlot1Name()
+    public static void updateLeaderboard(/*String latestName,*/ int latestScore)
+    // name functionality commented out for now
     {
-        return slot1Name;
+        if (latestScore >= leaderScores[0])
+        {
+            leaderScores[2] = leaderScores[1];
+            //leaderNames[2] = leaderNames[1];
+            leaderScores[1] = leaderScores[0];
+            //leaderNames[1] = leaderNames[0];
+            leaderScores[0] = latestScore;
+            //leaderNames[0] = latestName;
+        }
+        else if ((latestScore < leaderScores[0]) && (latestScore >= leaderScores[1]))
+        {
+            leaderScores[2] = leaderScores[1];
+            //leaderNames[2] = leaderNames[1];
+            leaderScores[1] = latestScore;
+            //leaderNames[1] = latestName;
+        }
+        else if ((latestScore < leaderScores[1]) && (latestScore >= leaderScores[2]))
+        {
+            leaderScores[2] = latestScore;
+            //leaderNames[2] = latestName;
+        }
     }
-
-    public static void setSlot1Score(int newSlot1Score)
-    {
-        slot1Score = newSlot1Score;
-    }
-    public static int getSlot1Score()
-    {
-        return slot1Score;
-    }
-
-    public static void setSlot2Name(String newSlot2Name)
-    {
-        slot2Name = newSlot2Name;
-    }
-    public static String getSlot2Name()
-    {
-        return slot2Name;
-    }
-
-    public static void setSlot2Score(int newSlot2Score)
-    {
-        slot2Score = newSlot2Score;
-    }
-    public static int getSlot2Score()
-    {
-        return slot2Score;
-    }
-
-    public static void setSlot3name(String newSlot3name)
-    {
-        slot3Name = newSlot3name;
-    }
-    public static String getSlot3Name()
-    {
-        return slot3Name;
-    }
-
-    public static void setSlot3Score(int newSlot3Score)
-    {
-        slot3Score = newSlot3Score;
-    }
-    public static int getSlot3Score()
-    {
-        return slot3Score;
-    }
-    */
 
 }//class
