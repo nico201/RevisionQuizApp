@@ -19,9 +19,9 @@ public class QuizMaster
    private int markAwarded;
 
    // static class attributes
-   private static int numQuestionsAsked = 0;
-   private static int totalMarkAvailable = 0;
-   private static int totalMarkAwarded = 0;
+   private static int numQuestionsAsked;
+   private static int totalMarkAvailable;
+   private static int totalMarkAwarded;
 
    private static Scanner keyboard = new Scanner(System.in);
 
@@ -158,6 +158,11 @@ public class QuizMaster
       totalMarkAwarded += this.markAwarded;
    }
 
+   public static void initializeQuizMaster(){
+      QuizMaster.numQuestionsAsked = 0;
+      QuizMaster.totalMarkAvailable = 0;
+      QuizMaster.totalMarkAwarded = 0;
+   }
    public static int getTotalMarkAvailable(){
       return totalMarkAvailable;
    }
@@ -172,7 +177,7 @@ public class QuizMaster
    }
 
    public static int getQuizScore(){
-      return (QuizMaster.getTotalMarkAwarded()/QuizMaster.getTotalMarkAvailable()*100);
+      return (100*QuizMaster.getTotalMarkAwarded()/QuizMaster.getTotalMarkAvailable());
    }
 
 }//class
