@@ -110,7 +110,6 @@ public class Main
 
             System.out.println("\nPress return to begin the quiz!\n*************************");
             keyboard.nextLine();
-            keyboard.nextLine();
             {
                // Re-populates Question ArrayLists on re-run
                Globals.populateAllQuestions();
