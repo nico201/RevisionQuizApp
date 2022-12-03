@@ -17,6 +17,7 @@ public class Main
       do
       {
          LoginOrRegister.menuPrompt();
+
          if (LoginOrRegister.getMainMenuChoice() == 3)
             System.out.println("See you again soon!");
 
@@ -43,53 +44,17 @@ public class Main
                         addNewQuestionMenuChoice = keyboard.nextInt();
                         if (addNewQuestionMenuChoice == 1) {
                            MultipleChoiceQuestion mcq1 = new MultipleChoiceQuestion(null, -1, null, null, null, null, null, -1);
-                           System.out.println("\nMCQ Question Creation");
-                           System.out.println("Please enter the question text: ");
-                           mcq1.setQuestionText(keyboard.next());//
-                           mcq1.setQuestionText(keyboard.nextLine());//"Workaround for quirk in Scanner class"- Aaron
-                           System.out.println("Please enter the number of points available: ");
-                           mcq1.setPoints(keyboard.nextInt());
-                           System.out.println("Please enter the topic: ");
-                           mcq1.setTopic(keyboard.next());
-                           System.out.println("Please enter text for option 1: ");
-                           mcq1.setOption1(keyboard.next());
-                           System.out.println("Please enter text for option 2: ");
-                           mcq1.setOption2(keyboard.next());
-                           System.out.println("Please enter text for option 3: ");
-                           mcq1.setOption3(keyboard.next());
-                           System.out.println("Please enter text for option 4: ");
-                           mcq1.setOption4(keyboard.next());
-                           System.out.println("Please enter correct option number: ");
-                           mcq1.setCorrectOption(keyboard.nextInt());
+                           mcq1.updateMcq1();
                            System.out.println("New Question has been saved. Thank you!");
                         }//if
                         if (addNewQuestionMenuChoice == 2) {
                            TrueFalseQuestion tf1 = new TrueFalseQuestion(null, -1, null, '0');
-                           System.out.println("\nTrue or False Question Creation");
-                           System.out.println("Please enter the question text: ");
-                           tf1.setQuestionText(keyboard.next());
-                           tf1.setQuestionText(keyboard.nextLine());
-                           System.out.println("Please enter the number of points available: ");
-                           tf1.setPoints(keyboard.nextInt());
-                           System.out.println("Please enter the topic: ");
-                           tf1.setTopic(keyboard.next());
-                           System.out.println("Please enter answer T or F: ");
-                           tf1.setAnswer(keyboard.next().charAt(0));
+                           tf1.updateTf1();
                            System.out.println("New Question has been saved. Thank you!");
                         }//if
                         if (addNewQuestionMenuChoice == 3) {
                            ShortQuestion sq1 = new ShortQuestion(null, 0, null, null);
-                           System.out.println("Short Answer Question Creation");
-                           System.out.println("Please enter the question text: ");
-                           sq1.setQuestionText(keyboard.next());
-                           sq1.setQuestionText(keyboard.nextLine());
-                           System.out.println("Please enter the number of points available: ");
-                           sq1.setPoints(keyboard.nextInt());
-                           System.out.println("Please enter the topic: ");
-                           sq1.setTopic(keyboard.next());
-                           System.out.println("Please enter the correct answer");
-                           sq1.setAnswer(keyboard.next());
-                           sq1.setAnswer(keyboard.nextLine());
+                           sq1.updateSq1();
                            System.out.println("New Question has been saved. Thank you!");
                         }//if
                      }//do

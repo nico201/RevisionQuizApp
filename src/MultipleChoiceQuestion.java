@@ -1,9 +1,12 @@
+import java.util.Scanner;
+
 /**
  * Created by vcamp on 29/11/2022
  * UPDATE  COMMENTS ABOUT PROGRAM HERE
  **/
 public class MultipleChoiceQuestion extends Question
 {
+    Scanner keyboard = new Scanner(System.in);
 
     private String option1;
     private String option2;
@@ -68,5 +71,27 @@ public class MultipleChoiceQuestion extends Question
 
     public int getCorrectOption() {
         return correctOption;
+    }
+
+    public void updateMcq1() {
+        MultipleChoiceQuestion mcq1 = new MultipleChoiceQuestion(null, -1, null, null, null, null, null, -1);
+        System.out.println("\nMCQ Question Creation");
+        System.out.println("Please enter the question text: ");
+        mcq1.setQuestionText(keyboard.next());//
+        mcq1.setQuestionText(keyboard.nextLine());//"Workaround for quirk in Scanner class"- Aaron
+        System.out.println("Please enter the number of points available: ");
+        mcq1.setPoints(keyboard.nextInt());
+        System.out.println("Please enter the topic: ");
+        mcq1.setTopic(keyboard.next());
+        System.out.println("Please enter text for option 1: ");
+        mcq1.setOption1(keyboard.next());
+        System.out.println("Please enter text for option 2: ");
+        mcq1.setOption2(keyboard.next());
+        System.out.println("Please enter text for option 3: ");
+        mcq1.setOption3(keyboard.next());
+        System.out.println("Please enter text for option 4: ");
+        mcq1.setOption4(keyboard.next());
+        System.out.println("Please enter correct option number: ");
+        mcq1.setCorrectOption(keyboard.nextInt());
     }
 }//class
