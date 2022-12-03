@@ -114,6 +114,7 @@ public class Main
                // Re-populates Question ArrayLists on re-run
                Globals.populateAllQuestions();
                QuizMaster quizMaster = new QuizMaster();
+               QuizMaster.initializeQuizMaster();
                // Use quizMaster.runQuiz() to ask ALL questions in question bank or specify num in call as below
                quizMaster.runQuiz(1, 1, 1);
                QuizMaster.printQuizResult();
