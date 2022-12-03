@@ -23,27 +23,7 @@ public class LoginOrRegister
       return (ADMIN_PASSWORD.equalsIgnoreCase(pPassword));
    }
 
-   public static void studentRegistration(){
-      boolean isAdmin;
-      isAdmin = false;
-      String studentName = "null";
-      String studentID = "null";
-      System.out.println("\nWelcome to Student Sign-Up!\n*************************");
-      System.out.println("Please enter your name: ");
-      studentName = keyboard.next();
 
-      while (studentID.length() != 6)
-      {
-         System.out.println("Please enter a student ID of 6 alphanumeric characters: ");
-         studentID = keyboard.next();
-      }
-
-      if (isStudentIDUnique(studentID))
-      {
-         Student newStudent = new Student(false,studentName,studentID);
-         System.out.println("\nNew user created!");
-      }
-   }
 
    public static void existingStudentLogin(){
       String studentID;
@@ -57,9 +37,6 @@ public class LoginOrRegister
       return mainMenuChoice;
    }
 
-   public static boolean isStudentIDUnique(String studentID){
-      return true;
-   }
 
 
 
