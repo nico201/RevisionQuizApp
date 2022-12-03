@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a18898b-db13-45a9-b9b5-0ad25a7f1699" name="Changes" comment="Methods to populate, serialize and deserialize moved to Short answer question.">
+    <list default="true" id="2a18898b-db13-45a9-b9b5-0ad25a7f1699" name="Changes" comment="Glitch in Password validation removed">
+      <change afterPath="$PROJECT_DIR$/shortQns.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Globals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Globals.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MultipleChoiceQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MultipleChoiceQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QuizMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QuizMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ShortQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShortQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TrueFalseQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TrueFalseQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/multipleChoiceQns.ser" beforeDir="false" afterPath="$PROJECT_DIR$/multipleChoiceQns.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pupil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/students.ser" beforeDir="false" afterPath="$PROJECT_DIR$/students.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tfQns.ser" beforeDir="false" afterPath="$PROJECT_DIR$/tfQns.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,19 +35,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/aaron/IdeaProjects/COM809/JavaPrograms&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.notifications&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/vcamp/IdeaProjects/RevisionQuizApp",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vcamp\IdeaProjects\RevisionQuizApp" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Application" />
@@ -181,7 +190,77 @@
       <option name="project" value="LOCAL" />
       <updated>1670007149362</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Methods to populate, serialize and deserialize moved to respective question classes. Classes now contain the ArrayLists of their respective object types. QuizMaster references to these methods and ArrayLists updated.">
+      <created>1670008190314</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1670008190314</updated>
+    </task>
+    <task id="LOCAL-00016" summary="StudentMenu Class added to simplifiy student registration process">
+      <created>1670087241513</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1670087241513</updated>
+    </task>
+    <task id="LOCAL-00017" summary="User, Student &amp; Admin Classes modified to enhance validation of user registration, specifically Student.">
+      <created>1670087827971</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1670087827971</updated>
+    </task>
+    <task id="LOCAL-00018" summary="New code added to Main (Lines 103-108) to deal with student registration/login">
+      <created>1670088165014</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1670088165014</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Glitch in student registration fixed&#10;Working on login">
+      <created>1670090638104</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1670090638104</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Login fixed">
+      <created>1670090912026</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1670090912026</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Login fixed">
+      <created>1670093032123</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1670093032123</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Login fixed">
+      <created>1670094287870</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1670094287870</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Login fixed">
+      <created>1670094436999</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1670094436999</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Login fixed">
+      <created>1670098346507</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1670098346507</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +320,13 @@
     <MESSAGE value="Methods to populate, serialize and deserialize moved to TF Question." />
     <MESSAGE value="Methods to populate, serialize and deserialize moved to Multiple Choice Question." />
     <MESSAGE value="Methods to populate, serialize and deserialize moved to Short answer question." />
-    <option name="LAST_COMMIT_MESSAGE" value="Methods to populate, serialize and deserialize moved to Short answer question." />
+    <MESSAGE value="Methods to populate, serialize and deserialize moved to respective question classes. Classes now contain the ArrayLists of their respective object types. QuizMaster references to these methods and ArrayLists updated." />
+    <MESSAGE value="StudentMenu Class added to simplifiy student registration process" />
+    <MESSAGE value="User, Student &amp; Admin Classes modified to enhance validation of user registration, specifically Student." />
+    <MESSAGE value="New code added to Main (Lines 103-108) to deal with student registration/login" />
+    <MESSAGE value="Glitch in student registration fixed&#10;Working on login" />
+    <MESSAGE value="Login fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -250,6 +335,11 @@
           <properties class="java.util.InputMismatchException" package="java.util" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/StudentMenu.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
