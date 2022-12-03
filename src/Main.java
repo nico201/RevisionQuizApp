@@ -118,6 +118,7 @@ public class Main
                // Use quizMaster.runQuiz() to ask ALL questions in question bank or specify num in call as below
                quizMaster.runQuiz(1, 1, 1);
                QuizMaster.printQuizResult();
+               LeaderBoard.updateLeaderboard(QuizMaster.getQuizScore());
                LeaderBoard.printLeaderboard();
             }
          }//else if
