@@ -100,16 +100,15 @@ public class Main
                System.out.println("Sorry that's incorrect");
          } else if (LoginOrRegister.getMainMenuChoice() == 1)
          {
-            System.out.println("\nWelcome Student\n*************************");
-            System.out.println("1. New User\n2. Existing User\nPlease enter your selection: ");
-            int chooseNewOrExisting = keyboard.nextInt();
-            if (chooseNewOrExisting == 1)
-            {
-               LoginOrRegister.studentRegistration();
-            } else
-            {
-               LoginOrRegister.existingStudentLogin();
-            }
+            //Student Registration via Student Menu
+            boolean validLogin=false;
+            do{
+               StudentMenu.display();
+                validLogin= StudentMenu.studentSignUp();
+            }while (!validLogin);
+
+
+
             System.out.println("\nPress return to begin the quiz!\n*************************");
             keyboard.nextLine();
             keyboard.nextLine();
