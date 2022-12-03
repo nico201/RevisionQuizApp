@@ -6,7 +6,7 @@ import java.util.Random;
  * Created by V.Campbell on 01/12/2022
  * abstract base class for user creation
  **/
-abstract public class User
+abstract public class User implements Serializable
 {
    private static String error=null;
    private String forename;
@@ -23,6 +23,7 @@ abstract public class User
       username = Username;
       password=Password;
    }
+
    public User(String Forename, String Surname, String Password) throws UsernameException, PasswordException
    {
       forename = Forename;
