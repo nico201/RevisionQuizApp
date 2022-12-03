@@ -7,39 +7,43 @@ import java.util.Scanner;
 public class StudentMenu
 {
    public static Scanner keyboard = new Scanner(System.in);
-   public static int studentMenuChoice=0;
+   public static int studentMenuChoice = 0;
 
-    public static void display()
-    {
-       System.out.println("** STUDENT MENU **");
-       System.out.println("Welcome Student");
-       System.out.println("Please enter a selection: \n1. Register as new student \n2. Login as existing student \n3. Return to Main Menu");
-       studentMenuChoice = keyboard.nextInt();
-       switch (studentMenuChoice)
-       {
-          case 1:
-             studentSignUp();
-             break;
-          case 2:
-             existingStudentLogin();
-             break;
-          case 3:
-             //TODO: Fix this mess!
-             //MainMenu.display();
-             break;
-          default:
-             System.out.println("Invalid Menu Choice");
-             display();
-       }
-
-    }
+   public static boolean display()
+   {
+      Student.populateStudentList();
+      System.out.println("** STUDENT MENU **");
+      System.out.println("Welcome Student");
+      System.out.println("Please enter a selection: \n1. Register as new student \n2. Login as existing student \n3. Return to Main Menu");
+      studentMenuChoice = keyboard.nextInt();
+      switch (studentMenuChoice)
+      {
+         case 1:
+            return studentSignUp();
+         //break;
+         case 2:
+            return existingStudentLogin();
+         //break;
+         case 3:
+            //TODO: Fix this mess!
+            //MainMenu.display();
+            //break;
+         default:
+         {
+            System.out.println("Invalid Menu Choice");
+            display();
+         }
+      }
+      return false;
+   }
 
     public static boolean studentSignUp()
     {
-       String studentForename = "";
-       String studentSurname ="";
-       String studentID = "";
-       String password="";
+       boolean validRegistration=true;
+       String studentForename;
+       String studentSurname;
+       String studentID;
+       String password;
        Student std = new Student();
 
        System.out.println();
@@ -58,32 +62,53 @@ public class StudentMenu
              Student.studentList.add(std);
              System.out.println("\nNew user created! Username is "+std.getUsername());
              Student.serialize();
-             return true;
           }
           else
           {
              System.out.println("User is not unique. Please try again");
-             return false;
+             validRegistration = false;
           }
        } catch (PasswordException e)
        {
-
           //Handle exception
           Globals.logException(e);
           System.out.println(e.getMessage());
-          return false;
+          validRegistration = false;
        } catch (UsernameException e)
        {
           //Handle exception
           Globals.logException(e);
           System.out.println(e.getMessage());
-          return false;
+          validRegistration = false;
 
+       }
+       finally
+       {
+          return validRegistration;
        }
 
     }
-    public static void existingStudentLogin()
+    public static boolean existingStudentLogin()
     {
+       boolean userFound = false;
 
+       String inputUsername;
+       String inputPassword;
+
+       System.out.println();
+       System.out.println("Welcome to Student Login");
+       System.out.println("Please enter your username: ");
+       inputUsername = keyboard.next();
+       System.out.println("Please enter your password: ");
+       inputPassword = keyboard.next();
+
+       for (Student std : Student.studentList)
+       {
+          if (std.getUsername().equals(inputUsername)  && std.getPassword().equals(inputPassword))
+          {
+             userFound = true;
+          }
+       }
+       return userFound;
     }
 }//class

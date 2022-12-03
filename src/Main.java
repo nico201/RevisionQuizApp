@@ -103,8 +103,7 @@ public class Main
             //Student Registration via Student Menu
             boolean validLogin=false;
             do{
-               StudentMenu.display();
-                validLogin= StudentMenu.studentSignUp();
+               validLogin= StudentMenu.display();
             }while (!validLogin);
 
 
