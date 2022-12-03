@@ -1,6 +1,5 @@
 /**
  * Created by Aaron McCloskey on 27/11/2022
- * Edited by Marcus Campbell 30/11/2022 - added get() methods, simplified set() methods
  * Basic initial leaderboard which does not write to file
  * Class Name: LeaderBoard.java
  **/
@@ -8,15 +7,7 @@ public class LeaderBoard
 {
 
     private static String [] leaderNames = new String [3];
-    private static String [] leaderScores = new String [3];
-
-    /*private static String slot1Name;
-    private static int slot1Score;
-    private static String slot2Name;
-    private static int slot2Score;
-    private static String slot3Name;
-    private static int slot3Score;
-    */
+    private static int [] leaderScores = new int [3];
 
     public static void printLeaderboard()
     {
@@ -26,11 +17,6 @@ public class LeaderBoard
         System.out.println("1st: " + leaderNames[0] + "\t\t" + leaderScores[0]);
         System.out.println("2nd: " + leaderNames[1] + "\t\t" + leaderScores[1]);
         System.out.println("3rd: " + leaderNames[2] + "\t\t" + leaderScores[2]);
-
-    /*  System.out.println("1st: " + slot1Name + "\t\t\t" + slot1Score);1
-        System.out.println("2nd: " + slot2Name + "\t\t\t" + slot2Score);
-        System.out.println("3rd: " + slot3Name + "\t\t\t" + slot3Score);
-    */
     }
 
     /*public static void setSlot1Name(String newSlot1Name) { slot1Name = newSlot1Name; }
