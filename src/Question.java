@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.util.Scanner;
+
 /**
  * Created by V.Campbell on 27/11/2022
  * UPDATE  COMMENTS ABOUT PROGRAM HERE

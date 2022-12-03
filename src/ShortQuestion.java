@@ -82,6 +82,22 @@ public class ShortQuestion extends Question
          throw new RuntimeException(e);
       }
    }
+   public static void updateQuestion() {
+      Scanner keyboard = new Scanner(System.in);
+      ShortQuestion sq1 = new ShortQuestion(null, 0, null, null);
+      System.out.println("Short Answer Question Creation");
+      System.out.println("Please enter the question text: ");
+      sq1.setQuestionText(keyboard.next());
+      sq1.setQuestionText(keyboard.nextLine());
+      System.out.println("Please enter the number of points available: ");
+      sq1.setPoints(keyboard.nextInt());
+      System.out.println("Please enter the topic: ");
+      sq1.setTopic(keyboard.next());
+      System.out.println("Please enter the correct answer");
+      sq1.setAnswer(keyboard.next());
+      sq1.setAnswer(keyboard.nextLine());
+      System.out.println("New Question has been saved. Thank you!");
+   }
 }//class
 
 
