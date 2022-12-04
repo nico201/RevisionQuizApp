@@ -14,73 +14,97 @@ public class Main
 
    public static void main(String[] args)
    {
+      int menuChoice;
       do
       {
          LoginOrRegister.menuPrompt();
-         if (LoginOrRegister.getMainMenuChoice() == 3)
-            System.out.println("See you again soon!");
-
-         else if (LoginOrRegister.getMainMenuChoice() == 2)
+         menuChoice= LoginOrRegister.getMainMenuChoice();
+         if (menuChoice == 3)
          {
-            System.out.println("Please enter the admin password: ");
-            String passwordAttempt = keyboard.next();
-            if (LoginOrRegister.isPasswordCorrect(passwordAttempt))
+            //option 3 - Quit Application
+            System.out.println("See you again soon!");
+         } else if (menuChoice == 2)
+         {
+            //option 2  - Admin login/registration
+            //Admin Login/Registration via Admin/Teacher Menu
+            boolean validLogin = false;
+            do
             {
-               System.out.println("\nPassword is Correct!");
-               do
+               validLogin = AdminMenu.display();
+            } while (!validLogin);
+
+            /*
+            Once Admin has logged in successfully
+            Display Teacher Admin Submenu
+            */
+            do
+            {
+               System.out.println("\nAdmin Area\n*************************");
+               System.out.println("1: Show Leaderboard\n2: Add New Question\n3: Log Out");
+               System.out.println("Please enter a selection: ");
+               adminMenuChoice = keyboard.nextInt();
+               if (adminMenuChoice == 1)
                {
-                  System.out.println("\nWelcome to the Admin Area\n*************************");
-                  System.out.println("1: Show Leaderboard\n2: Add New Question\n3: Log Out");
-                  System.out.println("Please enter a selection: ");
-                  adminMenuChoice = keyboard.nextInt();
-                  if (adminMenuChoice == 1)
-                     LeaderBoard.printLeaderboard();
-                  else if (adminMenuChoice == 2) {
-                     do {
-                        System.out.println("\nWelcome to Add New Question menu\n*************************");
-                        System.out.println("1. Multiple Choice Question\n2. True or False Question\n3. Short Answer Question\n4. Go Back");
-                        System.out.println("Please enter a selection: ");
-                        addNewQuestionMenuChoice = keyboard.nextInt();
-                        if (addNewQuestionMenuChoice == 1) {
+                  LeaderBoard.printLeaderboard();
+               } else if (adminMenuChoice == 2)
+               {
+                  do
+                  {
+                     System.out.println("\nWelcome to Add New Question menu\n*************************");
+                     System.out.println("1. Multiple Choice Question\n2. True or False Question\n3. Short Answer Question\n4. Go Back");
+                     System.out.println("Please enter a selection: ");
+                     addNewQuestionMenuChoice = keyboard.nextInt();
+                     switch (addNewQuestionMenuChoice)
+                     {
+                        case 1:
                            MultipleChoiceQuestion mcq1 = new MultipleChoiceQuestion(null, -1, null, null, null, null, null, -1);
                            mcq1.updateQuestion();
-                        }//if
-                        if (addNewQuestionMenuChoice == 2) {
+                           //Add question to list
+                           //Serialize list
+                           break;
+                        case 2:
                            TrueFalseQuestion tf1 = new TrueFalseQuestion(null, -1, null, '0');
                            tf1.updateQuestion();
-                        }//if
-                        if (addNewQuestionMenuChoice == 3) {
+                           //Add question to list
+                           //Serialize list
+                           break;
+                        case 3:
                            ShortQuestion sq1 = new ShortQuestion(null, 0, null, null);
                            sq1.updateQuestion();
-                        }//if
-                     }//do
-                     while (addNewQuestionMenuChoice != 4);
-                  }
-               } while (adminMenuChoice != 3);
-            } else
-               System.out.println("Sorry that's incorrect");
-         } else if (LoginOrRegister.getMainMenuChoice() == 1)
+                           //Add question to list
+                           //Serialize list
+                           break;
+                        case 4:
+                           break;
+                        default:
+                           System.out.println("Not a valid menu choice.");
+                     }
+                  } while (addNewQuestionMenuChoice != 4);
+               }
+            }while(adminMenuChoice!=3);
+         } else if (menuChoice == 1)
          {
             //Student Registration via Student Menu
-            boolean validLogin=false;
-            do{
-               validLogin= StudentMenu.display();
-            }while (!validLogin);
-
+            boolean validStudentLogin = false;
+            do
+            {
+               validStudentLogin = StudentMenu.display();
+            } while (!validStudentLogin);
+            //Once student has logged in/registered successfully
             System.out.println("\nPress return to begin the quiz!\n*************************");
             keyboard.nextLine();
-            {
-               // Re-populates Question ArrayLists on re-run
-               Globals.populateAllQuestions();
-               QuizMaster quizMaster = new QuizMaster();
-               QuizMaster.initializeQuizMaster();
-               // Use quizMaster.runQuiz() to ask ALL questions in question bank or specify num in call as below
-               quizMaster.runQuiz(1, 1, 1);
-               QuizMaster.printQuizResult();
-               LeaderBoard.updateLeaderboard(QuizMaster.getQuizScore());
-               LeaderBoard.printLeaderboard();
-            }
+
+            // Re-populates Question ArrayLists on re-run
+            Globals.populateAllQuestions();
+            QuizMaster quizMaster = new QuizMaster();
+            QuizMaster.initializeQuizMaster();
+            // Use quizMaster.runQuiz() to ask ALL questions in question bank or specify num in call as below
+            quizMaster.runQuiz(1, 1, 1);
+            QuizMaster.printQuizResult();
+            LeaderBoard.updateLeaderboard(QuizMaster.getQuizScore());
+            LeaderBoard.printLeaderboard();
+
          }//else if
-      } while (LoginOrRegister.getMainMenuChoice() != 3);
+      }while(menuChoice!=3);
    }//main
 }//class
