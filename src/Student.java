@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,8 +11,8 @@ import java.util.Scanner;
  **/
 public class Student extends User
 {
-   public static ArrayList<Student> studentList = new ArrayList<Student>();
-   public static String studentFilePath= "students.txt";
+   public static ArrayList<Student> studentList = new ArrayList<>();
+   private static final String STUDENT_FILE_PATH = "students.txt";
    private int highestScore;
 
    public Student()
@@ -31,14 +33,17 @@ public class Student extends User
 
    public void setHighestScore(int HighestScore)
    {
-      highestScore = HighestScore;
+      if(HighestScore>highestScore)
+      {
+         highestScore = HighestScore;
+      }
    }
 
    public static void populateStudentList()
    {
       try
       {
-         File studentFile = new File(studentFilePath);
+         File studentFile = new File(STUDENT_FILE_PATH);
          Scanner studentReader = new Scanner(studentFile);
          while (studentReader.hasNextLine())
          {
@@ -57,7 +62,7 @@ public class Student extends User
    }
    public static void serialize(){
       try {
-         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("students.ser"));
+         ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("students.ser")));
          out.writeObject(studentList);
          out.close();
       }
@@ -70,7 +75,7 @@ public class Student extends User
    }
    public static void deserialize(){
       try {
-         ObjectInputStream in = new ObjectInputStream(new FileInputStream("students.ser"));
+         ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get("students.ser")));
          studentList = (ArrayList<Student>)in.readObject();
 
       }
@@ -89,9 +94,10 @@ public class Student extends User
       boolean isUnique = true;
       for (Student std : studentList)
       {
-         if (std.getUsername() == Username)
+         if (std.getUsername().equals(Username))
          {
             isUnique = false;
+            break;
          }
       }
       return isUnique;

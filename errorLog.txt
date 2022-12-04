@@ -1,2 +1,22 @@
 Date/Time, Exception Detail
 03/12/2022 19:39:49, Forename or Surname don't meet minimum length requirements
+03/12/2022 22:41:11, null
+Password is not at least 8 characters
+Password does not contain a digit
+Password does not contain an Upper Case character
+04/12/2022 20:55:39, null
+Password does not contain an Upper Case character
+04/12/2022 21:00:12, null
+Password does not contain an Upper Case character
+04/12/2022 21:16:24, null
+Password does not contain an Upper Case character
+04/12/2022 21:16:59, null
+Password does not contain an Upper Case character
+04/12/2022 21:45:24, null
+Password does not contain an Upper Case character
+04/12/2022 21:50:41, null
+Password does not contain an Upper Case character
+04/12/2022 21:53:39, null
+Password does not contain an Upper Case character
+04/12/2022 21:54:29, null
+Password does not contain an Upper Case character

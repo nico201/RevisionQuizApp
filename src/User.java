@@ -20,12 +20,14 @@ abstract public class User implements Serializable
    }
    public User(String Username, String Password) throws UsernameException, PasswordException
    {
+      error = null;
       username = Username;
-      password=Password;
+      setPassword(Password);
    }
 
    public User(String Forename, String Surname, String Password) throws UsernameException, PasswordException
    {
+      error = null;
       forename = Forename;
       surname = Surname;
       setUsername();

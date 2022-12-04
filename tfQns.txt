@@ -14,3 +14,35 @@ Data carried on fibre optic cables is easier to intercept than data carried on c
 1
 Network Technologies
 F
+A bus topology does not have terminators
+1
+Network Technologies
+F
+FTP stands for File Transfer Packet
+1
+Network Technologies
+F
+A relational database is made up of only one table.
+1
+Databases
+F
+A table consists of one or more records.
+1
+Databases
+T
+A field contains multiple items of data about a person or thing.
+1
+Databases
+F
+A key field uniquely identifies records in a table.
+1
+Databases
+T
+CSV stands for Computer Separated Variable
+1
+Digital Data
+F
+A buffer is part of memory used to store a downloaded video before it is watched.
+1
+??
+T

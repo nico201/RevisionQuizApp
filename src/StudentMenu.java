@@ -16,23 +16,26 @@ public class StudentMenu
       System.out.println("Welcome Student");
       System.out.println("Please enter a selection: \n1. Register as new student \n2. Login as existing student \n3. Return to Main Menu");
       studentMenuChoice = keyboard.nextInt();
+      boolean loginSuccess =false;
       switch (studentMenuChoice)
       {
          case 1:
-            return studentSignUp();
-         //break;
+            loginSuccess= studentSignUp();
+            break;
          case 2:
-            return existingStudentLogin();
-         //break;
+            loginSuccess= existingStudentLogin();
+            break;
          case 3:
             LoginOrRegister.menuPrompt();//return to main menu
+            break;
          default:
          {
             System.out.println("Invalid Menu Choice");
             display();
+            break;
          }
       }
-      return false;
+      return loginSuccess;
    }
 
     public static boolean studentSignUp()
@@ -109,7 +112,7 @@ public class StudentMenu
                 validUserLoggedIn = true;
              }
              else {
-                System.out.println("User found - password incorrect. PLease try again");
+                System.out.println("User found - password incorrect. Please try again");
                 break;
              }
           }
