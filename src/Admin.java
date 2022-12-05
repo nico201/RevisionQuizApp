@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -74,7 +72,7 @@ public class Admin extends User
             canResetScore=true;
         }
     }
-    public void setUsername(@NotNull String Username) throws UsernameException
+    public void setUsername(String Username) throws UsernameException
     {
         String regex = "^[a-z]{2,}[0-9]{3}$";
         boolean rightFormat = Username.matches(regex);
