@@ -11,22 +11,22 @@ import java.util.Scanner;
  **/
 public class Student extends User
 {
-   public static ArrayList<Student> studentList = new ArrayList<>();
+   protected static ArrayList<Student> studentList = new ArrayList<>();
    private static final String STUDENT_FILE_PATH = "students.txt";
    private int highestScore;
 
-   public Student()
+   protected Student()
    {
       highestScore = 0;
    }
 
-   public Student(String Username, String Password, int HighScore) throws PasswordException, UsernameException
+   protected Student(String Username, String Password, int HighScore) throws PasswordException, UsernameException
    {
       super(Username, Password);
       highestScore = HighScore;
    }
 
-   public Student(String Forename, String Surname, String Password) throws PasswordException, UsernameException
+   protected Student(String Forename, String Surname, String Password) throws PasswordException, UsernameException
    {
       super(Forename, Surname, Password);
       highestScore = 0;
@@ -45,7 +45,7 @@ public class Student extends User
       return highestScore;
    }
 
-   public static void populateStudentList()
+   protected static void populateStudentList()
    {
       try
       {
@@ -67,7 +67,7 @@ public class Student extends User
       }
    }
 
-   public static void serialize()
+   protected static void serialize()
    {
       try
       {
@@ -83,7 +83,7 @@ public class Student extends User
       }
    }
 
-   public static void deserialize()
+   protected static void deserialize()
    {
       try
       {
@@ -102,7 +102,7 @@ public class Student extends User
       }
    }
 
-   public static boolean userIsUnique(String Username)
+   protected static boolean userIsUnique(String Username)
    {
       boolean isUnique = true;
       for (Student std : studentList)

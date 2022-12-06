@@ -20,14 +20,14 @@ public class QuizMaster
 
    private static Scanner keyboard = new Scanner(System.in);
 
-   public QuizMaster()
+   private QuizMaster()
    {
       this.ansCorrect = false;
       this.markAvail = 1;
       this.markAwarded = 0;
    }//default constructor
 
-   protected void askQuestion(String questionType)
+   private void askQuestion(String questionType)
    {
       if (questionType.equalsIgnoreCase("tfQn")) askTFQuestion();
       else if (questionType.equalsIgnoreCase("mcQn")) askMCQuestion();
@@ -35,7 +35,7 @@ public class QuizMaster
       //else TO DO: exception handling
    }
 
-   protected static void runQuiz()
+   private static void runQuiz()
    {
       int maxTFQns, maxMCQns, maxShortQns;
       maxTFQns = TrueFalseQuestion.tfQnList.size();

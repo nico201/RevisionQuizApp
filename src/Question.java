@@ -10,43 +10,43 @@ abstract public class Question implements Serializable {
     private int points;
     private String topic;
 
-    public Question() {
+    protected Question() {
         questionText = "";
         points = 0;
     }
 
-    public Question(String QuestionText, int Points) {
+    protected Question(String QuestionText, int Points) {
         questionText = QuestionText;
         points = Points;
     }
 
-    public Question(String QuestionText, int Points, String Topic) {
+    protected Question(String QuestionText, int Points, String Topic) {
         questionText = QuestionText;
         points = Points;
         topic = Topic;
     }
 
-    public void setQuestionText(String QuestionText) {
+    protected void setQuestionText(String QuestionText) {
         questionText = QuestionText;
     }
 
-    public String getQuestionText() {
+    protected String getQuestionText() {
         return questionText;
     }
 
-    public void setPoints(int Points) {
+    protected void setPoints(int Points) {
         points = Points;
     }
 
-    public int getPoints() {
+    protected int getPoints() {
         return points;
     }
 
-    public void setTopic(String Topic) {
+    protected void setTopic(String Topic) {
         topic = Topic;
     }
 
-    public String getTopic() {
+    protected String getTopic() {
         return topic;
     }
 

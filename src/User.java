@@ -13,20 +13,20 @@ abstract public class User implements Serializable
    protected String username;
    protected String password;
 
-   public User()
+   protected User()
    {
       username = "";
       password = "";
    }
 
-   public User(String Username, String Password) throws UsernameException, PasswordException
+   protected User(String Username, String Password) throws UsernameException, PasswordException
    {
       error = null;
       username = Username;
       setPassword(Password);
    }
 
-   public User(String Forename, String Surname, String Password) throws UsernameException, PasswordException
+   protected User(String Forename, String Surname, String Password) throws UsernameException, PasswordException
    {
       error = null;
       forename = Forename;
@@ -35,7 +35,7 @@ abstract public class User implements Serializable
       setPassword(Password);
    }
 
-   public void setUsername() throws UsernameException
+   protected void setUsername() throws UsernameException
    {
       if (forename.length() > 2 && surname.length() > 2)
       {
@@ -48,12 +48,12 @@ abstract public class User implements Serializable
       }
    }
 
-   public String getUsername()
+   protected String getUsername()
    {
       return username;
    }
 
-   public void setPassword(String Password) throws PasswordException
+   protected void setPassword(String Password) throws PasswordException
    {
       if (Password.length() <= 8)
          error += "\nPassword is not at least 8 characters";
@@ -70,7 +70,7 @@ abstract public class User implements Serializable
          password = Password;
    }
 
-   public String getPassword()
+   protected String getPassword()
    {
       return password;
    }
@@ -80,7 +80,7 @@ abstract public class User implements Serializable
       return "This is a user profile";
    }
 
-   private static boolean hasDigit(String s)
+   protected static boolean hasDigit(String s)
    {
       boolean hasNumber = false;
       for (char c : s.toCharArray())

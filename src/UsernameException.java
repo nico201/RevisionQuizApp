@@ -4,7 +4,7 @@
  **/
 public class UsernameException extends Exception
 {
-   public UsernameException(String Reason) {
+   protected UsernameException(String Reason) {
       super(Reason);
    }
 

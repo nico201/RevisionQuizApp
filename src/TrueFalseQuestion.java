@@ -8,30 +8,30 @@ import java.util.Scanner;
  **/
 public class TrueFalseQuestion extends Question
 {
-   public static final String tfQnFilePath = "tfQns.txt";
+   private static final String tfQnFilePath = "tfQns.txt";
    private static int count = 0;
-   public static ArrayList<TrueFalseQuestion> tfQnList = new ArrayList<>();
-   public static Scanner keyboard = new Scanner(System.in);
-   private char answer;
+   protected static ArrayList<TrueFalseQuestion> tfQnList = new ArrayList<>();
+   protected static Scanner keyboard = new Scanner(System.in);
+   protected char answer;
 
-   public TrueFalseQuestion(String QuestionText, int Points, String Topic, char Answer)
+   protected TrueFalseQuestion(String QuestionText, int Points, String Topic, char Answer)
    {
       super(QuestionText, Points, Topic);
       answer = Answer;
       count++;
    }
 
-   public void setAnswer(char Answer)
+   protected void setAnswer(char Answer)
    {
       answer = Answer;
    }
 
-   public char getAnswer()
+   protected char getAnswer()
    {
       return answer;
    }
 
-   public static void populate()
+   protected static void populate()
    {
       try
       {
@@ -53,7 +53,7 @@ public class TrueFalseQuestion extends Question
       }
    }
 
-   public static void serialize()
+   protected static void serialize()
    {
       try
       {
@@ -69,7 +69,7 @@ public class TrueFalseQuestion extends Question
       }
    }
 
-   public static void deserialize()
+   protected static void deserialize()
    {
       try
       {
@@ -87,7 +87,7 @@ public class TrueFalseQuestion extends Question
       }
    }
 
-   public static void declareInitialiseAndUpdate_NewQuestionObject()
+   protected static void declareInitialiseAndUpdate_NewQuestionObject()
    {
       TrueFalseQuestion tf1 = new TrueFalseQuestion(null, -1, null, '0');
       System.out.println("\nTrue or False Question Creation");

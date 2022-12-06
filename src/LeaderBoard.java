@@ -9,7 +9,7 @@ public class LeaderBoard
    private static String[] leaderNames = new String[3];
    private static int[] leaderScores = new int[3];
 
-   public static void printLeaderboard()
+   protected static void printLeaderboard()
    {
       System.out.println("\nLeaderboard");
       System.out.println("***********");
@@ -19,7 +19,7 @@ public class LeaderBoard
       System.out.println("3rd: " + leaderNames[2] + "\t\t" + leaderScores[2]);
    }
 
-   public static void updateLeaderboard(String latestName, int latestScore)
+   protected static void updateLeaderboard(String latestName, int latestScore)
    {
       if (latestScore >= leaderScores[0])
       {

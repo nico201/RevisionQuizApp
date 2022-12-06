@@ -4,7 +4,7 @@
  **/
 public class PasswordException extends Exception
 {
-    public PasswordException(String Reason) {
+    protected PasswordException(String Reason) {
         super(Reason);
     }
 

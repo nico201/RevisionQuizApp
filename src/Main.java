@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class Main
 {
-   public static Scanner keyboard = new Scanner(System.in);
-   public static int addNewQuestionMenuChoice;
-   public static int adminMenuChoice;
+   private static Scanner keyboard = new Scanner(System.in);
+   private static int addNewQuestionMenuChoice;
+   private static int adminMenuChoice;
    private static boolean validLogin = false;
    private static boolean validStudentLogin = false;
-   public static User currentUser;
+   protected static User currentUser;
 
 
    public static void main(String[] args)

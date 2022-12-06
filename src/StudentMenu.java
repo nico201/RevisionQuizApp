@@ -6,10 +6,10 @@ import java.util.Scanner;
  **/
 public class StudentMenu
 {
-   public static Scanner keyboard = new Scanner(System.in);
-   public static int studentMenuChoice = 0;
+   private static Scanner keyboard = new Scanner(System.in);
+   private static int studentMenuChoice = 0;
 
-   public static boolean display()
+   protected static boolean display()
    {
       Student.populateStudentList();
       System.out.println("Welcome to Student Menu");
@@ -38,7 +38,7 @@ public class StudentMenu
       return loginSuccess;
    }
 
-   public static boolean studentSignUp()
+   protected static boolean studentSignUp()
    {
       boolean validRegistration = true;
       String studentForename;
@@ -93,7 +93,7 @@ public class StudentMenu
       }
    }
 
-   public static boolean existingStudentLogin()
+   protected static boolean existingStudentLogin()
    {
       boolean validUserLoggedIn = false;
 

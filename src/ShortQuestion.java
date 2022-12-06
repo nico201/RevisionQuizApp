@@ -11,27 +11,27 @@ public class ShortQuestion extends Question
    private static final String shortQnFilePath = "shortQns.txt";
    private static Scanner keyboard = new Scanner(System.in);
    private static int count = 0;
-   public static ArrayList<ShortQuestion> shortQnList = new ArrayList<>();
+   protected static ArrayList<ShortQuestion> shortQnList = new ArrayList<>();
    private String answer;
 
-   public ShortQuestion(String QuestionText, int Points, String Topic, String Answer)
+   protected ShortQuestion(String QuestionText, int Points, String Topic, String Answer)
    {
       super(QuestionText, Points, Topic);
       answer = Answer;
       count++;
    }
 
-   public void setAnswer(String Answer)
+   protected void setAnswer(String Answer)
    {
       answer = Answer;
    }
 
-   public String getAnswer()
+   protected String getAnswer()
    {
       return answer;
    }
 
-   public static void populate()
+   protected static void populate()
    {
       try
       {
@@ -55,7 +55,7 @@ public class ShortQuestion extends Question
       }
    }
 
-   public static void serialize()
+   protected static void serialize()
    {
       try
       {
@@ -71,7 +71,7 @@ public class ShortQuestion extends Question
       }
    }
 
-   public static void deserialize()
+   private static void deserialize()
    {
       try
       {
@@ -89,7 +89,7 @@ public class ShortQuestion extends Question
       }
    }
 
-   public static void declareInitialiseAndUpdate_NewQuestionObject()
+   protected static void declareInitialiseAndUpdate_NewQuestionObject()
    {
       ShortQuestion sq1 = new ShortQuestion(null, 0, null, null);
       System.out.println("Short Answer Question Creation");
