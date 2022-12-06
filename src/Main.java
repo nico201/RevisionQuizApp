@@ -37,7 +37,7 @@ public class Main
                adminMenuChoice = keyboard.nextInt();
                if (adminMenuChoice == 1)
                {
-                  LeaderBoard.printLeaderboard();
+                  LeaderBoard.printLeaderboard("admin");
                } else if (adminMenuChoice == 2)
                {
                   do
@@ -92,7 +92,7 @@ public class Main
                   LeaderBoard.updateLeaderboard(studentUser.getUsername(), QuizMaster.getQuizScore());
                }
             }
-            LeaderBoard.printLeaderboard();
+            LeaderBoard.printLeaderboard("student");
          }//else if
       } while (menuChoice != 3);
    }//main
