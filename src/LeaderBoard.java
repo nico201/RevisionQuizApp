@@ -9,15 +9,28 @@ public class LeaderBoard
    private static String[] leaderNames = new String[3];
    private static int[] leaderScores = new int[3];
 
-   public static void printLeaderboard()
+   public static void printLeaderboard(String leaderboardUser) // can be student or admin leaderboard
    {
+      // show header
       System.out.println("\nLeaderboard");
       System.out.println("***********");
-      System.out.println("Name\t\t\tScore (%)");
-      System.out.println("1st: " + leaderNames[0] + "\t\t" + leaderScores[0]);
-      System.out.println("2nd: " + leaderNames[1] + "\t\t" + leaderScores[1]);
-      System.out.println("3rd: " + leaderNames[2] + "\t\t" + leaderScores[2]);
-   }
+      System.out.println("Rank\tName\t\tScore (%)");
+
+      // student leaderboard only shows selected top subset
+      if (leaderboardUser.equals("student")) {
+         for (int count = 1; count <= STUDENTDISPLAY; count++) {
+            System.out.println(count + ":\t\t" + leaderNames[count-1] + "\t\t" + leaderScores[count-1]);
+         }//for
+      }//if
+
+      // admin leaderboard shows all
+      else if (leaderboardUser.equals("admin")) {
+         for (int count = 1; count <= MAXSTUDENTS; count++) {
+            System.out.println(count + ":\t\t" + leaderNames[count-1] + "\t\t" + leaderScores[count-1]);
+         }//for
+      }//if
+
+   }// printLeaderboard
 
    public static void updateLeaderboard(String latestName, int latestScore)
    {
