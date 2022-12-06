@@ -6,8 +6,10 @@
 public class LeaderBoard
 {
 
-   private static String[] leaderNames = new String[3];
-   private static int[] leaderScores = new int[3];
+   private static final int MAXSTUDENTS = 10; // leaderboard will accommodate 10 students
+   private static final int STUDENTDISPLAY = 3; // students will see top 3
+   private static String[] leaderNames = new String[MAXSTUDENTS];
+   private static int[] leaderScores = new int[MAXSTUDENTS];
 
    public static void printLeaderboard(String leaderboardUser) // can be student or admin leaderboard
    {
