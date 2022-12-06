@@ -8,8 +8,8 @@ public class Main
 {
    public static Scanner keyboard = new Scanner(System.in);
    public static int addNewQuestionMenuChoice;
-
    public static int adminMenuChoice;
+   public static User currentUser;
 
 
    public static void main(String[] args)
@@ -17,8 +17,10 @@ public class Main
       int menuChoice;
       do
       {
+         // "Log-out" - Clear details of previous user
+         currentUser = null;
          LoginOrRegister.menuPrompt();
-         menuChoice= LoginOrRegister.getMainMenuChoice();
+         menuChoice = LoginOrRegister.getMainMenuChoice();
          if (menuChoice == 3)
          {
             //option 3 - Quit Application
@@ -81,7 +83,7 @@ public class Main
                      }
                   } while (addNewQuestionMenuChoice != 4);
                }
-            }while(adminMenuChoice!=3);
+            } while (adminMenuChoice != 3);
          } else if (menuChoice == 1)
          {
             //Student Registration via Student Menu
@@ -93,7 +95,6 @@ public class Main
             //Once student has logged in/registered successfully
             System.out.println("\nPress return to begin the quiz!\n*************************");
             keyboard.nextLine();
-
             // Re-populates Question ArrayLists on re-run
             Globals.populateAllQuestions();
             QuizMaster quizMaster = new QuizMaster();
@@ -101,10 +102,18 @@ public class Main
             // Use quizMaster.runQuiz() to ask ALL questions in question bank or specify num in call as below
             quizMaster.runQuiz(1, 1, 1);
             QuizMaster.printQuizResult();
-            LeaderBoard.updateLeaderboard(QuizMaster.getQuizScore());
+            // Update the student user's highest score
+            for (Student studentUser : Student.studentList)
+            {
+               if (studentUser.getUsername().equals(currentUser.username))
+               {
+                  studentUser.setHighestScore(QuizMaster.getQuizScore());
+                  LeaderBoard.updateLeaderboard(studentUser.getUsername(), QuizMaster.getQuizScore());
+               }
+            }
             LeaderBoard.printLeaderboard();
-
          }//else if
-      }while(menuChoice!=3);
+
+      } while (menuChoice != 3);
    }//main
 }//class

@@ -20,3 +20,11 @@ Password does not contain an Upper Case character
 Password does not contain an Upper Case character
 04/12/2022 21:54:29, null
 Password does not contain an Upper Case character
+05/12/2022 09:45:39, null
+Password is not at least 8 characters
+05/12/2022 09:52:40, null
+Password does not contain an Upper Case character
+05/12/2022 19:13:09, null
+Password is not at least 8 characters
+Password does not contain a digit
+Password does not contain an Upper Case character

@@ -25,13 +25,15 @@ public class QuizMaster
 
    private static Scanner keyboard = new Scanner(System.in);
 
-   public QuizMaster(){
+   public QuizMaster()
+   {
       this.ansCorrect = false;
       this.markAvail = 1;
       this.markAwarded = 0;
    }//default constructor
 
-   public void askQuestion(String questionType){
+   public void askQuestion(String questionType)
+   {
       if (questionType.equalsIgnoreCase("tfQn"))
          askTFQuestion();
       else if (questionType.equalsIgnoreCase("mcQn"))
@@ -41,7 +43,8 @@ public class QuizMaster
       //else TO DO: exception handling
    }
 
-   public void runQuiz(){
+   public void runQuiz()
+   {
       int maxTFQns, maxMCQns, maxShortQns;
       maxTFQns = TrueFalseQuestion.tfQnList.size();
       maxShortQns = ShortQuestion.shortQnList.size();
@@ -50,12 +53,13 @@ public class QuizMaster
       runQuiz(maxTFQns, maxShortQns, maxMCQns);
    }
 
-   public void runQuiz(int numTfQns, int numShortQns, int numMCQns){
+   public void runQuiz(int numTfQns, int numShortQns, int numMCQns)
+   {
       QuizMaster quizMaster;
 
       // Limit max number of questions asked by number of question in question bank
       numTfQns = Math.min(numTfQns, TrueFalseQuestion.tfQnList.size());
-      numShortQns  = Math.min(numShortQns, ShortQuestion.shortQnList.size());
+      numShortQns = Math.min(numShortQns, ShortQuestion.shortQnList.size());
       numMCQns = Math.min(numMCQns, MultipleChoiceQuestion.mcQnList.size());
 
       // Randomize Question Banks
@@ -64,31 +68,32 @@ public class QuizMaster
       Collections.shuffle(MultipleChoiceQuestion.mcQnList);
 
       // Ask specified number of T/F questions
-      for ( int qNum = 0; qNum < numTfQns; qNum++)
+      for (int qNum = 0; qNum < numTfQns; qNum++)
       {
          quizMaster = new QuizMaster();
          quizMaster.askQuestion("tfQn");
       }
 
       // Ask specified number of short answer questions
-      for ( int qNum = 0; qNum < numShortQns; qNum++)
+      for (int qNum = 0; qNum < numShortQns; qNum++)
       {
          quizMaster = new QuizMaster();
          quizMaster.askQuestion("shortQn");
       }
 
       // Ask specified number of multiple choice questions
-      for ( int qNum = 0; qNum < numMCQns; qNum++)
+      for (int qNum = 0; qNum < numMCQns; qNum++)
       {
          quizMaster = new QuizMaster();
          quizMaster.askQuestion("mcQn");
       }
    }
 
-   private void askTFQuestion(){
+   private void askTFQuestion()
+   {
       String answer, correctAnswer;
       setMarkAvail(tfQnMark);
-      System.out.println("\n" + (numQuestionsAsked+1) + ". " + TrueFalseQuestion.tfQnList.get(0).getQuestionText());
+      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + TrueFalseQuestion.tfQnList.get(0).getQuestionText());
       System.out.println("\nAnswer 'true' or 'false': ");
       answer = keyboard.next();
       if (TrueFalseQuestion.tfQnList.get(0).getAnswer() == 'T')
@@ -99,18 +104,18 @@ public class QuizMaster
       {
          this.ansCorrect = true;
          this.markAwarded = this.markAvail;
-      }
-      else
+      } else
          this.ansCorrect = false;
       recordQuestionMark();
       TrueFalseQuestion.tfQnList.remove(0);
       numQuestionsAsked++;
    }
 
-   private void askShortQuestion(){
+   private void askShortQuestion()
+   {
       String answer, correctAnswer;
       setMarkAvail(shortQnMark);
-      System.out.println("\n" + (numQuestionsAsked+1) + ". " + ShortQuestion.shortQnList.get(0).getQuestionText());
+      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + ShortQuestion.shortQnList.get(0).getQuestionText());
       System.out.println("\nPlease enter a one word answer: ");
       answer = keyboard.next();
       correctAnswer = ShortQuestion.shortQnList.get(0).getAnswer();
@@ -118,18 +123,18 @@ public class QuizMaster
       {
          this.ansCorrect = true;
          this.markAwarded = this.markAvail;
-      }
-      else
+      } else
          this.ansCorrect = false;
       recordQuestionMark();
       ShortQuestion.shortQnList.remove(0);
       numQuestionsAsked++;
    }
 
-   private void askMCQuestion(){
+   private void askMCQuestion()
+   {
       int answer, correctAnswer;
       setMarkAvail(mcQnMark);
-      System.out.println("\n" + (numQuestionsAsked+1) + ". " + MultipleChoiceQuestion.mcQnList.get(0).getQuestionText());
+      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + MultipleChoiceQuestion.mcQnList.get(0).getQuestionText());
       System.out.println("\t1. " + MultipleChoiceQuestion.mcQnList.get(0).getOption1());
       System.out.println("\t2. " + MultipleChoiceQuestion.mcQnList.get(0).getOption2());
       System.out.println("\t3. " + MultipleChoiceQuestion.mcQnList.get(0).getOption3());
@@ -141,43 +146,50 @@ public class QuizMaster
       {
          this.ansCorrect = true;
          this.markAwarded = this.markAvail;
-      }
-      else
+      } else
          this.ansCorrect = false;
       recordQuestionMark();
       MultipleChoiceQuestion.mcQnList.remove(0);
       numQuestionsAsked++;
    }
 
-   private void setMarkAvail(int markAvail){
+   private void setMarkAvail(int markAvail)
+   {
       this.markAvail = markAvail;
    }
 
-   private void recordQuestionMark(){
+   private void recordQuestionMark()
+   {
       totalMarkAvailable += this.markAvail;
       totalMarkAwarded += this.markAwarded;
    }
 
-   public static void initializeQuizMaster(){
+   public static void initializeQuizMaster()
+   {
       QuizMaster.numQuestionsAsked = 0;
       QuizMaster.totalMarkAvailable = 0;
       QuizMaster.totalMarkAwarded = 0;
    }
-   public static int getTotalMarkAvailable(){
+
+   public static int getTotalMarkAvailable()
+   {
       return totalMarkAvailable;
    }
 
-   public static int getTotalMarkAwarded(){
+   public static int getTotalMarkAwarded()
+   {
       return totalMarkAwarded;
    }
 
-   public static void printQuizResult(){
+   public static void printQuizResult()
+   {
       System.out.println("\nQuiz Result: " + QuizMaster.getTotalMarkAwarded() + " marks out of " + QuizMaster.getTotalMarkAvailable());
       System.out.println("Quiz Score: " + getQuizScore() + "\n");
    }
 
-   public static int getQuizScore(){
-      return (100*QuizMaster.getTotalMarkAwarded()/QuizMaster.getTotalMarkAvailable());
+   public static int getQuizScore()
+   {
+      return (100 * QuizMaster.getTotalMarkAwarded() / QuizMaster.getTotalMarkAvailable());
    }
 
 }//class

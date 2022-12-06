@@ -1,5 +1,4 @@
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -8,16 +7,18 @@ import java.util.Random;
  **/
 abstract public class User implements Serializable
 {
-   private static String error=null;
+   private static String error = null;
    private String forename;
    private String surname;
    protected String username;
    protected String password;
+
    public User()
    {
-      username="";
-      password="";
+      username = "";
+      password = "";
    }
+
    public User(String Username, String Password) throws UsernameException, PasswordException
    {
       error = null;
@@ -36,17 +37,17 @@ abstract public class User implements Serializable
 
    public void setUsername() throws UsernameException
    {
-      if (forename.length()>2 && surname.length()>2)
+      if (forename.length() > 2 && surname.length() > 2)
       {
          Random rnd = new Random();
          int studentNum = rnd.nextInt(1000);
          username = forename.toLowerCase().charAt(0) + surname.toLowerCase() + studentNum;
-      }
-      else
+      } else
       {
          throw new UsernameException("Forename or Surname don't meet minimum length requirements");
       }
    }
+
    public String getUsername()
    {
       return username;
@@ -54,14 +55,13 @@ abstract public class User implements Serializable
 
    public void setPassword(String Password) throws PasswordException
    {
-      boolean validLength=false;
-      if (Password.length()>8)
+      boolean validLength = false;
+      if (Password.length() > 8)
       {
          validLength = true;
-      }
-      else
+      } else
       {
-         error+="\nPassword is not at least 8 characters";
+         error += "\nPassword is not at least 8 characters";
       }
 
       if (!hasDigit(Password))
@@ -72,11 +72,10 @@ abstract public class User implements Serializable
       {
          error += "\nPassword does not contain an Upper Case character";
       }
-      if (error!=null)
+      if (error != null)
       {
          throw new PasswordException(error);
-      }
-      else
+      } else
       {
          password = Password;
       }
@@ -88,15 +87,18 @@ abstract public class User implements Serializable
       return password;
    }
 
-   public String toString(){
+   public String toString()
+   {
       return "This is a user profile";
    }
 
    private static boolean hasDigit(String s)
    {
-      boolean hasNumber=false;
-      for(char c : s.toCharArray()){
-         if(Character.isDigit(c)){
+      boolean hasNumber = false;
+      for (char c : s.toCharArray())
+      {
+         if (Character.isDigit(c))
+         {
             hasNumber = true;
          }
       }
@@ -105,12 +107,15 @@ abstract public class User implements Serializable
 
    private static boolean hasUpper(String s)
    {
-      boolean hasUpper=false;
-      for(char c : s.toCharArray()){
-         if(Character.isUpperCase(c)){
+      boolean hasUpper = false;
+      for (char c : s.toCharArray())
+      {
+         if (Character.isUpperCase(c))
+         {
             hasUpper = true;
          }
       }
       return hasUpper;
    }
+
 }//class

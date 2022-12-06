@@ -23,20 +23,26 @@ public class Student extends User
    public Student(String Username, String Password, int HighScore) throws PasswordException, UsernameException
    {
       super(Username, Password);
-      highestScore=HighScore;
+      highestScore = HighScore;
    }
+
    public Student(String Forename, String Surname, String Password) throws PasswordException, UsernameException
    {
       super(Forename, Surname, Password);
-      highestScore=0;
+      highestScore = 0;
    }
 
-   public void setHighestScore(int HighestScore)
+   protected void setHighestScore(int HighestScore)
    {
-      if(HighestScore>highestScore)
+      if (HighestScore > highestScore)
       {
          highestScore = HighestScore;
       }
+   }
+
+   protected int getHighestScore()
+   {
+      return highestScore;
    }
 
    public static void populateStudentList()
@@ -57,38 +63,45 @@ public class Student extends User
          studentReader.close();
       } catch (FileNotFoundException | PasswordException | UsernameException e)
       {
-         System.out.println("An error occurred."+e.getMessage());
+         System.out.println("An error occurred." + e.getMessage());
       }
    }
-   public static void serialize(){
-      try {
+
+   public static void serialize()
+   {
+      try
+      {
          ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("students.ser")));
          out.writeObject(studentList);
          out.close();
-      }
-      catch (NotSerializableException ex){
+      } catch (NotSerializableException ex)
+      {
          Globals.logException(ex);
-      }
-      catch (IOException ex) {
+      } catch (IOException ex)
+      {
          Globals.logException(ex);
       }
    }
-   public static void deserialize(){
-      try {
-         ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get("students.ser")));
-         studentList = (ArrayList<Student>)in.readObject();
 
-      }
-      catch (NotSerializableException ex){
+   public static void deserialize()
+   {
+      try
+      {
+         ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get("students.ser")));
+         studentList = (ArrayList<Student>) in.readObject();
+
+      } catch (NotSerializableException ex)
+      {
          Globals.logException(ex);
-      }
-      catch (IOException ex) {
+      } catch (IOException ex)
+      {
          ex.printStackTrace();
       } catch (ClassNotFoundException e)
       {
          throw new RuntimeException(e);
       }
    }
+
    public static boolean userIsUnique(String Username)
    {
       boolean isUnique = true;
