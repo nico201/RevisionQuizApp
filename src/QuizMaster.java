@@ -8,11 +8,6 @@ import java.util.Scanner;
  **/
 public class QuizMaster
 {
-   // static constant variables
-   final static int tfQnMark = 1;
-   final static int shortQnMark = 2;
-   final static int mcQnMark = 4;
-
    // instance attributes
    private Boolean ansCorrect; // May not be required.
    private int markAvail;
@@ -92,11 +87,12 @@ public class QuizMaster
    private void askTFQuestion()
    {
       String answer, correctAnswer;
-      setMarkAvail(tfQnMark);
-      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + TrueFalseQuestion.tfQnList.get(0).getQuestionText());
+      int zeroIndex = 0;
+      setMarkAvail(TrueFalseQuestion.tfQnList.get(zeroIndex).getPoints());
+      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + TrueFalseQuestion.tfQnList.get(zeroIndex).getQuestionText());
       System.out.println("\nAnswer 'true' or 'false': ");
       answer = keyboard.next();
-      if (TrueFalseQuestion.tfQnList.get(0).getAnswer() == 'T')
+      if (TrueFalseQuestion.tfQnList.get(zeroIndex).getAnswer() == 'T')
          correctAnswer = "true";
       else
          correctAnswer = "false";
@@ -107,18 +103,19 @@ public class QuizMaster
       } else
          this.ansCorrect = false;
       recordQuestionMark();
-      TrueFalseQuestion.tfQnList.remove(0);
+      TrueFalseQuestion.tfQnList.remove(zeroIndex);
       numQuestionsAsked++;
    }
 
    private void askShortQuestion()
    {
       String answer, correctAnswer;
-      setMarkAvail(shortQnMark);
-      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + ShortQuestion.shortQnList.get(0).getQuestionText());
+      int zeroIndex = 0;
+      setMarkAvail(ShortQuestion.shortQnList.get(zeroIndex).getPoints());
+      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + ShortQuestion.shortQnList.get(zeroIndex).getQuestionText());
       System.out.println("\nPlease enter a one word answer: ");
       answer = keyboard.next();
-      correctAnswer = ShortQuestion.shortQnList.get(0).getAnswer();
+      correctAnswer = ShortQuestion.shortQnList.get(zeroIndex).getAnswer();
       if (answer.equalsIgnoreCase(correctAnswer))
       {
          this.ansCorrect = true;
@@ -126,22 +123,23 @@ public class QuizMaster
       } else
          this.ansCorrect = false;
       recordQuestionMark();
-      ShortQuestion.shortQnList.remove(0);
+      ShortQuestion.shortQnList.remove(zeroIndex);
       numQuestionsAsked++;
    }
 
    private void askMCQuestion()
    {
       int answer, correctAnswer;
-      setMarkAvail(mcQnMark);
-      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + MultipleChoiceQuestion.mcQnList.get(0).getQuestionText());
-      System.out.println("\t1. " + MultipleChoiceQuestion.mcQnList.get(0).getOption1());
-      System.out.println("\t2. " + MultipleChoiceQuestion.mcQnList.get(0).getOption2());
-      System.out.println("\t3. " + MultipleChoiceQuestion.mcQnList.get(0).getOption3());
-      System.out.println("\t4. " + MultipleChoiceQuestion.mcQnList.get(0).getOption4());
+      int zeroIndex = 0;
+      setMarkAvail(MultipleChoiceQuestion.mcQnList.get(zeroIndex).getPoints());
+      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getQuestionText());
+      System.out.println("\t1. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption1());
+      System.out.println("\t2. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption2());
+      System.out.println("\t3. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption3());
+      System.out.println("\t4. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption4());
       System.out.println("\nEnter correct option: ");
       answer = keyboard.nextInt();
-      correctAnswer = MultipleChoiceQuestion.mcQnList.get(0).getCorrectOption();
+      correctAnswer = MultipleChoiceQuestion.mcQnList.get(zeroIndex).getCorrectOption();
       if (answer == correctAnswer)
       {
          this.ansCorrect = true;
@@ -149,7 +147,7 @@ public class QuizMaster
       } else
          this.ansCorrect = false;
       recordQuestionMark();
-      MultipleChoiceQuestion.mcQnList.remove(0);
+      MultipleChoiceQuestion.mcQnList.remove(zeroIndex);
       numQuestionsAsked++;
    }
 

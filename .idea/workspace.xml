@@ -6,19 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2a18898b-db13-45a9-b9b5-0ad25a7f1699" name="Changes" comment="NSO - Implemented 'currentUser' to &quot;log-in&quot; and track currently logged in user and update studentUser high score. Leaderboard now updates for each unique student that logs in without quitting app with username and score.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin.ser" beforeDir="false" afterPath="$PROJECT_DIR$/admin.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/errorLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/errorLog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multipleChoiceQns.ser" beforeDir="false" afterPath="$PROJECT_DIR$/multipleChoiceQns.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shortQns.ser" beforeDir="false" afterPath="$PROJECT_DIR$/shortQns.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LeaderBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeaderBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QuizMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QuizMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StudentMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StudentMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/students.ser" beforeDir="false" afterPath="$PROJECT_DIR$/students.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tfQns.ser" beforeDir="false" afterPath="$PROJECT_DIR$/tfQns.ser" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670194082180</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="NSO - Implemented 'currentUser' to &quot;log-in&quot; and track currently logged in user and update studentUser high score. Leaderboard now updates for each unique student that logs in without quitting app with username and score.">
+      <created>1670284882978</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1670284882978</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
