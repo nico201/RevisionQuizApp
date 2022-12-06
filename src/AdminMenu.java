@@ -54,7 +54,7 @@ public class AdminMenu
       try
       {
          adminUser = new Admin(username, password);
-         if (adminUser.userIsUnique(adminUser.getUsername()))
+         if (Admin.userIsUnique(adminUser.getUsername()))
          {
             Admin.adminList.add(adminUser);
             System.out.println("\nNew Teacher Admin created!");

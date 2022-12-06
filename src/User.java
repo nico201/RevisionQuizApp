@@ -55,31 +55,19 @@ abstract public class User implements Serializable
 
    public void setPassword(String Password) throws PasswordException
    {
-      boolean validLength = false;
-      if (Password.length() > 8)
-      {
-         validLength = true;
-      } else
-      {
+      if (Password.length() <= 8)
          error += "\nPassword is not at least 8 characters";
-      }
 
       if (!hasDigit(Password))
-      {
          error += "\nPassword does not contain a digit";
-      }
-      if (!hasUpper(Password))
-      {
-         error += "\nPassword does not contain an Upper Case character";
-      }
-      if (error != null)
-      {
-         throw new PasswordException(error);
-      } else
-      {
-         password = Password;
-      }
 
+      if (!hasUpper(Password))
+         error += "\nPassword does not contain an Upper Case character";
+
+      if (error != null)
+         throw new PasswordException(error);
+      else
+         password = Password;
    }
 
    public String getPassword()

@@ -20,7 +20,7 @@ public class Main
       do
       {
          LoginOrRegister.menuPrompt();
-         menuChoice= LoginOrRegister.getMainMenuChoice();
+         menuChoice = LoginOrRegister.getMainMenuChoice();
          if (menuChoice == 3)
          {
             //option 3 - Quit Application
@@ -28,7 +28,7 @@ public class Main
          } else if (menuChoice == 2)
          {
             //option 2  - Admin login/registration
-               validLogin = AdminMenu.display();
+            validLogin = AdminMenu.display();
             //Once Admin has logged in successfully. Display Teacher Admin Submenu
             do
             {
@@ -69,7 +69,7 @@ public class Main
                      }
                   } while (addNewQuestionMenuChoice != 4);
                }
-            }while(adminMenuChoice!=3);
+            } while (adminMenuChoice != 3);
          } else if (menuChoice == 1)
          {
             //Student Registration via Student Menu
@@ -79,7 +79,6 @@ public class Main
             keyboard.nextLine();
             Globals.populateAllQuestions();
             // Re-populates Question ArrayLists on re-run
-            QuizMaster quizMaster = new QuizMaster();
             QuizMaster.initializeQuizMaster();
             // Use quizMaster.runQuiz() to ask ALL questions in question bank or specify num in call as below
             QuizMaster.runQuiz(1, 1, 1);
@@ -95,6 +94,6 @@ public class Main
             }
             LeaderBoard.printLeaderboard();
          }//else if
-      }while(menuChoice!=3);
+      } while (menuChoice != 3);
    }//main
 }//class

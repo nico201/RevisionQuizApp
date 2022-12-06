@@ -20,7 +20,6 @@ public class LeaderBoard
    }
 
    public static void updateLeaderboard(String latestName, int latestScore)
-   // name functionality commented out for now
    {
       if (latestScore >= leaderScores[0])
       {
@@ -30,13 +29,13 @@ public class LeaderBoard
          leaderNames[1] = leaderNames[0];
          leaderScores[0] = latestScore;
          leaderNames[0] = latestName;
-      } else if ((latestScore < leaderScores[0]) && (latestScore >= leaderScores[1]))
+      } else if (latestScore >= leaderScores[1])
       {
          leaderScores[2] = leaderScores[1];
          leaderNames[2] = leaderNames[1];
          leaderScores[1] = latestScore;
          leaderNames[1] = latestName;
-      } else if ((latestScore < leaderScores[1]) && (latestScore >= leaderScores[2]))
+      } else if (latestScore >= leaderScores[2])
       {
          leaderScores[2] = latestScore;
          leaderNames[2] = latestName;

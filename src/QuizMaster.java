@@ -27,18 +27,15 @@ public class QuizMaster
       this.markAwarded = 0;
    }//default constructor
 
-   public void askQuestion(String questionType)
+   protected void askQuestion(String questionType)
    {
-      if (questionType.equalsIgnoreCase("tfQn"))
-         askTFQuestion();
-      else if (questionType.equalsIgnoreCase("mcQn"))
-         askMCQuestion();
-      else if (questionType.equalsIgnoreCase("shortQn"))
-         askShortQuestion();
+      if (questionType.equalsIgnoreCase("tfQn")) askTFQuestion();
+      else if (questionType.equalsIgnoreCase("mcQn")) askMCQuestion();
+      else if (questionType.equalsIgnoreCase("shortQn")) askShortQuestion();
       //else TO DO: exception handling
    }
 
-   public void runQuiz()
+   protected static void runQuiz()
    {
       int maxTFQns, maxMCQns, maxShortQns;
       maxTFQns = TrueFalseQuestion.tfQnList.size();
@@ -48,7 +45,7 @@ public class QuizMaster
       runQuiz(maxTFQns, maxShortQns, maxMCQns);
    }
 
-   public static void runQuiz(int numTfQns, int numShortQns, int numMCQns)
+   protected static void runQuiz(int numTfQns, int numShortQns, int numMCQns)
    {
       QuizMaster quizMaster;
 
@@ -92,16 +89,13 @@ public class QuizMaster
       System.out.println("\n" + (numQuestionsAsked + 1) + ". " + TrueFalseQuestion.tfQnList.get(zeroIndex).getQuestionText());
       System.out.println("\nAnswer 'true' or 'false': ");
       answer = keyboard.next();
-      if (TrueFalseQuestion.tfQnList.get(zeroIndex).getAnswer() == 'T')
-         correctAnswer = "true";
-      else
-         correctAnswer = "false";
+      if (TrueFalseQuestion.tfQnList.get(zeroIndex).getAnswer() == 'T') correctAnswer = "true";
+      else correctAnswer = "false";
       if (answer.equalsIgnoreCase(correctAnswer))
       {
          this.ansCorrect = true;
          this.markAwarded = this.markAvail;
-      } else
-         this.ansCorrect = false;
+      } else this.ansCorrect = false;
       recordQuestionMark();
       TrueFalseQuestion.tfQnList.remove(zeroIndex);
       numQuestionsAsked++;
@@ -120,8 +114,7 @@ public class QuizMaster
       {
          this.ansCorrect = true;
          this.markAwarded = this.markAvail;
-      } else
-         this.ansCorrect = false;
+      } else this.ansCorrect = false;
       recordQuestionMark();
       ShortQuestion.shortQnList.remove(zeroIndex);
       numQuestionsAsked++;
@@ -144,8 +137,7 @@ public class QuizMaster
       {
          this.ansCorrect = true;
          this.markAwarded = this.markAvail;
-      } else
-         this.ansCorrect = false;
+      } else this.ansCorrect = false;
       recordQuestionMark();
       MultipleChoiceQuestion.mcQnList.remove(zeroIndex);
       numQuestionsAsked++;
@@ -162,30 +154,30 @@ public class QuizMaster
       totalMarkAwarded += this.markAwarded;
    }
 
-   public static void initializeQuizMaster()
+   protected static void initializeQuizMaster()
    {
       QuizMaster.numQuestionsAsked = 0;
       QuizMaster.totalMarkAvailable = 0;
       QuizMaster.totalMarkAwarded = 0;
    }
 
-   public static int getTotalMarkAvailable()
+   protected static int getTotalMarkAvailable()
    {
       return totalMarkAvailable;
    }
 
-   public static int getTotalMarkAwarded()
+   protected static int getTotalMarkAwarded()
    {
       return totalMarkAwarded;
    }
 
-   public static void printQuizResult()
+   protected static void printQuizResult()
    {
       System.out.println("\nQuiz Result: " + QuizMaster.getTotalMarkAwarded() + " marks out of " + QuizMaster.getTotalMarkAvailable());
       System.out.println("Quiz Score: " + getQuizScore() + "\n");
    }
 
-   public static int getQuizScore()
+   protected static int getQuizScore()
    {
       return (100 * QuizMaster.getTotalMarkAwarded() / QuizMaster.getTotalMarkAvailable());
    }

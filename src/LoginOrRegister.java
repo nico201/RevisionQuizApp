@@ -9,34 +9,24 @@ import java.util.Scanner;
 public class LoginOrRegister
 {
    public static Scanner keyboard = new Scanner(System.in);
-
    private static int mainMenuChoice = 0;
-
    private static final String ADMIN_PASSWORD = "RosaleenIsALegend";
 
-   public static void menuPrompt(){
+   public static void menuPrompt()
+   {
       System.out.println("\nWelcome to the Main Menu\n*************************\n1. Student\n2. Teacher\n3. Quit\nPlease enter your selection: ");
       mainMenuChoice = keyboard.nextInt();
    }
 
-   public static boolean isPasswordCorrect(String pPassword){
+   public static boolean isPasswordCorrect(String pPassword)
+   {
       return (ADMIN_PASSWORD.equalsIgnoreCase(pPassword));
    }
-
-
-
-   public static void existingStudentLogin(){
-      String studentID;
-      System.out.println("Welcome back! Please enter your student ID: ");
-      studentID = keyboard.next();
-   }
-
 
    public static int getMainMenuChoice()
    {
       return mainMenuChoice;
    }
-
 
    protected static void quitMessage()
    {
@@ -58,9 +48,5 @@ public class LoginOrRegister
       System.out.println("1. Multiple Choice Question\n2. True or False Question\n3. Short Answer Question\n4. Go Back");
       System.out.println("Please enter a selection: ");
    }
-
-
-
-
 
 }//class
