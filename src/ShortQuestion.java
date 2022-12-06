@@ -8,7 +8,8 @@ import java.util.Scanner;
  **/
 public class ShortQuestion extends Question
 {
-   private static int count=0;
+   private static Scanner keyboard = new Scanner(System.in);
+   private static int count = 0;
    public static ArrayList<ShortQuestion> shortQnList = new ArrayList<ShortQuestion>();
    private static String shortQnFilePath="shortQns.txt";
    private String answer;
@@ -82,8 +83,7 @@ public class ShortQuestion extends Question
          throw new RuntimeException(e);
       }
    }
-   public static void updateQuestion() {
-      Scanner keyboard = new Scanner(System.in);
+   public static void declareInitialiseAndUpdate_NewQuestionObject() {
       ShortQuestion sq1 = new ShortQuestion(null, 0, null, null);
       System.out.println("Short Answer Question Creation");
       System.out.println("Please enter the question text: ");

@@ -12,8 +12,8 @@ public class StudentMenu
    public static boolean display()
    {
       Student.populateStudentList();
-      System.out.println("** STUDENT MENU **");
-      System.out.println("Welcome Student");
+      System.out.println("Welcome to Student Menu");
+      System.out.println("*************************");
       System.out.println("Please enter a selection: \n1. Register as new student \n2. Login as existing student \n3. Return to Main Menu");
       studentMenuChoice = keyboard.nextInt();
       boolean loginSuccess = false;

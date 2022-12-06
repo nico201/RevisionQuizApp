@@ -131,7 +131,7 @@ public class MultipleChoiceQuestion extends Question
             throw new RuntimeException(e);
         }
     }
-    public static void updateQuestion() {
+    public static void declareInitialiseAndUpdate_NewQuestionObject() {
         Scanner keyboard = new Scanner(System.in);
         MultipleChoiceQuestion mcq1 = new MultipleChoiceQuestion(null, -1, null, null, null, null, null, -1);
         System.out.println("\nMCQ Question Creation");

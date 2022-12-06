@@ -9,6 +9,8 @@ public class Main
    public static Scanner keyboard = new Scanner(System.in);
    public static int addNewQuestionMenuChoice;
    public static int adminMenuChoice;
+   private static boolean validLogin = false;
+   private static boolean validStudentLogin = false;
    public static User currentUser;
 
 
@@ -17,33 +19,21 @@ public class Main
       int menuChoice;
       do
       {
-         // "Log-out" - Clear details of previous user
-         currentUser = null;
          LoginOrRegister.menuPrompt();
-         menuChoice = LoginOrRegister.getMainMenuChoice();
+         menuChoice= LoginOrRegister.getMainMenuChoice();
          if (menuChoice == 3)
          {
             //option 3 - Quit Application
-            System.out.println("See you again soon!");
+            LoginOrRegister.quitMessage();
          } else if (menuChoice == 2)
          {
             //option 2  - Admin login/registration
-            //Admin Login/Registration via Admin/Teacher Menu
-            boolean validLogin = false;
-            do
-            {
                validLogin = AdminMenu.display();
-            } while (!validLogin);
-
-            /*
-            Once Admin has logged in successfully
-            Display Teacher Admin Submenu
-            */
+            //Once Admin has logged in successfully. Display Teacher Admin Submenu
             do
             {
-               System.out.println("\nAdmin Area\n*************************");
-               System.out.println("1: Show Leaderboard\n2: Add New Question\n3: Log Out");
-               System.out.println("Please enter a selection: ");
+               LoginOrRegister.printSuccessfulLogin_AdminAreaMenu();
+               //User given 3 menu choice 1. Show leaderboard, 2. Add new question, 3. Log out
                adminMenuChoice = keyboard.nextInt();
                if (adminMenuChoice == 1)
                {
@@ -52,27 +42,23 @@ public class Main
                {
                   do
                   {
-                     System.out.println("\nWelcome to Add New Question menu\n*************************");
-                     System.out.println("1. Multiple Choice Question\n2. True or False Question\n3. Short Answer Question\n4. Go Back");
-                     System.out.println("Please enter a selection: ");
+                     LoginOrRegister.printAddNewQuestionMenu();
+                     // Add new question menu displayed: 1. Multiple Choice Question, 2. True or False Question, 3. Short Answer Question, 4. Go Back
                      addNewQuestionMenuChoice = keyboard.nextInt();
                      switch (addNewQuestionMenuChoice)
                      {
                         case 1:
-                           MultipleChoiceQuestion mcq1 = new MultipleChoiceQuestion(null, -1, null, null, null, null, null, -1);
-                           mcq1.updateQuestion();
+                           MultipleChoiceQuestion.declareInitialiseAndUpdate_NewQuestionObject();
                            //Add question to list
                            //Serialize list
                            break;
                         case 2:
-                           TrueFalseQuestion tf1 = new TrueFalseQuestion(null, -1, null, '0');
-                           tf1.updateQuestion();
+                           TrueFalseQuestion.declareInitialiseAndUpdate_NewQuestionObject();
                            //Add question to list
                            //Serialize list
                            break;
                         case 3:
-                           ShortQuestion sq1 = new ShortQuestion(null, 0, null, null);
-                           sq1.updateQuestion();
+                           ShortQuestion.declareInitialiseAndUpdate_NewQuestionObject();
                            //Add question to list
                            //Serialize list
                            break;
@@ -83,24 +69,20 @@ public class Main
                      }
                   } while (addNewQuestionMenuChoice != 4);
                }
-            } while (adminMenuChoice != 3);
+            }while(adminMenuChoice!=3);
          } else if (menuChoice == 1)
          {
             //Student Registration via Student Menu
-            boolean validStudentLogin = false;
-            do
-            {
-               validStudentLogin = StudentMenu.display();
-            } while (!validStudentLogin);
+            validStudentLogin = StudentMenu.display();
             //Once student has logged in/registered successfully
             System.out.println("\nPress return to begin the quiz!\n*************************");
             keyboard.nextLine();
-            // Re-populates Question ArrayLists on re-run
             Globals.populateAllQuestions();
+            // Re-populates Question ArrayLists on re-run
             QuizMaster quizMaster = new QuizMaster();
             QuizMaster.initializeQuizMaster();
             // Use quizMaster.runQuiz() to ask ALL questions in question bank or specify num in call as below
-            quizMaster.runQuiz(1, 1, 1);
+            QuizMaster.runQuiz(1, 1, 1);
             QuizMaster.printQuizResult();
             // Update the student user's highest score
             for (Student studentUser : Student.studentList)
@@ -113,7 +95,6 @@ public class Main
             }
             LeaderBoard.printLeaderboard();
          }//else if
-
-      } while (menuChoice != 3);
+      }while(menuChoice!=3);
    }//main
 }//class

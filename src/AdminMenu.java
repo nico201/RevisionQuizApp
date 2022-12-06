@@ -12,8 +12,9 @@ public class AdminMenu
    public static boolean display()
    {
       Admin.populateAdminList();
-      System.out.println("** ADMIN MENU **");
-      System.out.println("Please enter a selection: \n1. Register as new teacher \n2. Login as existing teacher \n3. Return to Main Menu");
+      System.out.println("Welcome to Teacher Login or Register");
+      System.out.println("*************************");
+      System.out.println("1. Register as a New Teacher \n2. Login as Existing Teacher \n3. Return to Main Menu\nPlease enter a selection: ");
       menuChoice = keyboard.nextInt();
       boolean loginSuccess = false;
       switch (menuChoice)

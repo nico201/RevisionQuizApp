@@ -48,7 +48,7 @@ public class QuizMaster
       runQuiz(maxTFQns, maxShortQns, maxMCQns);
    }
 
-   public void runQuiz(int numTfQns, int numShortQns, int numMCQns)
+   public static void runQuiz(int numTfQns, int numShortQns, int numMCQns)
    {
       QuizMaster quizMaster;
 

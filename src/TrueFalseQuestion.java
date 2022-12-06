@@ -80,8 +80,7 @@ public class TrueFalseQuestion extends Question
             Globals.logException(ex);
         }
     }
-    public static void updateQuestion() {
-        Scanner keyboard = new Scanner(System.in);
+    public static void declareInitialiseAndUpdate_NewQuestionObject() {
         TrueFalseQuestion tf1 = new TrueFalseQuestion(null, -1, null, '0');
         System.out.println("\nTrue or False Question Creation");
         System.out.println("Please enter the question text: ");
