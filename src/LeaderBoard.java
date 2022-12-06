@@ -15,7 +15,7 @@ public class LeaderBoard
    {
       // show header
       System.out.println("\nLeaderboard");
-      System.out.println("***********");
+      System.out.println("*************************");
       System.out.println("Rank\tName\t\tScore (%)");
 
       // student leaderboard only shows selected top subset
