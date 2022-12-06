@@ -14,7 +14,7 @@ public class StudentMenu
       Student.populateStudentList();
       System.out.println("Welcome to Student Menu");
       System.out.println("*************************");
-      System.out.println("Please enter a selection: \n1. Register as new student \n2. Login as existing student \n3. Return to Main Menu");
+      System.out.println("1. Register as new student \n2. Login as existing student \n3. Return to Main Menu\nPlease enter a selection: ");
       studentMenuChoice = keyboard.nextInt();
       boolean loginSuccess = false;
       switch (studentMenuChoice)
