@@ -6,20 +6,19 @@
 public class LeaderBoard
 {
 
-   private static final int MAXSTUDENTS = 10; // leaderboard will accommodate 10 students
-   private static final int STUDENTDISPLAY = 3; // students will see top 3
+   private static final int MAXSTUDENTS = 10; // full leaderboard will accommodate 10 students
+   private static final int STUDENTDISPLAY = 3; // No. of places in student leaderboard
    private static String[] leaderNames = new String[MAXSTUDENTS];
    private static int[] leaderScores = new int[MAXSTUDENTS];
 
    public static void printLeaderboard(String leaderboardUser) // can be student or admin leaderboard
    {
-      // show header
-      System.out.println("\nLeaderboard");
-      System.out.println("*************************");
-      System.out.println("Rank\tName\t\tScore (%)");
 
       // student leaderboard only shows selected top subset
       if (leaderboardUser.equals("student")) {
+         System.out.println("\nStudent Leaderboard");
+         System.out.println("*************************");
+         System.out.println("Rank\tName\t\tScore (%)");
          for (int count = 1; count <= STUDENTDISPLAY; count++) {
             System.out.println(count + ":\t\t" + leaderNames[count-1] + "\t\t" + leaderScores[count-1]);
          }//for
@@ -27,9 +26,15 @@ public class LeaderBoard
 
       // admin leaderboard shows all
       else if (leaderboardUser.equals("admin")) {
-         for (int count = 1; count <= MAXSTUDENTS; count++) {
-            System.out.println(count + ":\t\t" + leaderNames[count-1] + "\t\t" + leaderScores[count-1]);
-         }//for
+         System.out.println("\nAdmin Leaderboard");
+         System.out.println("*************************");
+         System.out.println("Rank\tName\t\tHigh Score (%)");
+         for (Student studentUser : Student.studentList) {
+            System.out.println("\t" + studentUser.getUsername() + "\t" + studentUser.getHighestScore());
+         }
+         //for (int count = 1; count <= MAXSTUDENTS; count++) {
+         //   System.out.println(count + ":\t\t" + leaderNames[count-1] + "\t\t" + leaderScores[count-1]);
+         //}//for
       }//if
 
    }// printLeaderboard
