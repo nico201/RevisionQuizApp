@@ -28,9 +28,10 @@ public class AdminSubMenu
       {
          case 1:
             LeaderBoard.printLeaderboard("admin");
+            display();
             break;
          case 2:
-            //new question;
+            AddNewQuestionMenu.display();
             break;
          case 3:
             Main.displayMainMenu();//return to main menu

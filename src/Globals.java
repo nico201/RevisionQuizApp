@@ -2,6 +2,7 @@ import java.time.LocalDateTime;
 import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.io.FileWriter;
+import java.util.Scanner;
 
 /**
  * Created by V.Campbell on 27/11/2022
@@ -9,6 +10,7 @@ import java.io.FileWriter;
  **/
 public class Globals
 {
+   private static Scanner keyboard = new Scanner(System.in);
    //populate all question arrayLists
    protected static void populateAllQuestions()
    {
@@ -69,5 +71,20 @@ public class Globals
          System.out.println("Not a valid integer. Please try again!");
       }
       return isValidMenuChoice;
+   }
+   protected static boolean exitLogin() {
+      String choice;
+      int exitChoice;
+
+      do {
+         System.out.println("1. Try again \n2. Return to Previous Menu");
+         choice = keyboard.next();
+      } while (!Globals.validMenuChoice(choice, 1, 2));
+      exitChoice = Integer.parseInt(choice);
+      if (exitChoice == 1) {
+         return false;
+      } else {
+         return true;
+      }
    }
 }//class
