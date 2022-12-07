@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class StudentMenu {
    private static Scanner keyboard = new Scanner(System.in);
    private static String studentMenuInput;
+   private static boolean exit = false;
 
    protected static void display() {
       Student.populateStudentList();
@@ -43,7 +44,7 @@ public class StudentMenu {
       String studentSurname;
       String password;
       Student studentUser = new Student();
-      boolean exit = false;
+      exit = false;
 
       System.out.println("Welcome to Student Sign-Up!");
       do {
@@ -98,32 +99,40 @@ public class StudentMenu {
 
    protected static void existingStudentLogin() {
 
-      boolean validUserLoggedIn = false;
+      exit = false;
+      boolean validLogIn = false;
       String inputUsername;
       String inputPassword;
 
       System.out.println();
       System.out.println("Welcome to Student Login");
-      System.out.println("Please enter your username: ");
-      inputUsername = keyboard.next();
-      System.out.println("Please enter your password: ");
-      inputPassword = keyboard.next();
+      do
+      {
+         System.out.println("Please enter your username: ");
+         inputUsername = keyboard.next();
+         System.out.println("Please enter your password: ");
+         inputPassword = keyboard.next();
 
-      for (Student student : Student.studentList) {
-         if (student.getUsername().equals(inputUsername)) {
-            if (student.getPassword().equals(inputPassword)) {
-               validUserLoggedIn = true;
-               Main.currentStudent = (Student)student;
-               Quiz.run();
-            } else {
-               System.out.println("User found - password incorrect");
-               exitLogin();
+         for (Student student : Student.studentList)
+         {
+            if (student.getUsername().equals(inputUsername) && student.getPassword().equals(inputPassword))
+            {
+               validLogIn=true;
+               break;
             }
-            break;
-         } else {
-            System.out.println("User not found.");
-            exitLogin();
          }
+         if (!validLogIn)
+         {
+            System.out.println("Username or Password incorrect");
+            exit = exitLogin();
+         }
+      }while(!validLogIn && !exit);
+      if (validLogIn)
+      {
+         Quiz.run();
+      } else if (exit)
+      {
+         StudentMenu.display();
       }
    }
 
