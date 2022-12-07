@@ -101,6 +101,7 @@ abstract public class User implements Serializable
          if (Character.isUpperCase(c))
          {
             hasUpper = true;
+            break;
          }
       }
       return hasUpper;

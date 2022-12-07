@@ -4,128 +4,151 @@ import java.util.Scanner;
  * Created by V.Campbell on 01/12/2022
  * Student Menu System
  **/
-public class StudentMenu
-{
+public class StudentMenu {
    private static Scanner keyboard = new Scanner(System.in);
-   private static int studentMenuChoice = 0;
+   private static String studentMenuInput;
+   private static boolean exit = false;
 
-   protected static boolean display()
-   {
+   protected static void display() {
       Student.populateStudentList();
-      System.out.println("Welcome to Student Menu");
-      System.out.println("*************************");
-      System.out.println("1. Register as new student \n2. Login as existing student \n3. Return to Main Menu\nPlease enter a selection: ");
-      studentMenuChoice = keyboard.nextInt();
-      boolean loginSuccess = false;
-      switch (studentMenuChoice)
-      {
+      int studentMenuChoice;
+      do {
+         System.out.println("Welcome to Student Menu");
+         System.out.println("*************************");
+         System.out.println("1. Register as new student \n2. Login as existing student \n3. Return to Main Menu\nPlease enter a selection: ");
+         studentMenuInput = keyboard.next();
+      } while (!Globals.validMenuChoice(studentMenuInput, 1, 3));
+      studentMenuChoice = Integer.parseInt(studentMenuInput);
+      switch (studentMenuChoice) {
          case 1:
-            loginSuccess = studentSignUp();
+            studentSignUp();
             break;
          case 2:
-            loginSuccess = existingStudentLogin();
+            existingStudentLogin();
             break;
          case 3:
-            LoginOrRegister.menuPrompt();//return to main menu
+            Main.displayMainMenu();
             break;
-         default:
+         default: //not really required as menu choice is validated
          {
             System.out.println("Invalid Menu Choice");
             display();
             break;
          }
       }
-      return loginSuccess;
    }
 
-   protected static boolean studentSignUp()
-   {
+   protected static void studentSignUp() {
       boolean validRegistration = true;
       String studentForename;
       String studentSurname;
       String password;
       Student studentUser = new Student();
+      exit = false;
 
-      System.out.println();
       System.out.println("Welcome to Student Sign-Up!");
-      System.out.println("Please enter your forename: ");
-      studentForename = keyboard.next();
-      System.out.println("Please enter your surname: ");
-      studentSurname = keyboard.next();
-      System.out.println("Please enter your password: ");
-      password = keyboard.next();
+      do {
+         System.out.println();
+         System.out.println("Please enter your forename: ");
+         studentForename = keyboard.next();
+         System.out.println("Please enter your surname: ");
+         studentSurname = keyboard.next();
+         System.out.println("Please enter your password: ");
+         password = keyboard.next();
 
-      try
-      {
-         studentUser = new Student(studentForename, studentSurname, password);
-         if (Student.userIsUnique(studentUser.getUsername()))
-         {
-            Student.studentList.add(studentUser);
-            System.out.println("\nNew user created! Username is " + studentUser.getUsername());
-            Student.serialize();
-         } else
-         {
-            System.out.println("Error: User is not unique. Please try again");
+         try {
+            studentUser = new Student(studentForename, studentSurname, password);
+            if (Student.userIsUnique(studentUser.getUsername())) {
+               Student.studentList.add(studentUser);
+               Main.currentStudent = studentUser;//set current user equal to the newly registered student
+               System.out.println("\nNew user created! Username is " + studentUser.getUsername());
+               Student.serialize();
+            } else {
+               System.out.println("Error: User is not unique.");
+               validRegistration = false;
+               exit = exitLogin();
+            }
+         } catch (PasswordException e) {
+            //Handle exception
+            Globals.logException(e);
+            System.out.println(e.getMessage());
+            exit = exitLogin();
             validRegistration = false;
+         } catch (UsernameException e) {
+            //Handle exception
+            Globals.logException(e);
+            System.out.println("Error: " + e.getMessage());
+            validRegistration = false;
+            exit = exitLogin();
          }
-      } catch (PasswordException e)
-      {
-         //Handle exception
-         Globals.logException(e);
-         System.out.println(e.getMessage());
-         validRegistration = false;
-      } catch (UsernameException e)
-      {
-         //Handle exception
-         Globals.logException(e);
-         System.out.println("Error: " + e.getMessage());
-         validRegistration = false;
-
-      } finally
-      {
-         if (validRegistration)
-         {
-            Main.currentUser = studentUser;
+         finally {
+            if (validRegistration)
+            {
+               Main.currentStudent = studentUser;
+            }
          }
-      }
+      } while (!validRegistration && !exit);
+      if (validRegistration)
       {
-         return validRegistration;
+         Quiz.run();
+      } else if (exit)
+      {
+         StudentMenu.display();
       }
    }
 
-   protected static boolean existingStudentLogin()
-   {
-      boolean validUserLoggedIn = false;
+   protected static void existingStudentLogin() {
 
+      exit = false;
+      boolean validLogIn = false;
       String inputUsername;
       String inputPassword;
 
       System.out.println();
       System.out.println("Welcome to Student Login");
-      System.out.println("Please enter your username: ");
-      inputUsername = keyboard.next();
-      System.out.println("Please enter your password: ");
-      inputPassword = keyboard.next();
-
-      for (Student studentUser : Student.studentList)
+      do
       {
-         if (studentUser.getUsername().equals(inputUsername))
+         System.out.println("Please enter your username: ");
+         inputUsername = keyboard.next();
+         System.out.println("Please enter your password: ");
+         inputPassword = keyboard.next();
+
+         for (Student student : Student.studentList)
          {
-            if (studentUser.getPassword().equals(inputPassword))
+            if (student.getUsername().equals(inputUsername) && student.getPassword().equals(inputPassword))
             {
-               validUserLoggedIn = true;
-               Main.currentUser = studentUser;
-            } else
-            {
-               System.out.println("User found - password incorrect. Please try again");
+               validLogIn=true;
                break;
             }
-         } else
-         {
-            System.out.println("User not found. Please try again");
          }
+         if (!validLogIn)
+         {
+            System.out.println("Username or Password incorrect");
+            exit = exitLogin();
+         }
+      }while(!validLogIn && !exit);
+      if (validLogIn)
+      {
+         Quiz.run();
+      } else if (exit)
+      {
+         StudentMenu.display();
       }
-      return validUserLoggedIn;
    }
 
+   private static boolean exitLogin() {
+      String choice;
+      int exitChoice;
+
+      do {
+         System.out.println("1. Try again \n2. Return to Student Menu");
+         choice = keyboard.next();
+      } while (!Globals.validMenuChoice(choice, 1, 2));
+      exitChoice = Integer.parseInt(choice);
+      if (exitChoice == 1) {
+         return false;
+      } else {
+         return true;
+      }
+   }
 }//class
