@@ -40,5 +40,34 @@ public class Globals
          System.out.println(ex.getMessage());
       }
    }
+   public static boolean TryParseInt(String inputString)
+   {
 
+      boolean validInt = true;
+      for (int i = 0; i < inputString.length(); i++)
+      {
+         if (!Character.isDigit(inputString.charAt(i)))
+         {
+            validInt = false;
+            break;
+         }
+      }
+      return validInt;
+   }
+
+   public static boolean validMenuChoice(String inputString, int min, int max) {
+      boolean isValidMenuChoice = false;
+      int menuChoice;
+      if (Globals.TryParseInt(inputString)) {
+         menuChoice = Integer.parseInt(inputString);
+         if (menuChoice >= min && menuChoice <= max) {
+            isValidMenuChoice = true;
+         } else {
+            System.out.println("Menu choice out of range. Please try again!");
+         }
+      } else {
+         System.out.println("Not a valid integer. Please try again!");
+      }
+      return isValidMenuChoice;
+   }
 }//class

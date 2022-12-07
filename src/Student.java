@@ -121,7 +121,7 @@ public class Student extends User
       return isUnique;
    }
 
-   protected static void resetHighScores()
+   protected static void resetAllHighScores()
    {
       for (Student std : studentList)
       {
