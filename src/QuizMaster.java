@@ -14,6 +14,9 @@ public class QuizMaster
    private int markAwarded;
 
    // static class attributes
+   private static int mainQuizNumTFQns = 1;
+   private static int mainQuizNumShortQns = 1;
+   private static int mainQuizNumMCQns = 1;
    private static int numQuestionsAsked;
    private static int totalMarkAvailable;
    private static int totalMarkAwarded;
@@ -27,14 +30,6 @@ public class QuizMaster
       this.markAwarded = 0;
    }//default constructor
 
-   private void askQuestion(String questionType)
-   {
-      if (questionType.equalsIgnoreCase("tfQn")) askTFQuestion();
-      else if (questionType.equalsIgnoreCase("mcQn")) askMCQuestion();
-      else if (questionType.equalsIgnoreCase("shortQn")) askShortQuestion();
-      //else TO DO: exception handling
-   }
-
    private static void runQuiz()
    {
       int maxTFQns, maxMCQns, maxShortQns;
@@ -43,6 +38,12 @@ public class QuizMaster
       maxMCQns = MultipleChoiceQuestion.mcQnList.size();
       // Run quiz and ask all questions in question bank
       runQuiz(maxTFQns, maxShortQns, maxMCQns);
+   }
+
+   protected static void runQuiz(String quizTopic)
+   {
+      if (quizTopic.equalsIgnoreCase("mainQuiz"))
+         runQuiz(mainQuizNumTFQns, mainQuizNumShortQns, mainQuizNumMCQns);
    }
 
    protected static void runQuiz(int numTfQns, int numShortQns, int numMCQns)
@@ -79,6 +80,14 @@ public class QuizMaster
          quizMaster = new QuizMaster();
          quizMaster.askQuestion("mcQn");
       }
+   }
+
+   private void askQuestion(String questionType)
+   {
+      if (questionType.equalsIgnoreCase("tfQn")) askTFQuestion();
+      else if (questionType.equalsIgnoreCase("mcQn")) askMCQuestion();
+      else if (questionType.equalsIgnoreCase("shortQn")) askShortQuestion();
+      //else TO DO: exception handling
    }
 
    private void askTFQuestion()
@@ -159,6 +168,36 @@ public class QuizMaster
       QuizMaster.numQuestionsAsked = 0;
       QuizMaster.totalMarkAvailable = 0;
       QuizMaster.totalMarkAwarded = 0;
+   }
+
+   protected static int getMainQuizNumTFQns()
+   {
+      return mainQuizNumTFQns;
+   }
+
+   protected static int getMainQuizNumShortQns()
+   {
+      return mainQuizNumShortQns;
+   }
+
+   protected static int getMainQuizNumMCQns()
+   {
+      return mainQuizNumMCQns;
+   }
+
+   protected static void setMainQuizNumTFQns(int numTFQns)
+   {
+      mainQuizNumTFQns = numTFQns;
+   }
+
+   protected static void setMainQuizNumShortQns(int numShortQns)
+   {
+      mainQuizNumShortQns = numShortQns;
+   }
+
+   protected static void setMainQuizNumMCQns(int numMCQns)
+   {
+      mainQuizNumMCQns = numMCQns;
    }
 
    protected static int getTotalMarkAvailable()

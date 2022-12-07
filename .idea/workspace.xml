@@ -7,23 +7,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a18898b-db13-45a9-b9b5-0ad25a7f1699" name="Changes" comment="NSO - Removed hard-coded question marks, available points per question pulled direct from question object data">
+    <list default="true" id="2a18898b-db13-45a9-b9b5-0ad25a7f1699" name="Changes" comment="NSO - Added methods to set &quot;mainQuiz&quot; parameters: numTFqns, numShortQns, numMCQns.&#10;&#10;Added methods to reset all student highscores to 0.&#10;&#10;For additional admin menu actions.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin.ser" beforeDir="false" afterPath="$PROJECT_DIR$/admin.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/errorLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/errorLog.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/multipleChoiceQns.ser" beforeDir="false" afterPath="$PROJECT_DIR$/multipleChoiceQns.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shortQns.ser" beforeDir="false" afterPath="$PROJECT_DIR$/shortQns.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdminMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Globals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Globals.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LeaderBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeaderBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LoginOrRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginOrRegister.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MultipleChoiceQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MultipleChoiceQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Question.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/QuizMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/QuizMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ShortQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShortQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TrueFalseQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TrueFalseQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/students.ser" beforeDir="false" afterPath="$PROJECT_DIR$/students.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tfQns.ser" beforeDir="false" afterPath="$PROJECT_DIR$/tfQns.ser" afterDir="false" />
     </list>
@@ -40,6 +37,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -50,6 +52,7 @@
   </component>
   <component name="ProjectId" id="2IC3r1GK5comZq2Dqvmr3O0qFea" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -63,7 +66,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/aaron/IdeaProjects/RevisionQuizApp",
+    "last_opened_file_path": "C:/Users/nsweeney-ortiz/Downloads/RevisionQuizApp-Working-Prototype (1)",
     "run.code.analysis.last.selected.profile": "pProject Default"
   }
 }]]></component>
@@ -298,7 +301,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670286208045</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="NSO - General code tidy up (not exhaustive) prior to working prototype code freeze">
+      <created>1670340634382</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1670340634382</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +344,19 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -368,7 +390,9 @@
     <MESSAGE value="Minor updates to Student and StudentMenu. Some extra TF questions added (more to follow)." />
     <MESSAGE value="NSO - Implemented 'currentUser' to &quot;log-in&quot; and track currently logged in user and update studentUser high score. Leaderboard now updates for each unique student that logs in without quitting app with username and score." />
     <MESSAGE value="NSO - Removed hard-coded question marks, available points per question pulled direct from question object data" />
-    <option name="LAST_COMMIT_MESSAGE" value="NSO - Removed hard-coded question marks, available points per question pulled direct from question object data" />
+    <MESSAGE value="NSO - General code tidy up (not exhaustive) prior to working prototype code freeze" />
+    <MESSAGE value="NSO - Added methods to set &quot;mainQuiz&quot; parameters: numTFqns, numShortQns, numMCQns.&#10;&#10;Added methods to reset all student highscores to 0.&#10;&#10;For additional admin menu actions." />
+    <option name="LAST_COMMIT_MESSAGE" value="NSO - Added methods to set &quot;mainQuiz&quot; parameters: numTFqns, numShortQns, numMCQns.&#10;&#10;Added methods to reset all student highscores to 0.&#10;&#10;For additional admin menu actions." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -377,6 +401,11 @@
           <properties class="java.util.InputMismatchException" package="java.util" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
