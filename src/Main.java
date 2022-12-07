@@ -81,7 +81,7 @@ public class Main
             // Re-populates Question ArrayLists on re-run
             QuizMaster.initializeQuizMaster();
             // Use quizMaster.runQuiz() to ask ALL questions in question bank or specify num in call as below
-            QuizMaster.runQuiz(1, 1, 1);
+            QuizMaster.runQuiz("mainQuiz");
             QuizMaster.printQuizResult();
             // Update the student user's highest score
             for (Student studentUser : Student.studentList)

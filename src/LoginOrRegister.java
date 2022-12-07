@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 /**
@@ -21,12 +20,6 @@ public class LoginOrRegister
 
    private static boolean isPasswordCorrect(String pPassword){
       return (ADMIN_PASSWORD.equalsIgnoreCase(pPassword));
-   }
-
-   private static void existingStudentLogin(){
-      String studentID;
-      System.out.println("Welcome back! Please enter your student ID: ");
-      studentID = keyboard.next();
    }
 
    protected static int getMainMenuChoice()
