@@ -32,6 +32,11 @@ public class Student extends User
       highestScore = 0;
    }
 
+   private void resetHighScore()
+   {
+      this.highestScore = 0;
+   }
+
    protected void setHighestScore(int HighestScore)
    {
       if (HighestScore > highestScore)
@@ -114,6 +119,14 @@ public class Student extends User
          }
       }
       return isUnique;
+   }
+
+   protected static void resetHighScores()
+   {
+      for (Student std : studentList)
+      {
+         std.resetHighScore();
+      }
    }
 
 }//class
