@@ -66,20 +66,20 @@ public class StudentMenu {
             } else {
                System.out.println("Error: User is not unique.");
                validRegistration = false;
-               exit = exitLogin();
+               exit = Globals.exitLogin();
             }
          } catch (PasswordException e) {
             //Handle exception
             Globals.logException(e);
             System.out.println(e.getMessage());
-            exit = exitLogin();
+            exit = Globals.exitLogin();
             validRegistration = false;
          } catch (UsernameException e) {
             //Handle exception
             Globals.logException(e);
             System.out.println("Error: " + e.getMessage());
             validRegistration = false;
-            exit = exitLogin();
+            exit = Globals.exitLogin();
          }
          finally {
             if (validRegistration)
@@ -124,7 +124,7 @@ public class StudentMenu {
          if (!validLogIn)
          {
             System.out.println("Username or Password incorrect");
-            exit = exitLogin();
+            exit = Globals.exitLogin();
          }
       }while(!validLogIn && !exit);
       if (validLogIn)
@@ -136,19 +136,5 @@ public class StudentMenu {
       }
    }
 
-   private static boolean exitLogin() {
-      String choice;
-      int exitChoice;
 
-      do {
-         System.out.println("1. Try again \n2. Return to Student Menu");
-         choice = keyboard.next();
-      } while (!Globals.validMenuChoice(choice, 1, 2));
-      exitChoice = Integer.parseInt(choice);
-      if (exitChoice == 1) {
-         return false;
-      } else {
-         return true;
-      }
-   }
 }//class

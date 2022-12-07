@@ -4,14 +4,18 @@ import java.util.Scanner;
  * Created by V.Campbell on 01/12/2022
  * Student Menu System
  **/
-public class AdminMenu {
+public class AdminMenu
+{
    public static Scanner keyboard = new Scanner(System.in);
    private static String adminMenuInput;
    private static int menuChoice;
+   private static boolean exit = false;
 
-   public static void display() {
+   public static void display()
+   {
       Admin.populateAdminList();
-      do {
+      do
+      {
          System.out.println("Welcome to Admin Login/Registration");
          System.out.println("*************************");
          System.out.println("1. Register as a New Teacher \n2. Login as Existing Teacher \n3. Return to Main Menu\nPlease enter a selection: ");
@@ -20,7 +24,8 @@ public class AdminMenu {
       menuChoice = Integer.parseInt(adminMenuInput);
 
 
-      switch (menuChoice) {
+      switch (menuChoice)
+      {
          case 1:
             teacherSignUp();
             break;
@@ -30,14 +35,16 @@ public class AdminMenu {
          case 3:
             Main.displayMainMenu();//return to main menu
             break;
-         default: {
+         default:
+         {
             System.out.println("Invalid Menu Choice");
             display();
          }
       }
    }
 
-   public static void teacherSignUp() {
+   public static void teacherSignUp()
+   {
       boolean validRegistration = true;
       boolean exit = false;
       String username;
@@ -46,90 +53,111 @@ public class AdminMenu {
 
       System.out.println();
       System.out.println("Welcome to Teacher Registration!");
-      do {
+      do
+      {
          System.out.println("Please enter your C2K Username: ");
          username = keyboard.next();
          System.out.println("Please enter your password: ");
          password = keyboard.next();
-
-
-         try {
+         try
+         {
             adminUser = new Admin(username, password);
-            if (Admin.userIsUnique(adminUser.getUsername())) {
+            if (Admin.userIsUnique(adminUser.getUsername()))
+            {
                Admin.adminList.add(adminUser);
                System.out.println("\nNew Teacher Admin created!");
                Admin.serialize();
-            } else {
+            } else
+            {
                System.out.println("Error: User is not unique. Please try again");
                validRegistration = false;
-               exit = exitLogin();
+               exit = Globals.exitLogin();
             }
-         } catch (PasswordException e) {
+         } catch (PasswordException e)
+         {
             //Handle exception
             Globals.logException(e);
             System.out.println(e.getMessage());
             validRegistration = false;
-            exit = exitLogin();
-         } catch (UsernameException e) {
+            exit = Globals.exitLogin();
+         } catch (UsernameException e)
+         {
             //Handle exception
             Globals.logException(e);
             System.out.println("Error: " + e.getMessage());
             validRegistration = false;
-            exit = exitLogin();
+            exit = Globals.exitLogin();
 
-         } finally {
-            if (validRegistration) {
-               Main.currentAdmin = adminUser;
-            } else if (exit) {
+         } finally
+         {
+            if (validRegistration)
+            {
+               Main.currentAdmin = (Admin) adminUser;
+            } else if (exit)
+            {
                AdminMenu.display();
             }
          }
       } while (!validRegistration && !exit);
    }
 
-   public static boolean existingTeacherLogin() {
-      boolean validTeacherLoggedIn = false;
+   public static void existingTeacherLogin()
+   {
+      boolean validLogIn = false;
 
       String inputUsername;
       String inputPassword;
 
       System.out.println();
       System.out.println("Welcome to Teacher Login");
-      System.out.println("Please enter your username: ");
-      inputUsername = keyboard.next();
-      System.out.println("Please enter your password: ");
-      inputPassword = keyboard.next();
+      do
+      {
+         System.out.println("Please enter your username: ");
+         inputUsername = keyboard.next();
+         System.out.println("Please enter your password: ");
+         inputPassword = keyboard.next();
 
-      for (Admin adminUser : Admin.adminList) {
-         if (adminUser.getUsername().equals(inputUsername)) {
-            if (adminUser.getPassword().equals(inputPassword)) {
-               validTeacherLoggedIn = true;
-               Main.currentAdmin = adminUser;
-            } else {
-               System.out.println("User found - password incorrect. PLease try again");
+         for (Admin adminUser : Admin.adminList)
+         {
+            if (adminUser.getUsername().equals(inputUsername) && adminUser.getPassword().equals(inputPassword))
+            {
+               validLogIn = true;
+               Main.currentAdmin = (Admin) adminUser;
                break;
             }
-         } else {
-            System.out.println("User not found. Please try again");
          }
+         if (!validLogIn)
+         {
+            System.out.println("Username or Password incorrect");
+            exit = Globals.exitLogin();
+         }
+      } while (!validLogIn && !exit);
+      if (validLogIn)
+      {
+         AdminSubMenu.display();
+      } else if (exit)
+      {
+         display();
       }
-      return validTeacherLoggedIn;
    }
 
-   private static boolean exitLogin() {
+      private static boolean exitLogin () {
       String choice;
       int exitChoice;
 
-      do {
+      do
+      {
          System.out.println("1. Try again \n2. Return to Admin Menu");
          choice = keyboard.next();
       } while (!Globals.validMenuChoice(choice, 1, 2));
       exitChoice = Integer.parseInt(choice);
-      if (exitChoice == 1) {
+      if (exitChoice == 1)
+      {
          return false;
-      } else {
+      } else
+      {
          return true;
       }
    }
 
-}//class
+   }//class
