@@ -31,7 +31,7 @@ public class AdminMenu
          case 1:
             do
             {
-               if (validAdminAccess())
+               if (validAdminAccess())//correct passphrase
                {
                   adminSignUp();
                }
@@ -58,7 +58,7 @@ public class AdminMenu
 
    public static void adminSignUp()
    {
-      boolean validRegistration = true;
+      boolean validRegistration = false;
       boolean exit = false;
       String username;
       String password;
@@ -77,13 +77,13 @@ public class AdminMenu
             adminUser = new Admin(username, password);
             if (Admin.userIsUnique(adminUser.getUsername()))
             {
+               validRegistration=true;
                Admin.adminList.add(adminUser);
                System.out.println("\nNew Teacher Admin created!");
                Admin.serialize();
             } else
             {
                System.out.println("Error: User is not unique. Please try again");
-               validRegistration = false;
                exit = Globals.exitLogin();
             }
          } catch (PasswordException e)
@@ -91,14 +91,12 @@ public class AdminMenu
             //Handle exception
             Globals.logException(e);
             System.out.println(e.getMessage());
-            validRegistration = false;
             exit = Globals.exitLogin();
          } catch (UsernameException e)
          {
             //Handle exception
             Globals.logException(e);
             System.out.println("Error: " + e.getMessage());
-            validRegistration = false;
             exit = Globals.exitLogin();
 
          } finally
