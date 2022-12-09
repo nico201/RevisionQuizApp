@@ -43,7 +43,7 @@ public class Quiz
       int retakeChoice;
       do
       {
-         System.out.println("\nPlease enter a selection: \n1. Retake Quiz \n2. Logout and return to Student Menu");
+         System.out.println("\nPlease enter a selection: \n1. Retake Quiz \n2. Logout and return to Main Menu");
          choice = keyboard.next();
       } while (!Globals.validMenuChoice(choice, 1, 2));
       retakeChoice = Integer.parseInt(choice);
