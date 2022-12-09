@@ -48,6 +48,7 @@ public class StudentMenu {
 
       System.out.println("Welcome to Student Sign-Up!");
       do {
+         validRegistration = true;
          System.out.println();
          System.out.println("Please enter your forename: ");
          studentForename = keyboard.next();
