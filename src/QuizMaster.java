@@ -22,6 +22,8 @@ public class QuizMaster
    private static int totalMarkAwarded;
 
    private static Scanner keyboard = new Scanner(System.in);
+   private static Scanner keyboard2 = new Scanner(System.in);
+
 
    private QuizMaster()
    {
@@ -117,7 +119,7 @@ public class QuizMaster
       setMarkAvail(ShortQuestion.shortQnList.get(zeroIndex).getPoints());
       System.out.println("\n" + (numQuestionsAsked + 1) + ". " + ShortQuestion.shortQnList.get(zeroIndex).getQuestionText());
       System.out.println("\nPlease enter a one word answer: ");
-      answer = keyboard.next();
+      answer = keyboard2.nextLine();
       correctAnswer = ShortQuestion.shortQnList.get(zeroIndex).getAnswer();
       if (answer.equalsIgnoreCase(correctAnswer))
       {
