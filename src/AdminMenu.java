@@ -12,6 +12,8 @@ public class AdminMenu
    private static String adminMenuInput;
    private static int menuChoice;
    private static boolean exit = false;
+   private static boolean signUpExit = false;
+   private static boolean validRegistration = false;
 
    public static void display()
    {
@@ -39,8 +41,16 @@ public class AdminMenu
                {
                  exit =exitLogin();
                }
-            }while(!exit);
-            Main.displayMainMenu();//return to main menu
+            }while(!exit && !validRegistration);
+            if (exit)
+            {
+               Main.displayMainMenu();//return to main menu
+            }
+            else
+            {
+               AdminSubMenu.display();
+            }
+
             break;
          case 2:
             existingAdminLogin();
@@ -58,8 +68,8 @@ public class AdminMenu
 
    public static void adminSignUp()
    {
-      boolean validRegistration = false;
-      boolean exit = false;
+      validRegistration = false;
+      signUpExit = false;
       String username;
       String password;
       Admin adminUser = new Admin();
@@ -84,32 +94,32 @@ public class AdminMenu
             } else
             {
                System.out.println("Error: User is not unique. Please try again");
-               exit = Globals.exitLogin();
+               signUpExit = Globals.exitLogin();
             }
          } catch (PasswordException e)
          {
             //Handle exception
             Globals.logException(e);
             System.out.println(e.getMessage());
-            exit = Globals.exitLogin();
+            signUpExit= Globals.exitLogin();
          } catch (UsernameException e)
          {
             //Handle exception
             Globals.logException(e);
             System.out.println("Error: " + e.getMessage());
-            exit = Globals.exitLogin();
+            signUpExit = Globals.exitLogin();
 
          } finally
          {
             if (validRegistration)
             {
                Main.currentAdmin = adminUser;
-            } else if (exit)
+            } else if (signUpExit)
             {
                AdminMenu.display();
             }
          }
-      } while (!validRegistration && !exit);
+      } while (!validRegistration && !signUpExit);
    }
 
    public static void existingAdminLogin()

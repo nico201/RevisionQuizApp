@@ -31,11 +31,7 @@ public class AdminSubMenu
             display();
             break;
          case 2:
-            do
-            {
-               AddNewQuestionMenu.display();
-               exit = moreQuestions();
-            } while (!exit);
+            AddNewQuestionMenu.display();
             Main.displayMainMenu();//return to main menu
             break;
          case 3:
@@ -48,19 +44,5 @@ public class AdminSubMenu
             display();
          }
       }
-   }
-
-   private static boolean moreQuestions()
-   {
-      String choice;
-      int questionChoice;
-
-      do
-      {
-         System.out.println("1. Add another question \n2. Return to Main Menu");
-         choice = keyboard.next();
-      } while (!Globals.validMenuChoice(choice, 1, 2));
-      questionChoice = Integer.parseInt(choice);
-      return questionChoice != 1;
    }
 }//class
