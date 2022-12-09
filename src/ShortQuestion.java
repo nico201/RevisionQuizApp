@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -59,12 +61,13 @@ public class ShortQuestion extends Question
    {
       try
       {
-         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("shortQns.ser"));
+         ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("shortQns.ser")));
          out.writeObject(shortQnList);
          out.close();
 
       } catch (NotSerializableException ex)
       {
+         //TODO: Fix Catch
       } catch (IOException ex)
       {
          ex.printStackTrace();
@@ -75,11 +78,12 @@ public class ShortQuestion extends Question
    {
       try
       {
-         ObjectInputStream in = new ObjectInputStream(new FileInputStream("shortQns.ser"));
+         ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get("shortQns.ser")));
          shortQnList = (ArrayList<ShortQuestion>) in.readObject();
 
       } catch (NotSerializableException ex)
       {
+         //TODO: Fix Catch
       } catch (IOException ex)
       {
          ex.printStackTrace();
@@ -104,6 +108,8 @@ public class ShortQuestion extends Question
       sq1.setAnswer(keyboard.next());
       sq1.setAnswer(keyboard.nextLine());
       System.out.println("New Question has been saved. Thank you!");
+      shortQnList.add(sq1);
+      serialize();
    }
 
 }//class

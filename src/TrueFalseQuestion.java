@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -57,12 +59,13 @@ public class TrueFalseQuestion extends Question
    {
       try
       {
-         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("tfQns.ser"));
+         ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("tfQns.ser")));
          out.writeObject(TrueFalseQuestion.tfQnList);
          out.close();
 
       } catch (NotSerializableException ex)
       {
+         //TODO: Fix Catch
       } catch (IOException ex)
       {
          Globals.logException(ex);
@@ -73,15 +76,13 @@ public class TrueFalseQuestion extends Question
    {
       try
       {
-         ObjectInputStream in = new ObjectInputStream(new FileInputStream("tfQns.ser"));
+         ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get("tfQns.ser")));
          tfQnList = (ArrayList<TrueFalseQuestion>) in.readObject();
 
       } catch (NotSerializableException ex)
       {
-      } catch (IOException ex)
-      {
-         Globals.logException(ex);
-      } catch (ClassNotFoundException ex)
+         //TODO: Fix Catch
+      } catch (IOException | ClassNotFoundException ex)
       {
          Globals.logException(ex);
       }
@@ -101,6 +102,8 @@ public class TrueFalseQuestion extends Question
       System.out.println("Please enter answer T or F: ");
       tf1.setAnswer(keyboard.next().charAt(0));
       System.out.println("New Question has been saved. Thank you!");
+      tfQnList.add(tf1);
+      serialize();
    }
 
 }//class

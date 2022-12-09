@@ -10,7 +10,7 @@ public class StudentMenu {
    private static boolean exit = false;
 
    protected static void display() {
-      Student.populateStudentList();
+      Student.deserialize();
       int studentMenuChoice;
       do {
          System.out.println("Welcome to Student Menu");
@@ -118,6 +118,7 @@ public class StudentMenu {
             if (student.getUsername().equals(inputUsername) && student.getPassword().equals(inputPassword))
             {
                validLogIn=true;
+               Main.currentStudent = student;
                break;
             }
          }

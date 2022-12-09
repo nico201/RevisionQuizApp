@@ -6,6 +6,8 @@ import java.util.Scanner;
  **/
 public class AdminMenu
 {
+   private static final String ADMIN_PASSWORD = "RosaleenIsALegend";
+
    public static Scanner keyboard = new Scanner(System.in);
    private static String adminMenuInput;
    private static int menuChoice;
@@ -27,10 +29,21 @@ public class AdminMenu
       switch (menuChoice)
       {
          case 1:
-            teacherSignUp();
+            do
+            {
+               if (validAdminAccess())
+               {
+                  adminSignUp();
+               }
+               else
+               {
+                 exit =exitLogin();
+               }
+            }while(!exit);
+            Main.displayMainMenu();//return to main menu
             break;
          case 2:
-            existingTeacherLogin();
+            existingAdminLogin();
             break;
          case 3:
             Main.displayMainMenu();//return to main menu
@@ -43,7 +56,7 @@ public class AdminMenu
       }
    }
 
-   public static void teacherSignUp()
+   public static void adminSignUp()
    {
       boolean validRegistration = true;
       boolean exit = false;
@@ -92,7 +105,7 @@ public class AdminMenu
          {
             if (validRegistration)
             {
-               Main.currentAdmin = (Admin) adminUser;
+               Main.currentAdmin = adminUser;
             } else if (exit)
             {
                AdminMenu.display();
@@ -101,7 +114,7 @@ public class AdminMenu
       } while (!validRegistration && !exit);
    }
 
-   public static void existingTeacherLogin()
+   public static void existingAdminLogin()
    {
       boolean validLogIn = false;
 
@@ -122,7 +135,7 @@ public class AdminMenu
             if (adminUser.getUsername().equals(inputUsername) && adminUser.getPassword().equals(inputPassword))
             {
                validLogIn = true;
-               Main.currentAdmin = (Admin) adminUser;
+               Main.currentAdmin = adminUser;
                break;
             }
          }
@@ -147,17 +160,18 @@ public class AdminMenu
 
       do
       {
-         System.out.println("1. Try again \n2. Return to Admin Menu");
+         System.out.println("1. Try again \n2. Return to Main Menu");
          choice = keyboard.next();
       } while (!Globals.validMenuChoice(choice, 1, 2));
       exitChoice = Integer.parseInt(choice);
-      if (exitChoice == 1)
-      {
-         return false;
-      } else
-      {
-         return true;
-      }
+         return exitChoice != 1;
+   }
+   private static boolean validAdminAccess()
+   {
+      String phrase="";
+      System.out.println("Please enter Admin access phrase:");
+      phrase = keyboard.next();
+      return phrase.equals(ADMIN_PASSWORD);
    }
 
    }//class

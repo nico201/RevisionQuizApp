@@ -6,10 +6,6 @@ import java.util.Scanner;
 
 public class Main {
    private static Scanner keyboard = new Scanner(System.in);
-   private static int addNewQuestionMenuChoice;
-   private static int adminMenuChoice;
-   private static boolean validLogin = false;
-   private static boolean validStudentLogin = false;
    protected static Student currentStudent;
    protected static Admin currentAdmin;
 
@@ -19,10 +15,13 @@ public class Main {
    }//main
 
    public static void displayMainMenu() {
+      currentStudent=null;
+      currentAdmin=null;
       int mainMenuChoice;
       String mainMenuChoiceInput;
       do {
-         System.out.println("\nWelcome to the Main Menu\n*************************\n1. Student\n2. Teacher\n3. Quit\nPlease enter your selection: ");
+         System.out.println("******* CCEA GCSE Digital Technology - Unit 1 Revision Quiz *******");
+         System.out.println("\n*******  Main Menu  *******\n1. Student\n2. Teacher\n3. Quit\nPlease enter your selection: ");
          mainMenuChoiceInput = keyboard.next();
 
       } while (!Globals.validMenuChoice(mainMenuChoiceInput, 1, 3));
@@ -36,7 +35,6 @@ public class Main {
             AdminMenu.display();
             break;
          case 3:
-            //option 3 - Quit Application
             System.out.println("See you again soon!");
             break;
          default:

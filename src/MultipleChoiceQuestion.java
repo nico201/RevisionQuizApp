@@ -80,7 +80,7 @@ public class MultipleChoiceQuestion extends Question
    }
 
    //class methods
-   protected static void populate()
+   protected static void populateFromTextFile()
    {
       try
       {
@@ -165,6 +165,8 @@ public class MultipleChoiceQuestion extends Question
       System.out.println("Please enter correct option number: ");
       mcq1.setCorrectOption(keyboard.nextInt());
       System.out.println("New Question has been saved. Thank you!");
+      mcQnList.add(mcq1);
+      serialize();
    }
 
 }//class

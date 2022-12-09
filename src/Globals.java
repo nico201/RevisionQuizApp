@@ -16,7 +16,7 @@ public class Globals
    {
       // Read in all questions from the relevant text files (Question Banks)
       TrueFalseQuestion.populate();
-      MultipleChoiceQuestion.populate();
+      MultipleChoiceQuestion.populateFromTextFile();
       ShortQuestion.populate();
 
       //Serialize questions to file
@@ -81,10 +81,6 @@ public class Globals
          choice = keyboard.next();
       } while (!Globals.validMenuChoice(choice, 1, 2));
       exitChoice = Integer.parseInt(choice);
-      if (exitChoice == 1) {
-         return false;
-      } else {
-         return true;
-      }
+      return exitChoice != 1;
    }
 }//class
