@@ -25,7 +25,9 @@ public class QuizMenu
          }
       }
       Student.serialize();
+      // Display the student version of the Leaderboard
       LeaderBoard.printLeaderboard("student");
+      // And provide option to retake the quiz
       boolean retake = retakeQuiz();
       if (retake)
       {
