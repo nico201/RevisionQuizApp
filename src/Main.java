@@ -5,7 +5,7 @@ import java.util.Scanner;
  **/
 
 public class Main {
-   private static Scanner keyboard = new Scanner(System.in);
+
    protected static Student currentStudent;
    protected static Admin currentAdmin;
 
@@ -15,12 +15,14 @@ public class Main {
    }//main
 
    public static void displayMainMenu() {
+      Scanner keyboard = new Scanner(System.in);
+
       currentStudent=null;
       currentAdmin=null;
       int mainMenuChoice;
       String mainMenuChoiceInput;
       do {
-         System.out.println("******* CCEA GCSE Digital Technology - Unit 1 Revision Quiz *******");
+         System.out.println("\n******* CCEA GCSE Digital Technology - Unit 1 Revision Quiz *******");
          System.out.println("\n*******  Main Menu  *******\n1. Student\n2. Teacher\n3. Quit\nPlease enter your selection: ");
          mainMenuChoiceInput = keyboard.next();
 

@@ -13,10 +13,9 @@ public class AdminSubMenu
 
    public static void display()
    {
-      System.out.println("\nAdmin Logged In");
       do
       {
-         System.out.println("Admin Area\n*************************");
+         System.out.println("\nAdmin Area\n*************************");
          System.out.println("1: Show Full Leaderboard\n2: Add New Question\n3: Log Out");
          System.out.println("Please enter a selection: ");
 

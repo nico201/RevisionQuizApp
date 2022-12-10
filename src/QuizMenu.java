@@ -1,15 +1,13 @@
 import java.util.Scanner;
 
-public class Quiz
+public class QuizMenu
 {
-   private static Scanner keyboard = new Scanner(System.in);
-   private static String input;
-
-   public static void run()
+   public static void display()
    {
-      System.out.println("Welcome to the Quiz");
+      Scanner keyboard = new Scanner(System.in);
+      System.out.println("\nWelcome to the Quiz");
       System.out.println("Press enter to begin:");
-      input = keyboard.nextLine();
+      keyboard.nextLine();
 
       Globals.populateAllQuestions();
       // Re-populates Question ArrayLists on re-run
@@ -30,7 +28,7 @@ public class Quiz
       boolean retake = retakeQuiz();
       if (retake)
       {
-         Quiz.run();
+         QuizMenu.display();
       } else
       {
          Main.displayMainMenu();
@@ -39,6 +37,7 @@ public class Quiz
 
    protected static boolean retakeQuiz()
    {
+      Scanner keyboard = new Scanner(System.in);
       String choice;
       int retakeChoice;
       do

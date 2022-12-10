@@ -55,11 +55,11 @@ public class AddNewQuestionMenu
 
         do
         {
-            System.out.println("1. Add another question \n2. Return to Main Menu");
+            System.out.println("\n1. Add another question \n2. Return to Main Menu");
             choice = keyboard.next();
         } while (!Globals.validMenuChoice(choice, 1, 2));
         questionChoice = Integer.parseInt(choice);
-        return questionChoice != 1;
+        return (questionChoice == 1);
     }
 
 }//class

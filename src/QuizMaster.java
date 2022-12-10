@@ -21,10 +21,6 @@ public class QuizMaster
    private static int totalMarkAvailable;
    private static int totalMarkAwarded;
 
-   private static Scanner keyboard = new Scanner(System.in);
-   private static Scanner keyboard2 = new Scanner(System.in);
-
-
    private QuizMaster()
    {
       this.ansCorrect = false;
@@ -94,12 +90,17 @@ public class QuizMaster
 
    private void askTFQuestion()
    {
+      Scanner keyboard = new Scanner(System.in);
       String answer, correctAnswer;
       int zeroIndex = 0;
       setMarkAvail(TrueFalseQuestion.tfQnList.get(zeroIndex).getPoints());
-      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + TrueFalseQuestion.tfQnList.get(zeroIndex).getQuestionText());
-      System.out.println("\nAnswer 'true' or 'false': ");
-      answer = keyboard.next();
+      do
+      {
+         keyboard.reset();
+         System.out.println("\n" + (numQuestionsAsked + 1) + ". " + TrueFalseQuestion.tfQnList.get(zeroIndex).getQuestionText());
+         System.out.println("\nAnswer 'true' or 'false': ");
+         answer = keyboard.nextLine().trim();
+      } while (!(answer.equalsIgnoreCase("true") || answer.equalsIgnoreCase("false")));
       if (TrueFalseQuestion.tfQnList.get(zeroIndex).getAnswer() == 'T') correctAnswer = "true";
       else correctAnswer = "false";
       if (answer.equalsIgnoreCase(correctAnswer))
@@ -114,12 +115,14 @@ public class QuizMaster
 
    private void askShortQuestion()
    {
+      Scanner keyboard = new Scanner(System.in);
       String answer, correctAnswer;
       int zeroIndex = 0;
       setMarkAvail(ShortQuestion.shortQnList.get(zeroIndex).getPoints());
+      keyboard.reset();
       System.out.println("\n" + (numQuestionsAsked + 1) + ". " + ShortQuestion.shortQnList.get(zeroIndex).getQuestionText());
-      System.out.println("\nPlease enter a one word answer: ");
-      answer = keyboard2.nextLine();
+      System.out.println("\nPlease enter a short answer: ");
+      answer = keyboard.nextLine().trim();
       correctAnswer = ShortQuestion.shortQnList.get(zeroIndex).getAnswer();
       if (answer.equalsIgnoreCase(correctAnswer))
       {
@@ -133,16 +136,23 @@ public class QuizMaster
 
    private void askMCQuestion()
    {
+      Scanner keyboard = new Scanner(System.in);
+      String userInput;
       int answer, correctAnswer;
       int zeroIndex = 0;
       setMarkAvail(MultipleChoiceQuestion.mcQnList.get(zeroIndex).getPoints());
-      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getQuestionText());
-      System.out.println("\t1. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption1());
-      System.out.println("\t2. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption2());
-      System.out.println("\t3. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption3());
-      System.out.println("\t4. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption4());
-      System.out.println("\nEnter correct option: ");
-      answer = keyboard.nextInt();
+      do
+      {
+         keyboard.reset();
+         System.out.println("\n" + (numQuestionsAsked + 1) + ". " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getQuestionText());
+         System.out.println("\t1. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption1());
+         System.out.println("\t2. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption2());
+         System.out.println("\t3. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption3());
+         System.out.println("\t4. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption4());
+         System.out.println("\nEnter correct option: ");
+         userInput = keyboard.next().trim();
+      } while (!Globals.validMenuChoice(userInput, 1, 4));
+      answer = Integer.parseInt(userInput);
       correctAnswer = MultipleChoiceQuestion.mcQnList.get(zeroIndex).getCorrectOption();
       if (answer == correctAnswer)
       {
@@ -215,7 +225,7 @@ public class QuizMaster
    protected static void printQuizResult()
    {
       System.out.println("\nQuiz Result: " + QuizMaster.getTotalMarkAwarded() + " marks out of " + QuizMaster.getTotalMarkAvailable());
-      System.out.println("Quiz Score: " + getQuizScore() + "\n");
+      System.out.println("Quiz Score: " + getQuizScore());
    }
 
    protected static int getQuizScore()

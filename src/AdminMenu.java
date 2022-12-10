@@ -20,7 +20,7 @@ public class AdminMenu
       Admin.populateAdminList();
       do
       {
-         System.out.println("Welcome to Admin Login/Registration");
+         System.out.println("\nWelcome to Admin Login/Registration");
          System.out.println("*************************");
          System.out.println("1. Register as a New Teacher \n2. Login as Existing Teacher \n3. Return to Main Menu\nPlease enter a selection: ");
          adminMenuInput = keyboard.next();
@@ -74,11 +74,10 @@ public class AdminMenu
       String password;
       Admin adminUser = new Admin();
 
-      System.out.println();
-      System.out.println("Welcome to Teacher Registration!");
+      System.out.println("\nWelcome to Teacher Registration!");
       do
       {
-         System.out.println("Please enter your C2K Username: ");
+         System.out.println("\nPlease enter your C2K Username: ");
          username = keyboard.next();
          System.out.println("Please enter your password: ");
          password = keyboard.next();
@@ -130,10 +129,10 @@ public class AdminMenu
       String inputPassword;
 
       System.out.println();
-      System.out.println("Welcome to Teacher Login");
+      System.out.println("\nWelcome to Teacher Login");
       do
       {
-         System.out.println("Please enter your username: ");
+         System.out.println("\nPlease enter your username: ");
          inputUsername = keyboard.next();
          System.out.println("Please enter your password: ");
          inputPassword = keyboard.next();
@@ -155,6 +154,7 @@ public class AdminMenu
       } while (!validLogIn && !exit);
       if (validLogIn)
       {
+         System.out.println("\nAdmin Logged In");
          AdminSubMenu.display();
       } else if (exit)
       {
@@ -168,7 +168,7 @@ public class AdminMenu
 
       do
       {
-         System.out.println("1. Try again \n2. Return to Main Menu");
+         System.out.println("\n1. Try again \n2. Return to Main Menu");
          choice = keyboard.next();
       } while (!Globals.validMenuChoice(choice, 1, 2));
       exitChoice = Integer.parseInt(choice);
@@ -177,7 +177,7 @@ public class AdminMenu
    private static boolean validAdminAccess()
    {
       String phrase="";
-      System.out.println("Please enter Admin access phrase:");
+      System.out.println("\nPlease enter Admin access phrase:");
       phrase = keyboard.next();
       return phrase.equals(ADMIN_PASSWORD);
    }
