@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -80,7 +82,7 @@ public class MultipleChoiceQuestion extends Question
    }
 
    //class methods
-   protected static void populateFromTextFile()
+   protected static void restoreOriginalQns()
    {
       try
       {
@@ -110,7 +112,7 @@ public class MultipleChoiceQuestion extends Question
    {
       try
       {
-         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("multipleChoiceQns.ser"));
+         ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("multipleChoiceQns.ser")));
          out.writeObject(mcQnList);
          out.close();
 
@@ -123,11 +125,11 @@ public class MultipleChoiceQuestion extends Question
       }
    }
 
-   protected void deserialize()
+   protected static void deserialize()
    {
       try
       {
-         ObjectInputStream in = new ObjectInputStream(new FileInputStream("multipleChoiceQns.ser"));
+         ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get("multipleChoiceQns.ser")));
          mcQnList = (ArrayList<MultipleChoiceQuestion>) in.readObject();
 
       } catch (NotSerializableException ex)

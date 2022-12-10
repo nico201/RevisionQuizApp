@@ -10,10 +10,13 @@ import java.util.Scanner;
  **/
 public class ShortQuestion extends Question
 {
+   //class members/variables
+   private String answer;
+   //static members/variables
    private static final String shortQnFilePath = "shortQns.txt";
    private static int count = 0;
    protected static ArrayList<ShortQuestion> shortQnList = new ArrayList<>();
-   private String answer;
+
 
    protected ShortQuestion(String QuestionText, int Points, String Topic, String Answer)
    {
@@ -32,7 +35,7 @@ public class ShortQuestion extends Question
       return answer;
    }
 
-   protected static void populate()
+   protected static void restoreOriginalQns()
    {
       try
       {
@@ -64,31 +67,24 @@ public class ShortQuestion extends Question
          out.writeObject(shortQnList);
          out.close();
 
-      } catch (NotSerializableException ex)
-      {
-         //TODO: Fix Catch
       } catch (IOException ex)
       {
-         ex.printStackTrace();
+         System.out.println(ex.getMessage());
+         Globals.logException(ex);
       }
    }
 
-   private static void deserialize()
+   protected static void deserialize()
    {
       try
       {
          ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get("shortQns.ser")));
          shortQnList = (ArrayList<ShortQuestion>) in.readObject();
 
-      } catch (NotSerializableException ex)
+      } catch (IOException | ClassNotFoundException ex)
       {
-         //TODO: Fix Catch
-      } catch (IOException ex)
-      {
-         ex.printStackTrace();
-      } catch (ClassNotFoundException e)
-      {
-         throw new RuntimeException(e);
+         System.out.println(ex.getMessage());
+         Globals.logException(ex);
       }
    }
 

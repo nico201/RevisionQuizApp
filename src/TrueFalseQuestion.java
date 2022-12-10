@@ -32,7 +32,7 @@ public class TrueFalseQuestion extends Question
       return answer;
    }
 
-   protected static void populate()
+   protected static void restoreOriginalQns()
    {
       try
       {
