@@ -64,7 +64,7 @@ public class AdminSubMenu
       do
       {
          System.out.println("\nMain Quiz Parameters: ");
-         System.out.println("\tAsk " + QuizMaster.getMainQuizNumMCQns() + " Mutiple Choice Question/s");
+         System.out.println("\tAsk " + QuizMaster.getMainQuizNumMCQns() + " Multiple Choice Question/s");
          System.out.println("\tAsk " + QuizMaster.getMainQuizNumTFQns() + " True/False Question/s");
          System.out.println("\tAsk " + QuizMaster.getMainQuizNumShortQns() + " Short Question/s");
          System.out.println("****************************************************");

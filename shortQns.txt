@@ -10,3 +10,111 @@ A program that replicates itself using up memory space
 1
 Digital data
 worm
+What monitors smart devices whilst at home?
+1
+Digital data
+Wi-Fi
+What connects a smart-watch to a smartphone?
+1
+Digital data
+Bluetooth
+What stores the memory location reference (address) of the next instruction to be fetched.
+1
+Software
+Program counter
+A private network owned and managed by an organisation accessible only to employees.
+1
+Network Technologies
+Intranet
+What provides shortcuts for repetitive task?
+1
+Database
+Macros
+What can be used to store a special kind of text file?
+1
+Database
+CSV
+What process can be used to bring data from a text file into a database table?
+1
+Database
+Import
+How many bits are there in a byte?
+1
+Digital data
+8 / 8 bits
+What is the name given to a group of four bits?
+1
+Digital data
+Nibble
+What is using a computer to commit a crime online via the Internet called?
+2
+Multimedia
+Cyber crime
+A process that uses special software to encode or ‘scramble’ data before it is transmitted
+1
+Digital data
+Encryption
+What law is designed to people from using someone's work without their permission
+1
+Digital data
+Copyright
+A term used to describe commercial transactions conducted electronically on the Internet.
+1
+Cyberspace, network security and data transfer
+E-Commerce
+A term used to describe an impact of digital technology on employment
+1
+Moral and ethical considerations
+Job displacement
+A copy of data kept in case the original copy is damaged or lost.
+1
+Digital data
+Backup
+An intermediate storage area used to hold downloaded segments of a video not yet played.
+1
+Digital data
+Buffer
+Hardware or software designed to protect a network by controlling what data can and cannot enter.
+1
+Digital data
+Firewall
+Wireless technology used for transmitting data over short distances.
+1
+Digital data
+Bluetooth
+A structure where data is organised in rows and columns
+1
+Digital data
+Table
+A collection of data items related to an object or person
+1
+Digital data
+Record
+Designed to hold a single item of data about an object or person
+1
+Digital data
+Field
+What uniquely identifies a record?
+1
+Digital data
+key field
+Allows the user to watch the video as it downloads.
+1
+Multimedia
+Streaming
+What enables a computer to record sound waves?
+1
+Hardware
+Microphone
+What format are sounds from the microphone recorded in?
+1
+Software
+Analogue
+What helps speed up time to access data in operating system?
+1
+Software
+Disk defragmentation
+What indicates the speed at which the CPU can operate measured in gigahertz
+1
+Software
+Clock speed
