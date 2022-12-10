@@ -97,12 +97,12 @@ public class ShortQuestion extends Question
       Scanner keyboard = new Scanner(System.in);
       ShortQuestion sq1 = new ShortQuestion(null, 0, null, null);
       System.out.println("Short Answer Question Creation");
+      System.out.println("Please enter the topic: ");
+      sq1.setTopic(keyboard.nextLine().trim());
       System.out.println("Please enter the question text: ");
       sq1.setQuestionText(keyboard.nextLine().trim());
       System.out.println("Please enter the number of points available: ");
       sq1.setPoints(Integer.parseInt(keyboard.nextLine()));
-      System.out.println("Please enter the topic: ");
-      sq1.setTopic(keyboard.nextLine().trim());
       System.out.println("Please enter the correct answer");
       sq1.setAnswer(keyboard.nextLine().trim());
       System.out.println("New Question has been saved. Thank you!");

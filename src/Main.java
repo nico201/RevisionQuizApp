@@ -4,45 +4,42 @@ import java.util.Scanner;
  * Created by V.Campbell on 27/11/2022
  **/
 
-public class Main {
-
+public class Main
+{
    protected static Student currentStudent;
    protected static Admin currentAdmin;
 
 
-   public static void main(String[] args) {
-      displayMainMenu();
-   }//main
+
+   public static void main(String[] args)
+   {
+      Main.displayMainMenu();
+   }
 
    public static void displayMainMenu() {
       Student.deserialize();
-      Scanner keyboard = new Scanner(System.in);
 
-      currentStudent=null;
-      currentAdmin=null;
-      int mainMenuChoice;
-      String mainMenuChoiceInput;
-      do {
+      int menuChoice;
+      do
+      {
          System.out.println("\n******* CCEA GCSE Digital Technology - Unit 1 Revision Quiz *******");
-         System.out.println("\n*******  Main Menu  *******\n1. Student\n2. Teacher\n3. Quit\nPlease enter your selection: ");
-         mainMenuChoiceInput = keyboard.next();
+         System.out.println("\nWelcome to the Main Menu\n*************************\n1. Student\n2. Teacher\n3. Quit\nPlease enter your selection: ");
+         Scanner keyboard = new Scanner(System.in);
 
-      } while (!Globals.validMenuChoice(mainMenuChoiceInput, 1, 3));
-      mainMenuChoice = Integer.parseInt(mainMenuChoiceInput);
+         menuChoice = keyboard.nextInt();
 
-      switch (mainMenuChoice) {
-         case 1:
-            StudentMenu.display();
-            break;
-         case 2:
+         if (menuChoice == 2)
+         {
+            //option 2  - Admin login/registration
             AdminMenu.display();
-            break;
-         case 3:
-            System.out.println("See you again soon!");
-            System.exit(0);
-            break;
-         default:
-            System.out.println("Not a valid choice");
-      }
-   }
+            //Once Admin has logged in successfully. Display Teacher Admin Submenu
+
+         } else if (menuChoice == 1)
+         {
+            //Student Registration via Student Menu
+            StudentMenu.display();
+         }//else if
+      } while (menuChoice != 3);
+      LoginOrRegister.quitMessage();
+   }//main
 }//class

@@ -92,12 +92,12 @@ public class TrueFalseQuestion extends Question
       Scanner keyboard = new Scanner(System.in);
       TrueFalseQuestion tf1 = new TrueFalseQuestion(null, -1, null, '0');
       System.out.println("\nTrue or False Question Creation");
+      System.out.println("Please enter the topic: ");
+      tf1.setTopic(keyboard.nextLine().trim());
       System.out.println("Please enter the question text: ");
       tf1.setQuestionText(keyboard.nextLine().trim());
       System.out.println("Please enter the number of points available: ");
       tf1.setPoints(Integer.parseInt(keyboard.nextLine()));
-      System.out.println("Please enter the topic: ");
-      tf1.setTopic(keyboard.nextLine().trim());
       System.out.println("Please enter answer T or F: ");
       tf1.setAnswer(keyboard.nextLine().trim().charAt(0));
       System.out.println("New Question has been saved. Thank you!");
