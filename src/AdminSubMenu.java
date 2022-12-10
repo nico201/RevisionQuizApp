@@ -16,8 +16,7 @@ public class AdminSubMenu
       do
       {
          System.out.println("\nAdmin Area\n*************************");
-         System.out.println("1: Show Full Leaderboard\n2: Add New Question\n3: Set Quiz Parameters \n4: Log Out");
-         System.out.println("Please enter a selection: ");
+         System.out.println("1: Show Full Leaderboard\n2: Add New Topic\n3: Add New Question\n4: Set Quiz Parameters \n5: Log Out");         System.out.println("Please enter a selection: ");
 
          adminMenuInput = keyboard.nextLine();
       } while (!Globals.validMenuChoice(adminMenuInput, 1, 4));
@@ -30,14 +29,18 @@ public class AdminSubMenu
             display();
             break;
          case 2:
+            addNewTopic();
+            display();
+            break;
+         case 3:
             AddNewQuestionMenu.display();
             Main.displayMainMenu();//return to main menu
             break;
-         case 3:
+         case 4:
             getSetQuizParameters();
             display();
             break;
-         case 4:
+         case 5:
             Main.displayMainMenu();//return to main menu
             //Clear current user/admin in Main
             break;
@@ -47,6 +50,13 @@ public class AdminSubMenu
             display();
          }
       }
+   }
+
+   // this is a 'dummy' option for user peace of mind - makes no actual changes
+   private static void addNewTopic() {
+      System.out.println("Please enter the new topic: ");
+      keyboard.nextLine();
+      System.out.println("\nYou can now use the 'Add New Question' option to add questions for this topic.\n");
    }
 
    public static void getSetQuizParameters()
