@@ -23,10 +23,11 @@ public class Quiz
          if (studentUser.getUsername().equals(Main.currentStudent.username))
          {
             studentUser.setHighestScore(QuizMaster.getQuizScore());
-            LeaderBoard.updateLeaderboard(studentUser.getUsername(), QuizMaster.getQuizScore());
          }
       }
+      // Dislay the student version of the Leaderboard
       LeaderBoard.printLeaderboard("student");
+      // And provide option to retake the quiz
       boolean retake = retakeQuiz();
       if (retake)
       {
