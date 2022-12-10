@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class ShortQuestion extends Question
 {
    private static final String shortQnFilePath = "shortQns.txt";
-   private static Scanner keyboard = new Scanner(System.in);
    private static int count = 0;
    protected static ArrayList<ShortQuestion> shortQnList = new ArrayList<>();
    private String answer;
@@ -95,18 +94,17 @@ public class ShortQuestion extends Question
 
    protected static void declareInitialiseAndUpdate_NewQuestionObject()
    {
+      Scanner keyboard = new Scanner(System.in);
       ShortQuestion sq1 = new ShortQuestion(null, 0, null, null);
       System.out.println("Short Answer Question Creation");
       System.out.println("Please enter the question text: ");
-      sq1.setQuestionText(keyboard.next());
-      sq1.setQuestionText(keyboard.nextLine());
+      sq1.setQuestionText(keyboard.nextLine().trim());
       System.out.println("Please enter the number of points available: ");
-      sq1.setPoints(keyboard.nextInt());
+      sq1.setPoints(Integer.parseInt(keyboard.nextLine()));
       System.out.println("Please enter the topic: ");
-      sq1.setTopic(keyboard.next());
+      sq1.setTopic(keyboard.nextLine().trim());
       System.out.println("Please enter the correct answer");
-      sq1.setAnswer(keyboard.next());
-      sq1.setAnswer(keyboard.nextLine());
+      sq1.setAnswer(keyboard.nextLine().trim());
       System.out.println("New Question has been saved. Thank you!");
       shortQnList.add(sq1);
       serialize();

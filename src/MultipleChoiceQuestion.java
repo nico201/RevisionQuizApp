@@ -148,22 +148,21 @@ public class MultipleChoiceQuestion extends Question
       MultipleChoiceQuestion mcq1 = new MultipleChoiceQuestion(null, -1, null, null, null, null, null, -1);
       System.out.println("\nMCQ Question Creation");
       System.out.println("Please enter the question text: ");
-      mcq1.setQuestionText(keyboard.next());//
-      mcq1.setQuestionText(keyboard.nextLine());//"Workaround for quirk in Scanner class"- Aaron
+      mcq1.setQuestionText(keyboard.nextLine().trim());
       System.out.println("Please enter the number of points available: ");
-      mcq1.setPoints(keyboard.nextInt());
+      mcq1.setPoints(Integer.parseInt(keyboard.nextLine()));
       System.out.println("Please enter the topic: ");
-      mcq1.setTopic(keyboard.next());
+      mcq1.setTopic(keyboard.nextLine().trim());
       System.out.println("Please enter text for option 1: ");
-      mcq1.setOption1(keyboard.next());
+      mcq1.setOption1(keyboard.nextLine().trim());
       System.out.println("Please enter text for option 2: ");
-      mcq1.setOption2(keyboard.next());
+      mcq1.setOption2(keyboard.nextLine().trim());
       System.out.println("Please enter text for option 3: ");
-      mcq1.setOption3(keyboard.next());
+      mcq1.setOption3(keyboard.nextLine().trim());
       System.out.println("Please enter text for option 4: ");
-      mcq1.setOption4(keyboard.next());
+      mcq1.setOption4(keyboard.nextLine().trim());
       System.out.println("Please enter correct option number: ");
-      mcq1.setCorrectOption(keyboard.nextInt());
+      mcq1.setCorrectOption(Integer.parseInt(keyboard.nextLine()));
       System.out.println("New Question has been saved. Thank you!");
       mcQnList.add(mcq1);
       serialize();

@@ -13,7 +13,6 @@ public class TrueFalseQuestion extends Question
    private static final String tfQnFilePath = "tfQns.txt";
    private static int count = 0;
    protected static ArrayList<TrueFalseQuestion> tfQnList = new ArrayList<>();
-   protected static Scanner keyboard = new Scanner(System.in);
    protected char answer;
 
    protected TrueFalseQuestion(String QuestionText, int Points, String Topic, char Answer)
@@ -90,17 +89,17 @@ public class TrueFalseQuestion extends Question
 
    protected static void declareInitialiseAndUpdate_NewQuestionObject()
    {
+      Scanner keyboard = new Scanner(System.in);
       TrueFalseQuestion tf1 = new TrueFalseQuestion(null, -1, null, '0');
       System.out.println("\nTrue or False Question Creation");
       System.out.println("Please enter the question text: ");
-      tf1.setQuestionText(keyboard.next());
-      tf1.setQuestionText(keyboard.nextLine());
+      tf1.setQuestionText(keyboard.nextLine().trim());
       System.out.println("Please enter the number of points available: ");
-      tf1.setPoints(keyboard.nextInt());
+      tf1.setPoints(Integer.parseInt(keyboard.nextLine()));
       System.out.println("Please enter the topic: ");
-      tf1.setTopic(keyboard.next());
+      tf1.setTopic(keyboard.nextLine().trim());
       System.out.println("Please enter answer T or F: ");
-      tf1.setAnswer(keyboard.next().charAt(0));
+      tf1.setAnswer(keyboard.nextLine().trim().charAt(0));
       System.out.println("New Question has been saved. Thank you!");
       tfQnList.add(tf1);
       serialize();
