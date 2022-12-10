@@ -2,14 +2,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Iterator;
 
 /**
  * Created by V.Campbell on 27/11/2022
- * UPDATE  COMMENTS ABOUT PROGRAM HERE
+ * Base Question class from which TrueFalseQuestion, MultipleChoiceQuestion and ShortQuestion are all derived
  **/
 abstract public class Question implements Serializable
 {
-
    private String questionText;
    private int points;
    private String topic;
@@ -56,12 +56,33 @@ abstract public class Question implements Serializable
 
    protected void setTopic(String Topic)
    {
-      topic = Topic;
+      topic = Topic.toLowerCase();
    }
 
    protected String getTopic()
    {
       return topic;
+   }
+
+   protected static void resetAllQuestionBanks()
+   {
+      TrueFalseQuestion.restoreOriginalQns();
+      ShortQuestion.restoreOriginalQns();
+      MultipleChoiceQuestion.restoreOriginalQns();
+   }
+
+   protected static void serializeAllQuestionBanks()
+   {
+      TrueFalseQuestion.serialize();
+      ShortQuestion.serialize();
+      MultipleChoiceQuestion.serialize();
+   }
+
+   protected static void deserializeAllQuestionBanks()
+   {
+      TrueFalseQuestion.deserialize();
+      ShortQuestion.deserialize();
+      MultipleChoiceQuestion.deserialize();
    }
 
    protected static void populateUniqueTopics()
@@ -80,6 +101,49 @@ abstract public class Question implements Serializable
          qnTopicList.add(mcQn.getTopic());
       }
       qnUniqueTopicList = qnTopicList.stream().distinct().collect(Collectors.toList());
+   }
+
+   protected static void removeTopicQuestions(int topicPosition)
+   {
+      String removalTopic = qnUniqueTopicList.get(topicPosition);
+      int qnsRemoved = 0;
+
+      Iterator<TrueFalseQuestion> tfQnIterator = TrueFalseQuestion.tfQnList.iterator();
+      while (tfQnIterator.hasNext())
+      {
+         TrueFalseQuestion qn = tfQnIterator.next();
+         if (qn.getTopic().equals(removalTopic))
+         {
+            tfQnIterator.remove();
+            qnsRemoved++;
+         }
+      }
+
+      Iterator<ShortQuestion> shortQnIterator = ShortQuestion.shortQnList.iterator();
+      while (shortQnIterator.hasNext())
+      {
+         ShortQuestion qn = shortQnIterator.next();
+         if (qn.getTopic().equals(removalTopic))
+         {
+            shortQnIterator.remove();
+            qnsRemoved++;
+         }
+      }
+
+      Iterator<MultipleChoiceQuestion> mcQnIterator = MultipleChoiceQuestion.mcQnList.iterator();
+      while (mcQnIterator.hasNext())
+      {
+         MultipleChoiceQuestion qn = mcQnIterator.next();
+         if (qn.getTopic().equals(removalTopic))
+         {
+            mcQnIterator.remove();
+            qnsRemoved++;
+         }
+      }
+      System.out.println(qnsRemoved + " questions with topic " + removalTopic + " have now been removed");
+      //Serialize all question lists after removals
+      serializeAllQuestionBanks();
+      System.out.println("Question banks have been updated");
    }
 
 }//class
