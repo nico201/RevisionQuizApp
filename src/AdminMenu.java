@@ -18,7 +18,7 @@ public class AdminMenu
    public static void display()
    {
       Student.deserialize();
-      Admin.populateAdminList();
+      Admin.deserialize();
       do
       {
          System.out.println("\nWelcome to Admin Login/Registration");
@@ -51,7 +51,6 @@ public class AdminMenu
             {
                AdminSubMenu.display();
             }
-
             break;
          case 2:
             existingAdminLogin();

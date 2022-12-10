@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -123,7 +125,7 @@ public class Admin extends User
    {
       try
       {
-         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("admin.ser"));
+         ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("admin.ser")));
          out.writeObject(adminList);
          out.close();
       } catch (NotSerializableException ex)
@@ -135,11 +137,11 @@ public class Admin extends User
       }
    }
 
-   private static void deserialize()
+   protected static void deserialize()
    {
       try
       {
-         ObjectInputStream in = new ObjectInputStream(new FileInputStream("admin.ser"));
+         ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get("admin.ser")));
          adminList = (ArrayList<Admin>) in.readObject();
       } catch (NotSerializableException ex)
       {
