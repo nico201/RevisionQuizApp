@@ -24,6 +24,7 @@ public class QuizMenu
             LeaderBoard.updateLeaderboard(studentUser.getUsername(), QuizMaster.getQuizScore());
          }
       }
+      Student.serialize();
       LeaderBoard.printLeaderboard("student");
       boolean retake = retakeQuiz();
       if (retake)

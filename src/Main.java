@@ -15,6 +15,7 @@ public class Main {
    }//main
 
    public static void displayMainMenu() {
+      Student.deserialize();
       Scanner keyboard = new Scanner(System.in);
 
       currentStudent=null;
