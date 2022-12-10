@@ -28,7 +28,6 @@ public class AdminMenu
       } while (!Globals.validMenuChoice(adminMenuInput, 1, 3));
       menuChoice = Integer.parseInt(adminMenuInput);
 
-
       switch (menuChoice)
       {
          case 1:
@@ -37,17 +36,15 @@ public class AdminMenu
                if (validAdminAccess())//correct passphrase
                {
                   adminSignUp();
-               }
-               else
+               } else
                {
-                 exit =exitLogin();
+                  exit = exitLogin();
                }
-            }while(!exit && !validRegistration);
+            } while (!exit && !validRegistration);
             if (exit)
             {
                Main.displayMainMenu();//return to main menu
-            }
-            else
+            } else
             {
                AdminSubMenu.display();
             }
@@ -86,7 +83,7 @@ public class AdminMenu
             adminUser = new Admin(username, password);
             if (Admin.userIsUnique(adminUser.getUsername()))
             {
-               validRegistration=true;
+               validRegistration = true;
                Admin.adminList.add(adminUser);
                System.out.println("\nNew Teacher Admin created!");
                Admin.serialize();
@@ -100,7 +97,7 @@ public class AdminMenu
             //Handle exception
             Globals.logException(e);
             System.out.println(e.getMessage());
-            signUpExit= Globals.exitLogin();
+            signUpExit = Globals.exitLogin();
          } catch (UsernameException e)
          {
             //Handle exception
@@ -162,7 +159,8 @@ public class AdminMenu
       }
    }
 
-      private static boolean exitLogin () {
+   private static boolean exitLogin()
+   {
       String choice;
       int exitChoice;
 
@@ -172,14 +170,15 @@ public class AdminMenu
          choice = keyboard.next();
       } while (!Globals.validMenuChoice(choice, 1, 2));
       exitChoice = Integer.parseInt(choice);
-         return exitChoice != 1;
+      return exitChoice != 1;
    }
+
    private static boolean validAdminAccess()
    {
-      String phrase="";
+      String phrase = "";
       System.out.println("\nPlease enter Admin access phrase:");
       phrase = keyboard.next();
       return phrase.equals(ADMIN_PASSWORD);
    }
 
-   }//class
+}//class
