@@ -17,6 +17,7 @@ public class AdminMenu
 
    public static void display()
    {
+      Student.deserialize();
       Admin.populateAdminList();
       do
       {
