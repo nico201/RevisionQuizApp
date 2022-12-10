@@ -11,18 +11,13 @@ import java.util.Scanner;
 public class Globals
 {
    private static Scanner keyboard = new Scanner(System.in);
+
    //populate all question arrayLists
    protected static void populateAllQuestions()
    {
-      // Read in all questions from the relevant text files (Question Banks)
-      TrueFalseQuestion.populate();
-      MultipleChoiceQuestion.populateFromTextFile();
-      ShortQuestion.populate();
-
-      //Serialize questions to file
-      TrueFalseQuestion.serialize();
-      MultipleChoiceQuestion.serialize();
-      ShortQuestion.serialize();
+      Question.resetAllQuestionBanks();
+      Question.serializeAllQuestionBanks();
+      Question.deserializeAllQuestionBanks();
    }
 
    //method to log exceptions to file
@@ -42,6 +37,7 @@ public class Globals
          System.out.println(ex.getMessage());
       }
    }
+
    public static boolean TryParseInt(String inputString)
    {
 
@@ -57,26 +53,34 @@ public class Globals
       return validInt;
    }
 
-   public static boolean validMenuChoice(String inputString, int min, int max) {
+   public static boolean validMenuChoice(String inputString, int min, int max)
+   {
       boolean isValidMenuChoice = false;
       int menuChoice;
-      if (Globals.TryParseInt(inputString)) {
+      if (Globals.TryParseInt(inputString))
+      {
          menuChoice = Integer.parseInt(inputString);
-         if (menuChoice >= min && menuChoice <= max) {
+         if (menuChoice >= min && menuChoice <= max)
+         {
             isValidMenuChoice = true;
-         } else {
+         } else
+         {
             System.out.println("Menu choice out of range. Please try again!");
          }
-      } else {
+      } else
+      {
          System.out.println("Not a valid integer. Please try again!");
       }
       return isValidMenuChoice;
    }
-   protected static boolean exitLogin() {
+
+   protected static boolean exitLogin()
+   {
       String choice;
       int exitChoice;
 
-      do {
+      do
+      {
          System.out.println("1. Try again \n2. Return to Previous Menu");
          choice = keyboard.next();
       } while (!Globals.validMenuChoice(choice, 1, 2));
