@@ -21,7 +21,6 @@ public class QuizMenu
          if (studentUser.getUsername().equals(Main.currentStudent.username))
          {
             studentUser.setHighestScore(QuizMaster.getQuizScore());
-            LeaderBoard.updateLeaderboard(studentUser.getUsername(), QuizMaster.getQuizScore());
          }
       }
       Student.serialize();

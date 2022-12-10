@@ -71,7 +71,7 @@ public class LeaderBoard {
       if (leaderboardUser.equals("student")) {
          System.out.println("\nStudent Leaderboard");
          System.out.println("*******************");
-         System.out.println("Rank\tName\t\tScore (%)");
+         System.out.println("Rank\tName\t\tHigh Score (%)");
          for (int count = 1; count <= STUDENTDISPLAY; count++) {
             System.out.println(count + ":\t\t" + leaderNames[count-1] + "\t\t\t" + leaderScores[count-1]);
          }//for
