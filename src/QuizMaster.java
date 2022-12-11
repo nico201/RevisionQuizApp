@@ -97,7 +97,9 @@ public class QuizMaster
       do
       {
          keyboard.reset();
-         System.out.println("\n" + (numQuestionsAsked + 1) + ". " + TrueFalseQuestion.tfQnList.get(zeroIndex).getQuestionText());
+         System.out.println("\nTopic: " + TrueFalseQuestion.tfQnList.get(zeroIndex).getTopic());
+         System.out.println((numQuestionsAsked + 1) + ". " + TrueFalseQuestion.tfQnList.get(zeroIndex).getQuestionText());
+         System.out.println("Number of points available: " + TrueFalseQuestion.tfQnList.get(zeroIndex).getPoints());
          System.out.println("\nAnswer 'true' or 'false': ");
          answer = keyboard.nextLine().trim();
       } while (!(answer.equalsIgnoreCase("true") || answer.equalsIgnoreCase("false")));
@@ -120,7 +122,9 @@ public class QuizMaster
       int zeroIndex = 0;
       setMarkAvail(ShortQuestion.shortQnList.get(zeroIndex).getPoints());
       keyboard.reset();
-      System.out.println("\n" + (numQuestionsAsked + 1) + ". " + ShortQuestion.shortQnList.get(zeroIndex).getQuestionText());
+      System.out.println("\nTopic: " + ShortQuestion.shortQnList.get(zeroIndex).getTopic());
+      System.out.println((numQuestionsAsked + 1) + ". " + ShortQuestion.shortQnList.get(zeroIndex).getQuestionText());
+      System.out.println("Number of points available: " + ShortQuestion.shortQnList.get(zeroIndex).getPoints());
       System.out.println("\nPlease enter a short answer: ");
       answer = keyboard.nextLine().trim();
       correctAnswer = ShortQuestion.shortQnList.get(zeroIndex).getAnswer();
@@ -144,11 +148,13 @@ public class QuizMaster
       do
       {
          keyboard.reset();
-         System.out.println("\n" + (numQuestionsAsked + 1) + ". " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getQuestionText());
+         System.out.println("\nTopic: " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getTopic());
+         System.out.println((numQuestionsAsked + 1) + ". " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getQuestionText());
          System.out.println("\t1. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption1());
          System.out.println("\t2. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption2());
          System.out.println("\t3. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption3());
          System.out.println("\t4. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption4());
+         System.out.println("Number of points available: " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getPoints());
          System.out.println("\nEnter correct option: ");
          userInput = keyboard.next().trim();
       } while (!Globals.validMenuChoice(userInput, 1, 4));
