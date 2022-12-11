@@ -16,11 +16,11 @@ public class AdminSubMenu
       do
       {
          System.out.println("\nAdmin Area\n*************************");
-         System.out.println("1: Show Full Leaderboard\n2: Add New Topic\n3: Add New Question\n4: Remove topic\n5: Set Quiz Parameters\n6: Reset all question banks\n7: Backup all question banks\n8: Log Out & Return to Main Menu");
+         System.out.println("1: Show Full Leaderboard\n2: Reset All Student Scores\n3: Set Quiz Parameters\n4: Add New Topic\n5: Add New Question\n6: Remove topic\n7: Reset all question banks\n8: Backup all question banks\n9: Log Out & Return to Main Menu");
          System.out.println("Please enter a selection: ");
 
          adminMenuInput = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(adminMenuInput, 1, 8));
+      } while (!Globals.validMenuChoice(adminMenuInput, 1, 9));
       menuChoice = Integer.parseInt(adminMenuInput);
 
       switch (menuChoice)
@@ -30,31 +30,35 @@ public class AdminSubMenu
             display();
             break;
          case 2:
-            addNewTopic();
+            Student.resetAllHighScores();
             display();
             break;
          case 3:
-            AddNewQuestionMenu.display();
-            Main.displayMainMenu();//return to main menu
-            break;
-         case 4:
-            int topicNum=chosenTopicForRemoval();
-            Question.removeTopicQuestions(topicNum);
-            display();
-            break;
-         case 5:
             getSetQuizParameters();
             display();
             break;
+         case 4:
+            addNewTopic();
+            display();
+            break;
+         case 5:
+            AddNewQuestionMenu.display();
+            Main.displayMainMenu();//return to main menu
+            break;
          case 6:
-            Question.resetAllQuestionBanks();
+            int topicNum = chosenTopicForRemoval();
+            Question.removeTopicQuestions(topicNum);
             display();
             break;
          case 7:
-            Question.backupAllQuestions();
+            Question.resetAllQuestionBanks();
             display();
             break;
          case 8:
+            Question.backupAllQuestions();
+            display();
+            break;
+         case 9:
             Main.displayMainMenu();//return to main menu
             //Clear current user/admin in Main
             break;
@@ -131,6 +135,7 @@ public class AdminSubMenu
             break;
       }
    }
+
    private static int chosenTopicForRemoval()
    {
       System.out.println("Question Topics:");

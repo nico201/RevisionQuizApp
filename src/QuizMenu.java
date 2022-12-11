@@ -45,7 +45,7 @@ public class QuizMenu
       do
       {
          System.out.println("\nPlease enter a selection: \n1. Retake Quiz \n2. Logout and return to Main Menu");
-         choice = keyboard.next();
+         choice = keyboard.nextLine();
       } while (!Globals.validMenuChoice(choice, 1, 2));
       retakeChoice = Integer.parseInt(choice);
       return retakeChoice == 1;

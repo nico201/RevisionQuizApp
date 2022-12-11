@@ -156,7 +156,7 @@ public class QuizMaster
          System.out.println("\t4. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption4());
          System.out.println("Number of points available: " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getPoints());
          System.out.println("\nEnter correct option: ");
-         userInput = keyboard.next().trim();
+         userInput = keyboard.nextLine().trim();
       } while (!Globals.validMenuChoice(userInput, 1, 4));
       answer = Integer.parseInt(userInput);
       correctAnswer = MultipleChoiceQuestion.mcQnList.get(zeroIndex).getCorrectOption();

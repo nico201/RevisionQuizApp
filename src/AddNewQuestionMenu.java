@@ -18,7 +18,7 @@ public class AddNewQuestionMenu
          System.out.println("\nWelcome to Add New Question menu\n*************************");
          System.out.println("1. Multiple Choice Question\n2. True or False Question\n3. Short Answer Question\n4. Go back to Admin Menu");
          System.out.println("Please enter a selection: ");
-         adminMenuInput = keyboard.next();
+         adminMenuInput = keyboard.nextLine();
       } while (!Globals.validMenuChoice(adminMenuInput, 1, 4));
       menuChoice = Integer.parseInt(adminMenuInput);
 
@@ -57,7 +57,7 @@ public class AddNewQuestionMenu
       do
       {
          System.out.println("\n1. Add another question \n2. Return to Main Menu");
-         choice = keyboard.next();
+         choice = keyboard.nextLine();
       } while (!Globals.validMenuChoice(choice, 1, 2));
       questionChoice = Integer.parseInt(choice);
       return (questionChoice == 1);

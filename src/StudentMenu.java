@@ -4,23 +4,27 @@ import java.util.Scanner;
  * Created by V.Campbell on 01/12/2022
  * Student Menu System
  **/
-public class StudentMenu {
+public class StudentMenu
+{
    private static String studentMenuInput;
    private static boolean exit = false;
 
-   protected static void display() {
+   protected static void display()
+   {
       Scanner keyboard = new Scanner(System.in);
 
       Student.deserialize();
       int studentMenuChoice;
-      do {
+      do
+      {
          System.out.println("\nWelcome to Student Menu");
          System.out.println("*************************");
          System.out.println("1. Register as new student \n2. Login as existing student \n3. Return to Main Menu\nPlease enter a selection: ");
-         studentMenuInput = keyboard.next();
+         studentMenuInput = keyboard.nextLine();
       } while (!Globals.validMenuChoice(studentMenuInput, 1, 3));
       studentMenuChoice = Integer.parseInt(studentMenuInput);
-      switch (studentMenuChoice) {
+      switch (studentMenuChoice)
+      {
          case 1:
             studentSignUp();
             break;
@@ -39,9 +43,10 @@ public class StudentMenu {
       }
    }
 
-   protected static void studentSignUp() {
+   protected static void studentSignUp()
+   {
       Scanner keyboard = new Scanner(System.in);
-      boolean validRegistration = true;
+      boolean validRegistration;
       String studentForename;
       String studentSurname;
       String password;
@@ -49,41 +54,47 @@ public class StudentMenu {
       exit = false;
 
       System.out.println("\nWelcome to Student Sign-Up!");
-      do {
+      do
+      {
          validRegistration = true;
          System.out.println("Please enter your forename: ");
-         studentForename = keyboard.next();
+         studentForename = keyboard.nextLine().trim();
          System.out.println("Please enter your surname: ");
-         studentSurname = keyboard.next();
+         studentSurname = keyboard.nextLine().trim();
          System.out.println("Please enter your password: ");
-         password = keyboard.next();
+         password = keyboard.nextLine().trim();
 
-         try {
+         try
+         {
             studentUser = new Student(studentForename, studentSurname, password);
-            if (Student.userIsUnique(studentUser.getUsername())) {
+            if (Student.userIsUnique(studentUser.getUsername()))
+            {
                Student.studentList.add(studentUser);
                Main.currentStudent = studentUser;//set current user equal to the newly registered student
                System.out.println("\nNew user created! Username is " + studentUser.getUsername());
                Student.serialize();
-            } else {
+            } else
+            {
                System.out.println("Error: User is not unique.");
                validRegistration = false;
                exit = Globals.exitLogin();
             }
-         } catch (PasswordException e) {
+         } catch (PasswordException e)
+         {
             //Handle exception
             Globals.logException(e);
             System.out.println(e.getMessage());
             exit = Globals.exitLogin();
             validRegistration = false;
-         } catch (UsernameException e) {
+         } catch (UsernameException e)
+         {
             //Handle exception
             Globals.logException(e);
             System.out.println("Error: " + e.getMessage());
             validRegistration = false;
             exit = Globals.exitLogin();
-         }
-         finally {
+         } finally
+         {
             if (validRegistration)
             {
                Main.currentStudent = studentUser;
@@ -99,7 +110,8 @@ public class StudentMenu {
       }
    }
 
-   protected static void existingStudentLogin() {
+   protected static void existingStudentLogin()
+   {
       Scanner keyboard = new Scanner(System.in);
       exit = false;
       boolean validLogIn = false;
@@ -111,15 +123,15 @@ public class StudentMenu {
       do
       {
          System.out.println("\nPlease enter your username: ");
-         inputUsername = keyboard.next();
+         inputUsername = keyboard.nextLine().trim();
          System.out.println("Please enter your password: ");
-         inputPassword = keyboard.next();
+         inputPassword = keyboard.nextLine().trim();
 
          for (Student student : Student.studentList)
          {
             if (student.getUsername().equals(inputUsername) && student.getPassword().equals(inputPassword))
             {
-               validLogIn=true;
+               validLogIn = true;
                Main.currentStudent = student;
                break;
             }
@@ -129,7 +141,7 @@ public class StudentMenu {
             System.out.println("\nUsername or Password incorrect");
             exit = Globals.exitLogin();
          }
-      }while(!validLogIn && !exit);
+      } while (!validLogIn && !exit);
       if (validLogIn)
       {
          QuizMenu.display();

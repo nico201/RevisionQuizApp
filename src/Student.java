@@ -127,6 +127,9 @@ public class Student extends User
       {
          std.resetHighScore();
       }
+      System.out.println("All student Quiz high scores have been reset.");
+      Student.serialize();
+      System.out.println("Student profiles have been successfully saved.");
    }
 
 }//class

@@ -26,7 +26,7 @@ public class Main
          System.out.println("\nWelcome to the Main Menu\n*************************\n1. Student\n2. Teacher\n3. Quit\nPlease enter your selection: ");
          Scanner keyboard = new Scanner(System.in);
 
-         menuChoice = keyboard.nextInt();
+         menuChoice = Integer.parseInt(keyboard.nextLine());
 
          if (menuChoice == 2)
          {
