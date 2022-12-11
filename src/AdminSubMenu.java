@@ -16,10 +16,11 @@ public class AdminSubMenu
       do
       {
          System.out.println("\nAdmin Area\n*************************");
-         System.out.println("1: Show Full Leaderboard\n2: Add New Topic\n3: Add New Question\n4: Set Quiz Parameters \n5: Log Out");         System.out.println("Please enter a selection: ");
+         System.out.println("1: Show Full Leaderboard\n2: Add New Topic\n3: Add New Question\n4: Remove topic\n5: Set Quiz Parameters \n6: Reset all question banks\n7: Log Out & Return to Main Menu");
+         System.out.println("Please enter a selection: ");
 
          adminMenuInput = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(adminMenuInput, 1, 4));
+      } while (!Globals.validMenuChoice(adminMenuInput, 1, 7));
       menuChoice = Integer.parseInt(adminMenuInput);
 
       switch (menuChoice)
@@ -37,10 +38,19 @@ public class AdminSubMenu
             Main.displayMainMenu();//return to main menu
             break;
          case 4:
-            getSetQuizParameters();
+            int topicNum=chosenTopicForRemoval();
+            Question.removeTopicQuestions(topicNum);
             display();
             break;
          case 5:
+            getSetQuizParameters();
+            display();
+            break;
+         case 6:
+            Question.resetAllQuestionBanks();
+            display();
+            break;
+         case 7:
             Main.displayMainMenu();//return to main menu
             //Clear current user/admin in Main
             break;
@@ -53,7 +63,8 @@ public class AdminSubMenu
    }
 
    // this is a 'dummy' option for user peace of mind - makes no actual changes
-   private static void addNewTopic() {
+   private static void addNewTopic()
+   {
       System.out.println("Please enter the new topic: ");
       keyboard.nextLine();
       System.out.println("\nYou can now use the 'Add New Question' option to add questions for this topic.\n");
@@ -115,5 +126,25 @@ public class AdminSubMenu
             display();
             break;
       }
+   }
+   private static int chosenTopicForRemoval()
+   {
+      System.out.println("Question Topics:");
+      Question.populateUniqueTopics();
+      int position = 1;
+      String topicChosen;
+      int topicNum;
+      for (String topic : Question.qnUniqueTopicList)
+      {
+         System.out.println(position + ": " + topic);
+         position++;
+      }
+      do
+      {
+         System.out.println("Which topic would you like to remove all questions for? ");
+         topicChosen = keyboard.nextLine();
+      } while (!Globals.validMenuChoice(topicChosen, 1, Question.qnUniqueTopicList.size()));
+      topicNum = Integer.parseInt(topicChosen);
+      return topicNum - 1;
    }
 }//class
