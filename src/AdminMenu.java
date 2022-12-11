@@ -19,6 +19,8 @@ public class AdminMenu
    {
       Student.deserialize();
       Admin.deserialize();
+      Question.resetAllQuestionBanks();
+      Question.serializeAllQuestionBanks();
       Question.deserializeAllQuestionBanks();
       do
       {

@@ -16,11 +16,11 @@ public class AdminSubMenu
       do
       {
          System.out.println("\nAdmin Area\n*************************");
-         System.out.println("1: Show Full Leaderboard\n2: Add New Topic\n3: Add New Question\n4: Remove topic\n5: Set Quiz Parameters \n6: Reset all question banks\n7: Log Out & Return to Main Menu");
+         System.out.println("1: Show Full Leaderboard\n2: Add New Topic\n3: Add New Question\n4: Remove topic\n5: Set Quiz Parameters\n6: Reset all question banks\n7: Backup all question banks\n8: Log Out & Return to Main Menu");
          System.out.println("Please enter a selection: ");
 
          adminMenuInput = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(adminMenuInput, 1, 7));
+      } while (!Globals.validMenuChoice(adminMenuInput, 1, 8));
       menuChoice = Integer.parseInt(adminMenuInput);
 
       switch (menuChoice)
@@ -51,6 +51,10 @@ public class AdminSubMenu
             display();
             break;
          case 7:
+            Question.backupAllQuestions();
+            display();
+            break;
+         case 8:
             Main.displayMainMenu();//return to main menu
             //Clear current user/admin in Main
             break;

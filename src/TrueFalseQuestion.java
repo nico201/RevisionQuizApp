@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
 
 /**
  * Created by V.Campbell on 29/11/2022
@@ -10,7 +11,8 @@ import java.util.Scanner;
  **/
 public class TrueFalseQuestion extends Question
 {
-   private static final String tfQnFilePath = "tfQns.txt";
+   private static final String TF_QN_FILE_PATH = "tfQns.txt";
+   private static final String TF_QN_BACKUP_PATH = "tfQnBackup.txt";
    private static int count = 0;
    protected static ArrayList<TrueFalseQuestion> tfQnList = new ArrayList<>();
    protected char answer;
@@ -36,7 +38,7 @@ public class TrueFalseQuestion extends Question
    {
       try
       {
-         File qnFile = new File(tfQnFilePath);
+         File qnFile = new File(TF_QN_FILE_PATH);
          Scanner qnReader = new Scanner(qnFile);
          while (qnReader.hasNextLine())
          {
@@ -64,9 +66,11 @@ public class TrueFalseQuestion extends Question
 
       } catch (NotSerializableException ex)
       {
-         //TODO: Fix Catch
+         System.out.println(ex.getMessage());
+         Globals.logException(ex);
       } catch (IOException ex)
       {
+         System.out.println(ex.getMessage());
          Globals.logException(ex);
       }
    }
@@ -104,5 +108,29 @@ public class TrueFalseQuestion extends Question
       tfQnList.add(tf1);
       serialize();
    }
+
+
+   protected static void backupQnsToFile()
+   {
+      try
+      {
+         FileWriter qnWriter = new FileWriter(TF_QN_BACKUP_PATH);
+         for (TrueFalseQuestion tfQn : tfQnList)
+         {
+            qnWriter.write(tfQn.getQuestionText() + "\n");
+            String points = Integer.toString(tfQn.getPoints());
+            qnWriter.write(points + "\n");
+            qnWriter.write(tfQn.getTopic() + "\n");
+            qnWriter.write(tfQn.getAnswer() + "\n");
+         }
+         qnWriter.close();
+         System.out.println("True False Question Lists have been Successfully Backed Up");
+      } catch (IOException ex)
+      {
+         System.out.println(ex.getMessage());
+         Globals.logException(ex);
+      }
+   }
+
 
 }//class

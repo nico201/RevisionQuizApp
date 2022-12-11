@@ -145,5 +145,11 @@ abstract public class Question implements Serializable
       serializeAllQuestionBanks();
       System.out.println("Question banks have been updated");
    }
+   protected static void backupAllQuestions()
+   {
+      TrueFalseQuestion.backupQnsToFile();
+      MultipleChoiceQuestion.backupQnsToFile();
+      ShortQuestion.backupQnsToFile();
+   }
 
 }//class

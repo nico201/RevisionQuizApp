@@ -10,8 +10,12 @@ import java.util.Scanner;
  **/
 public class MultipleChoiceQuestion extends Question
 {
+   //static declarations
    protected static ArrayList<MultipleChoiceQuestion> mcQnList = new ArrayList<>();
-   private static final String multipleChoiceQnFilePath = "multipleChoiceQns.txt";
+   private static final String MULTIPLE_CHOICE_QN_FILE_PATH = "multipleChoiceQns.txt";
+   private static final String MC_QN_BACKUP_PATH = "mcQnBackup.txt";
+
+   //class member declarations
    private static int count = 0;
    private String option1;
    private String option2;
@@ -86,7 +90,7 @@ public class MultipleChoiceQuestion extends Question
    {
       try
       {
-         File mcQnFile = new File(multipleChoiceQnFilePath);
+         File mcQnFile = new File(MULTIPLE_CHOICE_QN_FILE_PATH);
          Scanner mcQnReader = new Scanner(mcQnFile);
          while (mcQnReader.hasNextLine())
          {
@@ -168,6 +172,35 @@ public class MultipleChoiceQuestion extends Question
       System.out.println("New Question has been saved. Thank you!");
       mcQnList.add(mcq1);
       serialize();
+   }
+
+   protected static void backupQnsToFile()
+   {
+      try
+      {
+         FileWriter qnWriter = new FileWriter(MC_QN_BACKUP_PATH);
+         String points;
+         String correct;
+         for (MultipleChoiceQuestion mcQn : mcQnList)
+         {
+            qnWriter.write(mcQn.getQuestionText()+"\n");
+            points = Integer.toString(mcQn.getPoints());
+            qnWriter.write(points+"\n");
+            qnWriter.write(mcQn.getTopic()+"\n");
+            qnWriter.write(mcQn.getOption1()+"\n");
+            qnWriter.write(mcQn.getOption2()+"\n");
+            qnWriter.write(mcQn.getOption3()+"\n");
+            qnWriter.write(mcQn.getOption4()+"\n");
+            correct = Integer.toString(mcQn.getCorrectOption());
+            qnWriter.write(correct+"\n");
+         }
+         qnWriter.close();
+         System.out.println("Multiple Choice Question Lists have been Successfully Backed Up");
+      } catch (IOException ex)
+      {
+         System.out.println(ex.getMessage());
+         Globals.logException(ex);
+      }
    }
 
 }//class

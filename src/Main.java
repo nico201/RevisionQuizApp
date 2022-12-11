@@ -41,5 +41,6 @@ public class Main
          }//else if
       } while (menuChoice != 3);
       LoginOrRegister.quitMessage();
+      System.exit(0);
    }//main
 }//class

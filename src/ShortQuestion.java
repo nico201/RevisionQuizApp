@@ -13,7 +13,8 @@ public class ShortQuestion extends Question
    //class members/variables
    private String answer;
    //static members/variables
-   private static final String shortQnFilePath = "shortQns.txt";
+   private static final String SHORT_QN_FILE_PATH = "shortQns.txt";
+   private static final String SHORT_QN_BACKUP_PATH = "shortQnBackup.txt";
    private static int count = 0;
    protected static ArrayList<ShortQuestion> shortQnList = new ArrayList<>();
 
@@ -39,7 +40,7 @@ public class ShortQuestion extends Question
    {
       try
       {
-         File qnFile = new File(shortQnFilePath);
+         File qnFile = new File(SHORT_QN_FILE_PATH);
          Scanner qnReader = new Scanner(qnFile);
          while (qnReader.hasNextLine())
          {
@@ -104,6 +105,29 @@ public class ShortQuestion extends Question
       System.out.println("New Question has been saved. Thank you!");
       shortQnList.add(sq1);
       serialize();
+   }
+
+   protected static void backupQnsToFile()
+   {
+      try
+      {
+         FileWriter qnWriter = new FileWriter(SHORT_QN_BACKUP_PATH);
+         String points;
+         for (ShortQuestion shortQn :shortQnList)
+         {
+            qnWriter.write(shortQn.getQuestionText()+"\n");
+            points = Integer.toString(shortQn.getPoints());
+            qnWriter.write(points+"\n");
+            qnWriter.write(shortQn.getTopic()+"\n");
+            qnWriter.write(shortQn.getAnswer()+"\n");
+         }
+         qnWriter.close();
+         System.out.println("Short Answer Question Lists have been Successfully Backed Up");
+      } catch (IOException ex)
+      {
+         System.out.println(ex.getMessage());
+         Globals.logException(ex);
+      }
    }
 
 }//class
