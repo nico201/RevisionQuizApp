@@ -19,6 +19,7 @@ public class AdminMenu
    {
       Student.deserialize();
       Admin.deserialize();
+      Question.deserializeAllQuestionBanks();
       do
       {
          System.out.println("\nWelcome to Admin Login/Registration");
