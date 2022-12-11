@@ -8,10 +8,9 @@ import java.util.Scanner;
  **/
 public class QuizMaster
 {
-   // instance attributes
-   private Boolean ansCorrect; // May not be required.
-   private int markAvail;
-   private int markAwarded;
+   // static constants
+   protected static final String MAIN_QUIZ = "mainQuiz";
+   private static final String TFQN = "tfQn", MCQN = "mcQn", SHORTQN = "shortQn";
 
    // static class attributes
    private static int mainQuizNumTFQns = 1;
@@ -20,6 +19,11 @@ public class QuizMaster
    private static int numQuestionsAsked;
    private static int totalMarkAvailable;
    private static int totalMarkAwarded;
+
+   // instance attributes
+   private Boolean ansCorrect; // May not be required.
+   private int markAvail;
+   private int markAwarded;
 
    private QuizMaster()
    {
@@ -35,16 +39,16 @@ public class QuizMaster
       maxShortQns = ShortQuestion.shortQnList.size();
       maxMCQns = MultipleChoiceQuestion.mcQnList.size();
       // Run quiz and ask all questions in question bank
-      runQuiz(maxTFQns, maxShortQns, maxMCQns);
+      runQuiz(maxTFQns, maxShortQns, maxMCQns, MAIN_QUIZ);
    }
 
    protected static void runQuiz(String quizTopic)
    {
-      if (quizTopic.equalsIgnoreCase("mainQuiz"))
-         runQuiz(mainQuizNumTFQns, mainQuizNumShortQns, mainQuizNumMCQns);
+      // Run quiz with specified parameters for number of question and topic or main quiz
+      runQuiz(mainQuizNumTFQns, mainQuizNumShortQns, mainQuizNumMCQns, quizTopic);
    }
 
-   protected static void runQuiz(int numTfQns, int numShortQns, int numMCQns)
+   protected static void runQuiz(int numTfQns, int numShortQns, int numMCQns, String quizTopic)
    {
       QuizMaster quizMaster;
 
@@ -58,116 +62,163 @@ public class QuizMaster
       Collections.shuffle(ShortQuestion.shortQnList);
       Collections.shuffle(MultipleChoiceQuestion.mcQnList);
 
-      // Ask specified number of T/F questions
+      // Ask specified number of T/F questions from specified topic
       for (int qNum = 0; qNum < numTfQns; qNum++)
       {
          quizMaster = new QuizMaster();
-         quizMaster.askQuestion("tfQn");
+         quizMaster.askQuestion(TFQN, quizTopic);
       }
 
-      // Ask specified number of short answer questions
+      // Ask specified number of short answer questions from specified topic
       for (int qNum = 0; qNum < numShortQns; qNum++)
       {
          quizMaster = new QuizMaster();
-         quizMaster.askQuestion("shortQn");
+         quizMaster.askQuestion(SHORTQN, quizTopic);
       }
 
-      // Ask specified number of multiple choice questions
+      // Ask specified number of multiple choice questions from specified topic
       for (int qNum = 0; qNum < numMCQns; qNum++)
       {
          quizMaster = new QuizMaster();
-         quizMaster.askQuestion("mcQn");
+         quizMaster.askQuestion(MCQN, quizTopic);
       }
    }
 
-   private void askQuestion(String questionType)
+   private void askQuestion(String questionType, String quizTopic)
    {
-      if (questionType.equalsIgnoreCase("tfQn")) askTFQuestion();
-      else if (questionType.equalsIgnoreCase("mcQn")) askMCQuestion();
-      else if (questionType.equalsIgnoreCase("shortQn")) askShortQuestion();
-      //else TO DO: exception handling
+      // Call appropriate 'askQuestion' method based on required question type and topic
+      if (questionType.equalsIgnoreCase(TFQN)) askTFQuestion(quizTopic);
+      else if (questionType.equalsIgnoreCase(MCQN)) askMCQuestion(quizTopic);
+      else if (questionType.equalsIgnoreCase(SHORTQN)) askShortQuestion(quizTopic);
    }
 
-   private void askTFQuestion()
+   private void askTFQuestion(String topic)
    {
       Scanner keyboard = new Scanner(System.in);
       String answer, correctAnswer;
-      int zeroIndex = 0;
-      setMarkAvail(TrueFalseQuestion.tfQnList.get(zeroIndex).getPoints());
+      boolean qnFound = false;
+      int index = 0;
       do
       {
-         keyboard.reset();
-         System.out.println("\nTopic: " + TrueFalseQuestion.tfQnList.get(zeroIndex).getTopic());
-         System.out.println((numQuestionsAsked + 1) + ". " + TrueFalseQuestion.tfQnList.get(zeroIndex).getQuestionText());
-         System.out.println("Number of points available: " + TrueFalseQuestion.tfQnList.get(zeroIndex).getPoints());
-         System.out.println("\nAnswer 'true' or 'false': ");
-         answer = keyboard.nextLine().trim();
-      } while (!(answer.equalsIgnoreCase("true") || answer.equalsIgnoreCase("false")));
-      if (TrueFalseQuestion.tfQnList.get(zeroIndex).getAnswer() == 'T') correctAnswer = "true";
-      else correctAnswer = "false";
-      if (answer.equalsIgnoreCase(correctAnswer))
-      {
-         this.ansCorrect = true;
-         this.markAwarded = this.markAvail;
-      } else this.ansCorrect = false;
-      recordQuestionMark();
-      TrueFalseQuestion.tfQnList.remove(zeroIndex);
-      numQuestionsAsked++;
+         // Find question of specified topic or take first question from bank for main quiz
+         if (topic.equalsIgnoreCase(MAIN_QUIZ) | TrueFalseQuestion.tfQnList.get(index).getTopic().equalsIgnoreCase(topic))
+         {
+            qnFound = true;
+            // Set available marks for question asked
+            setMarkAvail(TrueFalseQuestion.tfQnList.get(index).getPoints());
+            do
+            {
+               // Ask question and get student response
+               System.out.println("\nTopic: " + TrueFalseQuestion.tfQnList.get(index).getTopic());
+               System.out.println((numQuestionsAsked + 1) + ". " + TrueFalseQuestion.tfQnList.get(index).getQuestionText());
+               System.out.println("Number of points available: " + TrueFalseQuestion.tfQnList.get(index).getPoints());
+               System.out.println("\nAnswer 'true' or 'false': ");
+               answer = keyboard.nextLine().trim();
+               // Handle unexpected student inputs
+            } while (!(answer.equalsIgnoreCase("true") || answer.equalsIgnoreCase("false")));
+            if (TrueFalseQuestion.tfQnList.get(index).getAnswer() == 'T') correctAnswer = "true";
+            else correctAnswer = "false";
+            // Evaluate student answer & set instance variables for this question
+            if (answer.equalsIgnoreCase(correctAnswer))
+            {
+               this.ansCorrect = true;
+               this.markAwarded = this.markAvail;
+            } else this.ansCorrect = false;
+            // Save students score for this question
+            recordQuestionMark();
+            // Remove this question from question bank so that it is not re-asked for this user
+            TrueFalseQuestion.tfQnList.remove(index);
+            // Increment static class variable tracking number of questions asked
+            numQuestionsAsked++;
+         } else index++;
+         // If no questions are found of specified topic in the question bank then this question type is skipped
+      } while (!qnFound && ((index + 1) <= TrueFalseQuestion.tfQnList.size()));
    }
 
-   private void askShortQuestion()
+   private void askShortQuestion(String topic)
    {
       Scanner keyboard = new Scanner(System.in);
       String answer, correctAnswer;
-      int zeroIndex = 0;
-      setMarkAvail(ShortQuestion.shortQnList.get(zeroIndex).getPoints());
-      keyboard.reset();
-      System.out.println("\nTopic: " + ShortQuestion.shortQnList.get(zeroIndex).getTopic());
-      System.out.println((numQuestionsAsked + 1) + ". " + ShortQuestion.shortQnList.get(zeroIndex).getQuestionText());
-      System.out.println("Number of points available: " + ShortQuestion.shortQnList.get(zeroIndex).getPoints());
-      System.out.println("\nPlease enter a short answer: ");
-      answer = keyboard.nextLine().trim();
-      correctAnswer = ShortQuestion.shortQnList.get(zeroIndex).getAnswer();
-      if (answer.equalsIgnoreCase(correctAnswer))
+      boolean qnFound = false;
+      int index = 0;
+      do
       {
-         this.ansCorrect = true;
-         this.markAwarded = this.markAvail;
-      } else this.ansCorrect = false;
-      recordQuestionMark();
-      ShortQuestion.shortQnList.remove(zeroIndex);
-      numQuestionsAsked++;
+         // Find question of specified topic or take first question from bank for main quiz
+         if (topic.equalsIgnoreCase(MAIN_QUIZ) | ShortQuestion.shortQnList.get(index).getTopic().equalsIgnoreCase(topic))
+         {
+            qnFound = true;
+            // Set available marks for question asked
+            setMarkAvail(ShortQuestion.shortQnList.get(index).getPoints());
+            // Ask question and get student response
+            System.out.println("\nTopic: " + ShortQuestion.shortQnList.get(index).getTopic());
+            System.out.println((numQuestionsAsked + 1) + ". " + ShortQuestion.shortQnList.get(index).getQuestionText());
+            System.out.println("Number of points available: " + ShortQuestion.shortQnList.get(index).getPoints());
+            System.out.println("\nPlease enter a short answer: ");
+            answer = keyboard.nextLine().trim();
+            correctAnswer = ShortQuestion.shortQnList.get(index).getAnswer();
+            // Evaluate student answer & set instance variables for this question
+            if (answer.equalsIgnoreCase(correctAnswer))
+            {
+               this.ansCorrect = true;
+               this.markAwarded = this.markAvail;
+            } else this.ansCorrect = false;
+            // Save students score for this question
+            recordQuestionMark();
+            // Remove this question from question bank so that it is not re-asked for this user
+            ShortQuestion.shortQnList.remove(index);
+            // Increment static class variable tracking number of questions asked
+            numQuestionsAsked++;
+         } else index++;
+         // If no questions are found of specified topic in the question bank then this question type is skipped
+      } while (!qnFound && ((index + 1) <= ShortQuestion.shortQnList.size()));
    }
 
-   private void askMCQuestion()
+   private void askMCQuestion(String topic)
    {
       Scanner keyboard = new Scanner(System.in);
       String userInput;
       int answer, correctAnswer;
-      int zeroIndex = 0;
-      setMarkAvail(MultipleChoiceQuestion.mcQnList.get(zeroIndex).getPoints());
+      boolean qnFound = false;
+      int index = 0;
       do
       {
-         keyboard.reset();
-         System.out.println("\nTopic: " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getTopic());
-         System.out.println((numQuestionsAsked + 1) + ". " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getQuestionText());
-         System.out.println("\t1. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption1());
-         System.out.println("\t2. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption2());
-         System.out.println("\t3. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption3());
-         System.out.println("\t4. " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getOption4());
-         System.out.println("Number of points available: " + MultipleChoiceQuestion.mcQnList.get(zeroIndex).getPoints());
-         System.out.println("\nEnter correct option: ");
-         userInput = keyboard.nextLine().trim();
-      } while (!Globals.validMenuChoice(userInput, 1, 4));
-      answer = Integer.parseInt(userInput);
-      correctAnswer = MultipleChoiceQuestion.mcQnList.get(zeroIndex).getCorrectOption();
-      if (answer == correctAnswer)
-      {
-         this.ansCorrect = true;
-         this.markAwarded = this.markAvail;
-      } else this.ansCorrect = false;
-      recordQuestionMark();
-      MultipleChoiceQuestion.mcQnList.remove(zeroIndex);
-      numQuestionsAsked++;
+         // Find question of specified topic or take first question from bank for main quiz
+         if (topic.equalsIgnoreCase(MAIN_QUIZ) | MultipleChoiceQuestion.mcQnList.get(index).getTopic().equalsIgnoreCase(topic))
+         {
+            qnFound = true;
+            // Set available marks for question asked
+            setMarkAvail(MultipleChoiceQuestion.mcQnList.get(index).getPoints());
+            do
+            {
+               // Ask question and get student response
+               System.out.println("\nTopic: " + MultipleChoiceQuestion.mcQnList.get(index).getTopic());
+               System.out.println((numQuestionsAsked + 1) + ". " + MultipleChoiceQuestion.mcQnList.get(index).getQuestionText());
+               System.out.println("\t1. " + MultipleChoiceQuestion.mcQnList.get(index).getOption1());
+               System.out.println("\t2. " + MultipleChoiceQuestion.mcQnList.get(index).getOption2());
+               System.out.println("\t3. " + MultipleChoiceQuestion.mcQnList.get(index).getOption3());
+               System.out.println("\t4. " + MultipleChoiceQuestion.mcQnList.get(index).getOption4());
+               System.out.println("Number of points available: " + MultipleChoiceQuestion.mcQnList.get(index).getPoints());
+               System.out.println("\nEnter correct option: ");
+               userInput = keyboard.nextLine().trim();
+               // Handle unexpected student inputs
+            } while (!Globals.validMenuChoice(userInput, 1, 4));
+            answer = Integer.parseInt(userInput);
+            correctAnswer = MultipleChoiceQuestion.mcQnList.get(index).getCorrectOption();
+            // Evaluate student answer & set instance variables for this question
+            if (answer == correctAnswer)
+            {
+               this.ansCorrect = true;
+               this.markAwarded = this.markAvail;
+            } else this.ansCorrect = false;
+            // Save students score for this question
+            recordQuestionMark();
+            // Remove this question from question bank so that it is not re-asked for this user
+            MultipleChoiceQuestion.mcQnList.remove(index);
+            // Increment static class variable tracking number of questions asked
+            numQuestionsAsked++;
+         } else index++;
+         // If no questions are found of specified topic in the question bank then this question type is skipped
+      } while (!qnFound && ((index + 1) <= MultipleChoiceQuestion.mcQnList.size()));
    }
 
    private void setMarkAvail(int markAvail)
@@ -236,7 +287,13 @@ public class QuizMaster
 
    protected static int getQuizScore()
    {
-      return (100 * QuizMaster.getTotalMarkAwarded() / QuizMaster.getTotalMarkAvailable());
+      int score;
+      if (QuizMaster.getTotalMarkAvailable() == 0)
+         score = 0;
+      else
+         score = (100 * QuizMaster.getTotalMarkAwarded() / QuizMaster.getTotalMarkAvailable());
+
+      return score;
    }
 
 }//class

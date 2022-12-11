@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.Iterator;
 
@@ -150,6 +151,28 @@ abstract public class Question implements Serializable
       TrueFalseQuestion.backupQnsToFile();
       MultipleChoiceQuestion.backupQnsToFile();
       ShortQuestion.backupQnsToFile();
+   }
+
+   protected static int chosenTopic(String selectionText)
+   {
+      Scanner keyboard = new Scanner(System.in);
+      System.out.println("\nQuestion Topics:");
+      Question.populateUniqueTopics();
+      int position = 1;
+      String topicChosen;
+      int topicNum;
+      for (String topic : Question.qnUniqueTopicList)
+      {
+         System.out.println(position + ": " + topic);
+         position++;
+      }
+      do
+      {
+         System.out.println(selectionText);
+         topicChosen = keyboard.nextLine();
+      } while (!Globals.validMenuChoice(topicChosen, 1, Question.qnUniqueTopicList.size()));
+      topicNum = Integer.parseInt(topicChosen);
+      return topicNum - 1;
    }
 
 }//class

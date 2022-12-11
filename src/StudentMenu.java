@@ -47,9 +47,7 @@ public class StudentMenu
    {
       Scanner keyboard = new Scanner(System.in);
       boolean validRegistration;
-      String studentForename;
-      String studentSurname;
-      String password;
+      String studentForename, studentSurname, password;
       Student studentUser = new Student();
       exit = false;
 

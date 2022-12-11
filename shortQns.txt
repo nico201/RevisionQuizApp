@@ -28,15 +28,15 @@ Network Technologies
 Intranet
 What provides shortcuts for repetitive task?
 1
-Database
+Databases
 Macros
 What can be used to store a special kind of text file?
 1
-Database
+Databases
 CSV
 What process can be used to bring data from a text file into a database table?
 1
-Database
+Databases
 Import
 How many bits are there in a byte?
 1

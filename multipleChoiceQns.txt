@@ -56,7 +56,7 @@ Audio to Digital Changer
 3
 Big data can be defined by 3V’s. What do the 3V’s stand for?
 1
-Database
+Databases
 Variety, Validity, Velocity
 Variety, Velocity, Virtual
 Volume, Virtual, Validity

@@ -46,7 +46,7 @@ public class AdminSubMenu
             Main.displayMainMenu();//return to main menu
             break;
          case 6:
-            int topicNum = chosenTopicForRemoval();
+            int topicNum = Question.chosenTopic("Which topic would you like to remove all questions for?");
             Question.removeTopicQuestions(topicNum);
             display();
             break;
@@ -136,24 +136,4 @@ public class AdminSubMenu
       }
    }
 
-   private static int chosenTopicForRemoval()
-   {
-      System.out.println("Question Topics:");
-      Question.populateUniqueTopics();
-      int position = 1;
-      String topicChosen;
-      int topicNum;
-      for (String topic : Question.qnUniqueTopicList)
-      {
-         System.out.println(position + ": " + topic);
-         position++;
-      }
-      do
-      {
-         System.out.println("Which topic would you like to remove all questions for? ");
-         topicChosen = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(topicChosen, 1, Question.qnUniqueTopicList.size()));
-      topicNum = Integer.parseInt(topicChosen);
-      return topicNum - 1;
-   }
 }//class
