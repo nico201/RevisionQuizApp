@@ -8,7 +8,7 @@ public class Main
 {
    protected static Student currentStudent;
    protected static Admin currentAdmin;
-
+   private static Scanner keyboard = new Scanner(System.in);
 
 
    public static void main(String[] args)
@@ -16,18 +16,28 @@ public class Main
       Main.displayMainMenu();
    }
 
-   public static void displayMainMenu() {
+   public static void displayMainMenu()
+   {
+
       Student.deserialize();
 
+      currentStudent = null;
+      currentAdmin = null;
       int menuChoice;
+      String mainMenuChoiceInput;
       do
       {
          System.out.println("\n******* CCEA GCSE Digital Technology - Unit 1 Revision Quiz *******");
          System.out.println("\nWelcome to the Main Menu\n*************************\n1. Student\n2. Teacher\n3. Quit\nPlease enter your selection: ");
-         Scanner keyboard = new Scanner(System.in);
 
-         menuChoice = Integer.parseInt(keyboard.nextLine());
+         mainMenuChoiceInput = keyboard.next();
 
+      } while (!Globals.validMenuChoice(mainMenuChoiceInput, 1, 3));
+
+      menuChoice = Integer.parseInt(mainMenuChoiceInput);
+
+      do
+      {
          if (menuChoice == 2)
          {
             //option 2  - Admin login/registration
