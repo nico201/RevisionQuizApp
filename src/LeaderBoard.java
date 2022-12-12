@@ -7,8 +7,8 @@
 public class LeaderBoard {
 
     private static final int STUDENTDISPLAY = 3; // No. of high scores seen by students
-    private static String[] leaderNames = new String[checkLeaderboardSize()];
-    private static int[] leaderScores = new int[checkLeaderboardSize()];
+    private static final String[] leaderNames = new String[checkLeaderboardSize()];
+    private static final int[] leaderScores = new int[checkLeaderboardSize()];
 
     // method checks current No. of students in order to inform size of arrays needed
     private static int checkLeaderboardSize() {

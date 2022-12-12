@@ -18,7 +18,7 @@ public class Student extends User {
         highestScore = 0;
     }
 
-    protected Student(String Username, String Password, int HighScore) throws PasswordException, UsernameException {
+    protected Student(String Username, String Password, int HighScore) throws PasswordException {
         super(Username, Password);
         highestScore = HighScore;
     }
@@ -55,7 +55,7 @@ public class Student extends User {
                 studentList.add(std);
             }
             studentReader.close();
-        } catch (FileNotFoundException | PasswordException | UsernameException e) {
+        } catch (FileNotFoundException | PasswordException e) {
             System.out.println("An error occurred." + e.getMessage());
         }
     }
@@ -65,8 +65,6 @@ public class Student extends User {
             ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("students.ser")));
             out.writeObject(studentList);
             out.close();
-        } catch (NotSerializableException ex) {
-            Globals.logException(ex);
         } catch (IOException ex) {
             Globals.logException(ex);
         }

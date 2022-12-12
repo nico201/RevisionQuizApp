@@ -3,7 +3,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileWriter;
 
 /**
  * Created by V.Campbell on 29/11/2022
@@ -53,10 +52,6 @@ public class TrueFalseQuestion extends Question {
             ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("tfQns.ser")));
             out.writeObject(TrueFalseQuestion.tfQnList);
             out.close();
-
-        } catch (NotSerializableException ex) {
-            System.out.println(ex.getMessage());
-            Globals.logException(ex);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             Globals.logException(ex);

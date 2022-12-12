@@ -17,7 +17,7 @@ abstract public class User implements Serializable {
         password = "";
     }
 
-    protected User(String Username, String Password) throws UsernameException, PasswordException {
+    protected User(String Username, String Password) throws PasswordException {
         error = null;
         username = Username;
         setPassword(Password);

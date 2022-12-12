@@ -16,7 +16,7 @@ public class Admin extends User {
     protected static ArrayList<Admin> adminList = new ArrayList<>();
     private static final String ADMIN_FILE_PATH = "admins.txt";
 
-    private static Scanner keyboard = new Scanner(System.in);
+    private static final Scanner keyboard = new Scanner(System.in);
 
     protected Admin() {
         super();
@@ -25,14 +25,14 @@ public class Admin extends User {
         canResetScore = false;
     }
 
-    protected Admin(String Username, String Password) throws PasswordException, UsernameException {
+    protected Admin(String Username, String Password) throws PasswordException {
         super(Username, Password);
         canDeleteQuestions = false;
         canDeleteStudents = false;
         canResetScore = false;
     }
 
-    protected Admin(String Username, String Password, boolean DeleteQns, boolean DeleteStudents, boolean ResetScore) throws PasswordException, UsernameException {
+    protected Admin(String Username, String Password, boolean DeleteQns, boolean DeleteStudents, boolean ResetScore) throws PasswordException {
         super(Username, Password);
         canDeleteQuestions = DeleteQns;
         canDeleteStudents = DeleteStudents;
@@ -98,7 +98,7 @@ public class Admin extends User {
                 adminList.add(admin);
             }
             adminReader.close();
-        } catch (FileNotFoundException | PasswordException | UsernameException e) {
+        } catch (FileNotFoundException | PasswordException e) {
             Globals.logException(e);
             System.out.println("An error occurred." + e.getMessage());
         }
@@ -109,8 +109,6 @@ public class Admin extends User {
             ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("admin.ser")));
             out.writeObject(adminList);
             out.close();
-        } catch (NotSerializableException ex) {
-            Globals.logException(ex);
         } catch (IOException ex) {
             Globals.logException(ex);
         }

@@ -1,7 +1,6 @@
 import java.time.LocalDateTime;
 import java.io.*;
 import java.time.format.DateTimeFormatter;
-import java.io.FileWriter;
 import java.util.Scanner;
 
 /**
@@ -9,7 +8,7 @@ import java.util.Scanner;
  * UPDATE  COMMENTS ABOUT PROGRAM HERE
  **/
 public class Globals {
-    private static Scanner keyboard = new Scanner(System.in);
+    private static final Scanner keyboard = new Scanner(System.in);
 
     //populate all question arrayLists
     protected static void populateAllQuestions() {

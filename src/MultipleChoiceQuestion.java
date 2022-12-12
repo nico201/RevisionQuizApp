@@ -101,9 +101,6 @@ public class MultipleChoiceQuestion extends Question {
             ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("multipleChoiceQns.ser")));
             out.writeObject(mcQnList);
             out.close();
-
-        } catch (NotSerializableException ex) {
-            Globals.logException(ex);
         } catch (IOException ex) {
             Globals.logException(ex);
         }

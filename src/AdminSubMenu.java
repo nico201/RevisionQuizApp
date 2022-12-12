@@ -5,12 +5,12 @@ import java.util.Scanner;
  * UPDATE  COMMENTS ABOUT PROGRAM HERE
  **/
 public class AdminSubMenu {
-    public static Scanner keyboard = new Scanner(System.in);
     private static String adminMenuInput;
     private static int menuChoice;
-    private static boolean exit = false;
 
     public static void display() {
+        Scanner keyboard = new Scanner(System.in);
+
         do {
             System.out.println("\nAdmin Area\n*************************");
             System.out.println("1: Show Full Leaderboard\n2: Reset All Student Scores\n3: Set Quiz Parameters\n4: Add New Topic\n5: Add New Question\n6: Remove topic\n7: Reset all question banks\n8: Backup all question banks\n9: Log Out & Return to Main Menu");
@@ -67,12 +67,14 @@ public class AdminSubMenu {
 
     // this is a 'dummy' option for user peace of mind - makes no actual changes
     private static void addNewTopic() {
+        Scanner keyboard = new Scanner(System.in);
         System.out.println("Please enter the new topic: ");
         keyboard.nextLine();
         System.out.println("\nYou can now use the 'Add New Question' option to add questions for this topic.\n");
     }
 
     public static void getSetQuizParameters() {
+        Scanner keyboard = new Scanner(System.in);
         do {
             System.out.println("\nMain Quiz Parameters: ");
             System.out.println("\tAsk " + QuizMaster.getMainQuizNumMCQns() + " Multiple Choice Question/s");

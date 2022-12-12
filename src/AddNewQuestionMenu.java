@@ -5,12 +5,13 @@ import java.util.Scanner;
  * Student Menu System
  **/
 public class AddNewQuestionMenu {
-    public static Scanner keyboard = new Scanner(System.in);
-    private static String adminMenuInput;
-    private static int menuChoice;
-    private static boolean exit = false;
 
     public static void display() {
+        // Initialise method variables
+        Scanner keyboard = new Scanner(System.in);
+        String adminMenuInput;
+        boolean exit;
+        int menuChoice;
         do {
             System.out.println("\nWelcome to Add New Question menu\n*************************");
             System.out.println("1. Multiple Choice Question\n2. True or False Question\n3. Short Answer Question\n4. Go back to Admin Menu");
@@ -44,6 +45,7 @@ public class AddNewQuestionMenu {
     }
 
     private static boolean moreQuestions() {
+        Scanner keyboard = new Scanner(System.in);
         String choice;
         int questionChoice;
 
