@@ -25,11 +25,13 @@ public class Main
       currentAdmin = null;
 
       Student.deserialize();
+      Admin.deserialize();
+      Question.deserializeAllQuestionBanks();
 
       do
       {
          System.out.println("\n******* CCEA GCSE Digital Technology - Unit 1 Revision Quiz *******");
-         System.out.println("\nWelcome to the Main Menu\n*************************\n1. Student\n2. Teacher\n3. Quit\nPlease enter your selection: ");
+         System.out.println("\nWelcome to the Main Menu\n*************************\n1. Student\n2. Admin\n3. Quit\nPlease enter your selection: ");
 
          mainMenuChoiceInput = keyboard.next();
 
