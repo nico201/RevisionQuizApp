@@ -5,19 +5,21 @@ import java.util.Scanner;
 
 /**
  * Created by V.Campbell on 27/11/2022
- * UPDATE  COMMENTS ABOUT PROGRAM HERE
+ * Class created with several static methods with global scope
+ * Contains general purpose methods not specific to any non-application classes
  **/
 public class Globals {
     private static final Scanner keyboard = new Scanner(System.in);
 
     //populate all question arrayLists
     protected static void populateAllQuestions() {
-        Question.resetAllQuestionBanks();
-        Question.serializeAllQuestionBanks();
+        //Question.resetAllQuestionBanks();
+        //Question.serializeAllQuestionBanks();
         Question.deserializeAllQuestionBanks();
     }
 
-    //method to log exceptions to file
+    //custom method to log exceptions to file
+    //values are CSV so that they are suitable for export and further analysis by developer/tester
     protected static void logException(Exception ex) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -32,6 +34,7 @@ public class Globals {
         }
     }
 
+    //custom method to verify if input string is a valid integer
     public static boolean TryParseInt(String inputString) {
 
         boolean validInt = true;
@@ -44,6 +47,8 @@ public class Globals {
         return validInt;
     }
 
+    //custom method to validate if input sting is a valid integer and in the specified range of menu choices available
+    //can also be reused for any range not, just menu choices
     public static boolean validMenuChoice(String inputString, int min, int max) {
         boolean isValidMenuChoice = false;
         int menuChoice;
@@ -60,6 +65,7 @@ public class Globals {
         return isValidMenuChoice;
     }
 
+    //simple method to prompt user to retry/exit
     protected static boolean exitLogin() {
         String choice;
         int exitChoice;

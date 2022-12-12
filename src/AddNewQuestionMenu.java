@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 /**
  * Created by V.Campbell on 01/12/2022
- * Student Menu System
+ * Sub-menu for adding new questions
  **/
 public class AddNewQuestionMenu {
 
@@ -17,7 +17,7 @@ public class AddNewQuestionMenu {
             System.out.println("1. Multiple Choice Question\n2. True or False Question\n3. Short Answer Question\n4. Go back to Admin Menu");
             System.out.println("Please enter a selection: ");
             adminMenuInput = keyboard.nextLine();
-        } while (!Globals.validMenuChoice(adminMenuInput, 1, 4));
+        } while (!Globals.validMenuChoice(adminMenuInput,1,4));
         menuChoice = Integer.parseInt(adminMenuInput);
 
         switch (menuChoice) {
@@ -52,7 +52,7 @@ public class AddNewQuestionMenu {
         do {
             System.out.println("\n1. Add another question \n2. Return to Main Menu");
             choice = keyboard.nextLine();
-        } while (!Globals.validMenuChoice(choice, 1, 2));
+        } while (!Globals.validMenuChoice(choice,1,2));
         questionChoice = Integer.parseInt(choice);
         return (questionChoice == 1);
     }

@@ -8,7 +8,7 @@ import java.security.MessageDigest;
 
 /**
  * Created by V.Campbell on 03/12/2022
- * Extends User class to create a Teacher profile;
+ * Extends User class to create an Admin profile;
  **/
 public class Admin extends User
 {

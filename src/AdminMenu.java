@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 /**
  * Created by V.Campbell on 01/12/2022
- * Student Menu System
+ * Menu for Admins (Login/Registration)
  **/
 public class AdminMenu
 {
@@ -16,20 +16,21 @@ public class AdminMenu
 
    public static void display()
    {
-      Student.deserialize();
-      Admin.populateAdminList();//
-      Admin.serialize();//
-      Admin.deserialize();
-      Question.resetAllQuestionBanks();
-      Question.serializeAllQuestionBanks();
-      Question.deserializeAllQuestionBanks();
+//      Student.deserialize();
+//      //Admin.populateAdminList();//
+//      //Admin.serialize();//
+//      Admin.deserialize();
+//      Question.deserializeAllQuestionBanks();
+//      //Question.resetAllQuestionBanks();
+//      //Question.serializeAllQuestionBanks();
+//      //Question.deserializeAllQuestionBanks();
       do
       {
          System.out.println("\nWelcome to Admin Login/Registration");
          System.out.println("*************************");
          System.out.println("1. Register as a New Teacher \n2. Login as Existing Teacher \n3. Return to Main Menu\nPlease enter a selection: ");
          adminMenuInput = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(adminMenuInput, 1, 3));
+      } while (!Globals.validMenuChoice(adminMenuInput,1, 3));
       menuChoice = Integer.parseInt(adminMenuInput);
 
       char adminType;
@@ -175,7 +176,7 @@ public class AdminMenu
       {
          System.out.println("\n1. Try again \n2. Return to Main Menu");
          choice = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(choice, 1, 2));
+      } while (!Globals.validMenuChoice(choice,1, 2));
       exitChoice = Integer.parseInt(choice);
       return exitChoice != 1;
    }
