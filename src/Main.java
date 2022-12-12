@@ -48,7 +48,7 @@ public class Main
          StudentMenu.display();
       } else
       {
-         LoginOrRegister.quitMessage();
+         System.out.println("See you again soon!");
          System.exit(0);
       }
    }//main
