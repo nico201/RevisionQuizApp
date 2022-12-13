@@ -19,6 +19,7 @@ public class Admin extends User
 
    protected static ArrayList<Admin> adminList = new ArrayList<>();
    private static final String ADMIN_FILE_PATH = "admins.txt";
+   private static final String ADMIN_BACKUP_FILE_PATH = "adminBackup.txt";
    private static final String ADMIN_SERIALIZED = "admin.ser";
    protected static final String ADMIN_PASSPHRASE = "RosaleenIsALegend";
    private static final String SUPER_ADMIN_HASH = "0b28a5799a32c687dad2c5183718ceac";
@@ -188,6 +189,25 @@ public class Admin extends User
       {
          Main.logException(e);
          System.out.println("An error occurred." + e.getMessage());
+      }
+   }
+
+   protected static void backupToFile() {
+      try {
+         FileWriter adminBackup = new FileWriter(ADMIN_BACKUP_FILE_PATH);
+         for (Admin admin : adminList) {
+            adminBackup.write(admin.getUsername() + "\n");
+            adminBackup.write(admin.getPassword() + "\n");
+            adminBackup.write(admin.isSuperAdmin + "\n");
+            adminBackup.write(admin.canDeleteTopics + "\n");
+            adminBackup.write(admin.canResetQuestionBanks + "\n");
+            adminBackup.write(admin.canResetScores + "\n");
+         }
+         adminBackup.close();
+         System.out.println("Student Details have been Successfully Backed Up");
+      } catch (IOException ex) {
+         System.out.println(ex.getMessage());
+         Main.logException(ex);
       }
    }
 

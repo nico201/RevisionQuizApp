@@ -102,5 +102,9 @@ abstract public class User implements Serializable {
         Student.serialize();
         Student.deserialize();
     }
+    protected static void backupAllUsers(){
+        Admin.backupToFile();
+        Student.backupToFile();
+    }
 
 }//class

@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class Student extends User {
     protected static ArrayList<Student> studentList = new ArrayList<>();
     private static final String STUDENT_FILE_PATH = "students.txt";
+    private static final String STUDENT_BACKUP_FILE_PATH = "studentBackup.txt";
     private static final String STUDENT_SERIALIZED = "students.ser";
     private int highestScore;
 
@@ -74,6 +75,22 @@ public class Student extends User {
             studentReader.close();
         } catch (FileNotFoundException | PasswordException e) {
             System.out.println("An error occurred." + e.getMessage());
+        }
+    }
+    protected static void backupToFile() {
+        try {
+            FileWriter studentBackup = new FileWriter(STUDENT_BACKUP_FILE_PATH);
+            for (Student student : studentList) {
+                studentBackup.write(student.getUsername() + "\n");
+                studentBackup.write(student.getPassword() + "\n");
+                String points = Integer.toString(student.getHighestScore());
+                studentBackup.write(points + "\n");
+            }
+            studentBackup.close();
+            System.out.println("Student Details have been Successfully Backed Up");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            Main.logException(ex);
         }
     }
 
