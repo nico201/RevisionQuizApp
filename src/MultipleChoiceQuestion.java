@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Created by V.Campbell on 29/11/2022
- * UPDATE  COMMENTS ABOUT PROGRAM HERE
+ * COM809: Group 5
+ * Purpose: UPDATE  COMMENTS ABOUT PROGRAM HERE
  **/
 public class MultipleChoiceQuestion extends Question {
     //static declarations
@@ -102,7 +102,7 @@ public class MultipleChoiceQuestion extends Question {
             out.writeObject(mcQnList);
             out.close();
         } catch (IOException ex) {
-            Globals.logException(ex);
+            Main.logException(ex);
         }
     }
 
@@ -112,7 +112,7 @@ public class MultipleChoiceQuestion extends Question {
             mcQnList = (ArrayList<MultipleChoiceQuestion>) in.readObject();
 
         } catch (NotSerializableException ex) {
-            Globals.logException(ex);
+            Main.logException(ex);
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -166,7 +166,7 @@ public class MultipleChoiceQuestion extends Question {
             System.out.println("Multiple Choice Question Lists have been Successfully Backed Up");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-            Globals.logException(ex);
+            Main.logException(ex);
         }
     }
 

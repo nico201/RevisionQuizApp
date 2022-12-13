@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Created by V.Campbell on 29/11/2022
- * Derived class for True/False answer questions
+ * COM809: Group 5
+ * Purpose: Derived class for True/False answer questions
  **/
 public class TrueFalseQuestion extends Question {
     private static final String TF_QN_FILE_PATH = "tfQns.txt";
@@ -54,7 +54,7 @@ public class TrueFalseQuestion extends Question {
             out.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-            Globals.logException(ex);
+            Main.logException(ex);
         }
     }
 
@@ -66,7 +66,7 @@ public class TrueFalseQuestion extends Question {
         } catch (NotSerializableException ex) {
             //TODO: Fix Catch
         } catch (IOException | ClassNotFoundException ex) {
-            Globals.logException(ex);
+            Main.logException(ex);
         }
     }
 
@@ -87,7 +87,6 @@ public class TrueFalseQuestion extends Question {
         serialize();
     }
 
-
     protected static void backupQnsToFile() {
         try {
             FileWriter qnWriter = new FileWriter(TF_QN_BACKUP_PATH);
@@ -102,9 +101,8 @@ public class TrueFalseQuestion extends Question {
             System.out.println("True False Question Lists have been Successfully Backed Up");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-            Globals.logException(ex);
+            Main.logException(ex);
         }
     }
-
 
 }//class

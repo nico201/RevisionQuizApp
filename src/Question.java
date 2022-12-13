@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import java.util.Iterator;
 
 /**
- * Created by V.Campbell on 27/11/2022
- * Base Question class from which TrueFalseQuestion, MultipleChoiceQuestion and ShortQuestion are all derived
+ * COM809: Group 5
+ * Purpose: Base Question class from which TrueFalseQuestion, MultipleChoiceQuestion and ShortQuestion are all derived
  **/
 abstract public class Question implements Serializable {
     private String questionText;
@@ -73,17 +73,27 @@ abstract public class Question implements Serializable {
         MultipleChoiceQuestion.deserialize();
     }
 
+    /*
+     * Authors: Nico Sweeney-Ortiz
+     * Purpose: Populate a list of unique question topics from all questions
+     *          currently in question banks to be used to display topics to user
+     *          for selection of quiz topic or for topic deletion etc.
+     */
     protected static void populateUniqueTopics() {
         ArrayList<String> qnTopicList = new ArrayList<>();
         for (TrueFalseQuestion tfQn : TrueFalseQuestion.tfQnList) {
+            // Add all question topics from True/False bank to qnTopicList
             qnTopicList.add(tfQn.getTopic());
         }
         for (ShortQuestion shortQn : ShortQuestion.shortQnList) {
+            // Add all question topics from Short bank to qnTopicList
             qnTopicList.add(shortQn.getTopic());
         }
         for (MultipleChoiceQuestion mcQn : MultipleChoiceQuestion.mcQnList) {
+            // Add all question topics from Multiple Choice bank to qnTopicList
             qnTopicList.add(mcQn.getTopic());
         }
+        // Populate qnUniqueTopicList only with unique topics from across all question banks
         qnUniqueTopicList = qnTopicList.stream().distinct().collect(Collectors.toList());
     }
 
@@ -143,7 +153,7 @@ abstract public class Question implements Serializable {
         do {
             System.out.println(selectionText);
             topicChosen = keyboard.nextLine();
-        } while (!Globals.validMenuChoice(topicChosen, 1, Question.qnUniqueTopicList.size()));
+        } while (!Main.validMenuChoice(topicChosen, 1, Question.qnUniqueTopicList.size()));
         topicNum = Integer.parseInt(topicChosen);
         return topicNum - 1;
     }

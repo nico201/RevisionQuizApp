@@ -5,6 +5,10 @@
  * freshly populated from the student arraylist each time it is called.
  */
 
+/**
+ * COM809: Group 5
+ * Purpose: Display Leaderboard of student quiz scores
+ **/
 public class LeaderBoard {
 
     private static final int STUDENTDISPLAY = 3; // No. of high scores seen by students

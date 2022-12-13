@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 /**
- * Created by V.Campbell on 01/12/2022
- * Student Menu System
+ * COM809: Group 5
+ * Purpose: Student Menu System
  **/
 public class StudentMenu
 {
@@ -20,7 +20,7 @@ public class StudentMenu
          System.out.println("*************************");
          System.out.println("1. Register as new student \n2. Login as existing student \n3. Return to Main Menu\nPlease enter a selection: ");
          studentMenuInput = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(studentMenuInput, 1, 3));
+      } while (!Main.validMenuChoice(studentMenuInput, 1, 3));
       studentMenuChoice = Integer.parseInt(studentMenuInput);
       switch (studentMenuChoice)
       {
@@ -75,22 +75,22 @@ public class StudentMenu
             {
                System.out.println("Error: User is not unique.");
                validRegistration = false;
-               exit = Globals.exitLogin();
+               exit = Main.exitLogin();
             }
          } catch (PasswordException e)
          {
             //Handle exception
-            Globals.logException(e);
+            Main.logException(e);
             System.out.println(e.getMessage());
-            exit = Globals.exitLogin();
+            exit = Main.exitLogin();
             validRegistration = false;
          } catch (UsernameException e)
          {
             //Handle exception
-            Globals.logException(e);
+            Main.logException(e);
             System.out.println("Error: " + e.getMessage());
             validRegistration = false;
-            exit = Globals.exitLogin();
+            exit = Main.exitLogin();
          } finally
          {
             if (validRegistration)
@@ -137,7 +137,7 @@ public class StudentMenu
          if (!validLogIn)
          {
             System.out.println("\nUsername or Password incorrect");
-            exit = Globals.exitLogin();
+            exit = Main.exitLogin();
          }
       } while (!validLogIn && !exit);
       if (validLogIn)

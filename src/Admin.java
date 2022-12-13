@@ -7,8 +7,8 @@ import java.util.Scanner;
 import java.security.MessageDigest;
 
 /**
- * Created by V.Campbell on 03/12/2022
- * Extends User class to create an Admin profile;
+ * COM809: Group 5
+ * Purpose: Extends User class to create an Admin profile;
  **/
 public class Admin extends User
 {
@@ -21,7 +21,6 @@ public class Admin extends User
    private static final String ADMIN_FILE_PATH = "admins.txt";
    protected static final String ADMIN_PASSPHRASE = "RosaleenIsALegend";
    private static final String SUPER_ADMIN_HASH = "0b28a5799a32c687dad2c5183718ceac";
-   private static Scanner keyboard = new Scanner(System.in);
 
    protected Admin()
    {
@@ -57,6 +56,7 @@ public class Admin extends User
 
    protected void assignRights()
    {
+      Scanner keyboard = new Scanner(System.in);
       String superAdm;
       String delQns;
       String delStudents;
@@ -177,7 +177,7 @@ public class Admin extends User
          adminReader.close();
       } catch (FileNotFoundException | PasswordException | UsernameException e)
       {
-         Globals.logException(e);
+         Main.logException(e);
          System.out.println("An error occurred." + e.getMessage());
       }
    }
@@ -189,12 +189,9 @@ public class Admin extends User
          ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("admin.ser")));
          out.writeObject(adminList);
          out.close();
-      } catch (NotSerializableException ex)
-      {
-         Globals.logException(ex);
       } catch (IOException ex)
       {
-         Globals.logException(ex);
+         Main.logException(ex);
       }
    }
 
@@ -206,7 +203,7 @@ public class Admin extends User
          adminList = (ArrayList<Admin>) in.readObject();
       } catch (NotSerializableException ex)
       {
-         Globals.logException(ex);
+         Main.logException(ex);
       } catch (IOException ex)
       {
          ex.printStackTrace();
@@ -241,7 +238,7 @@ public class Admin extends User
          hash = md.digest(msg);
       } catch (NoSuchAlgorithmException ex)
       {
-         Globals.logException(ex);
+         Main.logException(ex);
       }
       StringBuilder strBuilder = new StringBuilder();
       for (byte b : hash)

@@ -2,8 +2,8 @@ import java.io.Serializable;
 import java.util.Random;
 
 /**
- * Created by V.Campbell on 01/12/2022
- * abstract base class for user creation
+ * COM809: Group 5
+ * Purpose: abstract base class for user creation
  **/
 abstract public class User implements Serializable {
     private static String error = null;

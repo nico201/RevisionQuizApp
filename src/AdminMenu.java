@@ -1,21 +1,19 @@
 import java.util.Scanner;
 
 /**
- * Created by V.Campbell on 01/12/2022
- * Menu for Admins (Login/Registration)
+ * COM809: Group 5
+ * Purpose: Menu for Admins (Login/Registration)
  **/
 public class AdminMenu
 {
-
-   public static Scanner keyboard = new Scanner(System.in);
-   private static String adminMenuInput;
-   private static int menuChoice;
    private static boolean exit = false;
-   private static boolean signUpExit = false;
    private static boolean validRegistration = false;
 
    public static void display()
    {
+      Scanner keyboard = new Scanner(System.in);
+      String adminMenuInput;
+      int menuChoice;
 //      Student.deserialize();
 //      //Admin.populateAdminList();//
 //      //Admin.serialize();//
@@ -30,7 +28,7 @@ public class AdminMenu
          System.out.println("*************************");
          System.out.println("1. Register as a New Teacher \n2. Login as Existing Teacher \n3. Return to Main Menu\nPlease enter a selection: ");
          adminMenuInput = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(adminMenuInput,1, 3));
+      } while (!Main.validMenuChoice(adminMenuInput,1, 3));
       menuChoice = Integer.parseInt(adminMenuInput);
 
       char adminType;
@@ -67,8 +65,9 @@ public class AdminMenu
 
    public static void adminSignUp(char adminType)
    {
+      Scanner keyboard = new Scanner(System.in);
       validRegistration = false;
-      signUpExit = false;
+      boolean signUpExit = false;
       String username;
       String password;
       Admin adminUser = new Admin();
@@ -96,20 +95,20 @@ public class AdminMenu
             } else
             {
                System.out.println("Error: User is not unique. Please try again");
-               signUpExit = Globals.exitLogin();
+               signUpExit = Main.exitLogin();
             }
          } catch (PasswordException e)
          {
             //Handle exception
-            Globals.logException(e);
+            Main.logException(e);
             System.out.println(e.getMessage());
-            signUpExit = Globals.exitLogin();
+            signUpExit = Main.exitLogin();
          } catch (UsernameException e)
          {
             //Handle exception
-            Globals.logException(e);
+            Main.logException(e);
             System.out.println("Error: " + e.getMessage());
-            signUpExit = Globals.exitLogin();
+            signUpExit = Main.exitLogin();
 
          } finally
          {
@@ -128,6 +127,7 @@ public class AdminMenu
 
    public static void existingAdminLogin()
    {
+      Scanner keyboard = new Scanner(System.in);
       boolean validLogIn = false;
 
       String inputUsername;
@@ -154,7 +154,7 @@ public class AdminMenu
          if (!validLogIn)
          {
             System.out.println("Username or Password incorrect");
-            exit = Globals.exitLogin();
+            exit = Main.exitLogin();
          }
       } while (!validLogIn && !exit);
       if (validLogIn)
@@ -169,6 +169,7 @@ public class AdminMenu
 
    private static boolean exitLogin()
    {
+      Scanner keyboard = new Scanner(System.in);
       String choice;
       int exitChoice;
 
@@ -176,13 +177,14 @@ public class AdminMenu
       {
          System.out.println("\n1. Try again \n2. Return to Main Menu");
          choice = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(choice,1, 2));
+      } while (!Main.validMenuChoice(choice,1, 2));
       exitChoice = Integer.parseInt(choice);
       return exitChoice != 1;
    }
 
    private static char validAdminAccess()
    {
+      Scanner keyboard = new Scanner(System.in);
       String phrase;
       System.out.println("\nPlease enter Admin access phrase:");
       phrase = keyboard.nextLine().trim();

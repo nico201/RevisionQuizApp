@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 /**
- * Created by V.Campbell on 07/12/2022
- * Admin Submenu - Gives Admins/SuperAdmins different access rights
- * access/permissions are differentiated based on various permissions set in Admin class at instantiation
+ * COM809: Group 5
+ * Purpose: Admin Submenu - Gives Admins/SuperAdmins different access rights access/permissions
+ *          are differentiated based on various permissions set in Admin class at instantiation
  **/
 public class AdminSubMenu
 {
-   private static Scanner keyboard = new Scanner(System.in);
+   private static final Scanner keyboard = new Scanner(System.in);
    private static String adminMenuInput;
    private static int maxMenuOptions=9;
    private static int menuChoice;
@@ -27,7 +27,7 @@ public class AdminSubMenu
          System.out.println("Please enter a selection: ");
 
          adminMenuInput = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(adminMenuInput,1, maxMenuOptions));
+      } while (!Main.validMenuChoice(adminMenuInput,1, maxMenuOptions));
       menuChoice = Integer.parseInt(adminMenuInput);
 
       switch (menuChoice)
@@ -107,59 +107,79 @@ public class AdminSubMenu
       System.out.println("\nYou can now use the 'Add New Question' option to add questions for this topic.\n");
    }
 
+   /*
+    * Authors: Nico Sweeney-Ortiz
+    * Purpose: Displays the pre-defined number of questions to ask the student of each question type
+    *          when the quiz is run with pre-defined values and allows the admin to change the pre-defined
+    *          value for each question type to increase or decrease the material coverage of the quiz
+    */
    public static void getSetQuizParameters()
    {
       do
       {
+         // Display quiz parameters
          System.out.println("\nMain Quiz Parameters: ");
          System.out.println("\tAsk " + QuizMaster.getMainQuizNumMCQns() + " Multiple Choice Question/s");
          System.out.println("\tAsk " + QuizMaster.getMainQuizNumTFQns() + " True/False Question/s");
          System.out.println("\tAsk " + QuizMaster.getMainQuizNumShortQns() + " Short Question/s");
          System.out.println("****************************************************");
+         // Display menu options
          System.out.println("1. Change number of Multiple Choice Questions to ask");
          System.out.println("2. Change number of True/False Questions to ask");
          System.out.println("3. Change number of Short Questions to ask");
          System.out.println("4. Go back to Admin Menu");
+         // Get admin input
          System.out.println("Please enter a selection: ");
          adminMenuInput = keyboard.nextLine();
-      } while (!Globals.validMenuChoice(adminMenuInput,1,4));
+         // Handle unexpected admin menu input
+      } while (!Main.validMenuChoice(adminMenuInput,1,4));
       menuChoice = Integer.parseInt(adminMenuInput);
+      // Carry-out requested action
       switch (menuChoice)
       {
          case 1:
             do
-            {
+            { // Print how many Multiple Choice Questions to be asked and get user input
                System.out.println("\nHow many Multiple Choice questions should be asked?");
                adminMenuInput = keyboard.nextLine();
-            } while (!Globals.validMenuChoice(adminMenuInput,1, 30));
+               // Handle unexpected user input
+            } while (!Main.validMenuChoice(adminMenuInput, QuizMaster.MIN_QUESTIONS, QuizMaster.MAX_QUESTIONS));
             menuChoice = Integer.parseInt(adminMenuInput);
+            // Set new pre-defined number of Multiple Choice questions to ask when the quiz is run
             QuizMaster.setMainQuizNumMCQns(menuChoice);
             System.out.println("The main quiz will now ask " + QuizMaster.getMainQuizNumMCQns() + " multiple choice questions");
             getSetQuizParameters();
             break;
          case 2:
             do
-            {
+            { // Print how many True/False Questions to be asked and get user input
                System.out.println("\nHow many True/False questions should be asked?");
                adminMenuInput = keyboard.nextLine();
-            } while (!Globals.validMenuChoice(adminMenuInput, 1, 30));
+               // Handle unexpected user input
+            } while (!Main.validMenuChoice(adminMenuInput, QuizMaster.MIN_QUESTIONS, QuizMaster.MAX_QUESTIONS));
             menuChoice = Integer.parseInt(adminMenuInput);
+            // Set new pre-defined number of True/False questions to ask when the quiz is run
             QuizMaster.setMainQuizNumTFQns(menuChoice);
             System.out.println("The main quiz will now ask " + QuizMaster.getMainQuizNumTFQns() + "  True/False questions");
+            // Display Quiz Parameters Menu
             getSetQuizParameters();
             break;
          case 3:
             do
-            {
+            { // Print how many Short questions to be asked and get user input
                System.out.println("\nHow many Short questions should be asked?");
                adminMenuInput = keyboard.nextLine();
-            } while (!Globals.validMenuChoice(adminMenuInput,1,30));
+               // Handle unexpected user input
+            } while (!Main.validMenuChoice(adminMenuInput, QuizMaster.MIN_QUESTIONS, QuizMaster.MAX_QUESTIONS));
             menuChoice = Integer.parseInt(adminMenuInput);
+            // Set new pre-defined number of Short questions to ask when the quiz is run
             QuizMaster.setMainQuizNumShortQns(menuChoice);
             System.out.println("The main quiz will now ask " + QuizMaster.getMainQuizNumShortQns() + "  short questions");
+            // Display Quiz Parameters Menu
             getSetQuizParameters();
             break;
          case 4:
+            // Go back to Admin Menu
             display();
             break;
       }

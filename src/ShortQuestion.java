@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Created by V.Campbell on 27/11/2022
- * Derived short answer question class
+ * COM809: Group 5
+ * Purpose: Derived short answer question class
  **/
 public class ShortQuestion extends Question {
     //class members/variables
@@ -47,7 +47,7 @@ public class ShortQuestion extends Question {
             qnReader.close();
         } catch (FileNotFoundException ex) {
             System.out.println("An error occurred." + ex.getMessage());
-            Globals.logException(ex);
+            Main.logException(ex);
         }
     }
 
@@ -59,7 +59,7 @@ public class ShortQuestion extends Question {
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-            Globals.logException(ex);
+            Main.logException(ex);
         }
     }
 
@@ -70,7 +70,7 @@ public class ShortQuestion extends Question {
 
         } catch (IOException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
-            Globals.logException(ex);
+            Main.logException(ex);
         }
     }
 
@@ -106,7 +106,7 @@ public class ShortQuestion extends Question {
             System.out.println("Short Answer Question Lists have been Successfully Backed Up");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-            Globals.logException(ex);
+            Main.logException(ex);
         }
     }
 

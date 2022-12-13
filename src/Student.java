@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Created by V.Campbell on 25/11/2022
- * Subclass of User for creation of student objects
- * Class Name: Student.java
+ * COM809: Group 5
+ * Purpose: Subclass of User for creation of student objects
  **/
 public class Student extends User {
     protected static ArrayList<Student> studentList = new ArrayList<>();
@@ -28,6 +27,10 @@ public class Student extends User {
         highestScore = 0;
     }
 
+    /*
+     * Authors: Nico Sweeney-Ortiz
+     * Purpose: Resets the Student high score instance variable to zero
+     */
     private void resetHighScore() {
         this.highestScore = 0;
     }
@@ -38,6 +41,10 @@ public class Student extends User {
         }
     }
 
+    /*
+     * Authors: Nico Sweeney-Ortiz
+     * Purpose: Gets the Student high score instance variable
+     */
     protected int getHighestScore() {
         return highestScore;
     }
@@ -66,7 +73,7 @@ public class Student extends User {
             out.writeObject(studentList);
             out.close();
         } catch (IOException ex) {
-            Globals.logException(ex);
+            Main.logException(ex);
         }
     }
 
@@ -76,7 +83,7 @@ public class Student extends User {
             studentList = (ArrayList<Student>) in.readObject();
 
         } catch (NotSerializableException ex) {
-            Globals.logException(ex);
+            Main.logException(ex);
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -95,6 +102,11 @@ public class Student extends User {
         return isUnique;
     }
 
+    /*
+     * Authors: Nico Sweeney-Ortiz
+     * Purpose: A static Student class method that loops through all
+     *          student objects in studentList and resets the high scores
+     */
     protected static void resetAllHighScores() {
         for (Student std : studentList) {
             std.resetHighScore();
