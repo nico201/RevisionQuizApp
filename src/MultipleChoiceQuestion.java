@@ -87,11 +87,19 @@ public class MultipleChoiceQuestion extends Question
    }
 
    //class methods
-   protected static void restoreOriginalQns()
+   protected static void restoreQns(char mode)
    {
+      String filePath;
       try
       {
-         File mcQnFile = new File(MULTIPLE_CHOICE_QN_FILE_PATH);
+         if (mode == 'b'){
+            filePath = MC_QN_BACKUP_PATH;
+         }
+         else {
+            filePath=MULTIPLE_CHOICE_QN_FILE_PATH;
+         }
+
+         File mcQnFile = new File(filePath);
          Scanner mcQnReader = new Scanner(mcQnFile);
          while (mcQnReader.hasNextLine())
          {
@@ -178,6 +186,7 @@ public class MultipleChoiceQuestion extends Question
          FileWriter qnWriter = new FileWriter(MC_QN_BACKUP_PATH);
          String points;
          String correct;
+         int qnCount=mcQnList.size();
          for (MultipleChoiceQuestion mcQn : mcQnList)
          {
             qnWriter.write(mcQn.getQuestionText() + "\n");
@@ -189,8 +198,15 @@ public class MultipleChoiceQuestion extends Question
             qnWriter.write(mcQn.getOption3() + "\n");
             qnWriter.write(mcQn.getOption4() + "\n");
             correct = Integer.toString(mcQn.getCorrectOption());
-            qnWriter.write(correct + "\n");
+            if(qnCount!=1){
+               qnWriter.write(correct + "\n");
+            }
+            else{
+               qnWriter.write(correct);
+            }
+            qnCount--;
          }
+         qnWriter.flush();
          qnWriter.close();
          System.out.println("Multiple Choice Question Lists have been Successfully Backed Up");
       } catch (IOException ex)
@@ -206,7 +222,7 @@ public class MultipleChoiceQuestion extends Question
       if (!f.exists())
       {
          System.out.println("Multiple Choice Question files were not found - backup files have been restored");
-         restoreOriginalQns();
+         restoreQns('o');
          serialize();
       }
    }

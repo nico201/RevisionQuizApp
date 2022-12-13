@@ -22,8 +22,8 @@ public class AdminSubMenu
          System.out.println("1: Show Full Leaderboard\n2: Reset All Student Scores\n3: Set Quiz Parameters\n4: Add New Topic\n5: Add New Question\n6: Remove topic\n7: Reset all question banks\n8: Backup all question banks\n9: Log Out & Return to Main Menu");
          if (Main.currentAdmin.isSuperAdmin())
          {
-            maxMenuOptions=11;
-            System.out.println("**** SUPER ADMIN **** \n10: View all Admin Permissions\n11: Backup All User Data");
+            maxMenuOptions=13;
+            System.out.println("**** SUPER ADMIN **** \n10: View all Admin Permissions\n11: Backup All User Data\n12: Restore All User Data\n13: Restore Questions From Backup Data");
          }
          System.out.println("Please enter a selection: ");
 
@@ -68,7 +68,7 @@ public class AdminSubMenu
             break;
          case 7:
             if (Main.currentAdmin.getCanResetQuestionBanks()){
-               Question.resetAllQuestionBanks();
+               Question.resetAllQuestionBanks('o');//resets from original qn banks
             } else{
                System.out.println("You do not have permission to reset Question Banks. Please make another choice.");
             }
@@ -94,6 +94,31 @@ public class AdminSubMenu
             break;
          case 11:
             User.backupAllUsers();
+            display();
+            break;
+         case 12:
+            //Restore all users admins & students
+            if (Main.currentAdmin.isSuperAdmin())
+            {
+               User.restoreAllUsersFromLatestBackup();
+               System.out.println("All users restored from latest backup");
+            }
+            else{
+               System.out.println("You do not have permission to restore users from backup. Please make another choice.");
+            }
+            display();
+            break;
+         case 13:
+            //Restore all questions
+            if (Main.currentAdmin.isSuperAdmin())
+            {
+               Question.restoreAllQnsFromLatestBackup();
+               System.out.println("All questions restored from latest backup");
+            }
+            else{
+               System.out.println("You do not have permission to restore questions from backup. Please make another choice.");
+            }
+            display();
             break;
          default:
          {

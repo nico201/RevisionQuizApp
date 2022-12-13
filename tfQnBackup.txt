@@ -1,0 +1,120 @@
+Fibre optic cable has a high bandwidth
+1
+Network Technologies
+T
+Fibre optic cable transmits data as electrical signals
+1
+Network Technologies
+F
+Fibre optic cables are less susceptible to interference
+1
+Network Technologies
+T
+Data carried on fibre optic cables is easier to intercept than data carried on copper cables
+1
+Network Technologies
+F
+A bus topology does not have terminators
+1
+Network Technologies
+F
+FTP stands for File Transfer Packet
+1
+Network Technologies
+F
+A relational database is made up of only one table.
+1
+Databases
+F
+A table consists of one or more records.
+1
+Databases
+T
+A field contains multiple items of data about a person or thing.
+1
+Databases
+F
+A key field uniquely identifies records in a table.
+1
+Databases
+T
+CSV stands for Computer Separated Variable
+1
+Digital Data
+F
+Collecting groups of similar data over time and processing the data together is called batch processing
+1
+Digital Data
+T
+CPU stands for Computer Processing Unit.
+1
+Hardware
+F
+High quality print feature of a typical laser printer.
+1
+Network Technologies
+T
+An advantage of using a solid state drive instead of hard disk drive is consumes high power
+1
+Network Technologies
+F
+One way social media can be misused is fake news
+1
+Social Media
+T
+The three V’s commonly associated with Big Data are Volume, Velocity and Variety.
+1
+Digital Data
+T
+HTTPS stand for High Text Transport Protocol Secure
+1
+Network Technologies
+F
+The purpose of a protocol in data communication is allowed hardware devices made by same manufacturer to communicate
+1
+Network Technologies
+F
+Trojan horse virus can enter and damage computer systems by disguise.
+1
+Digital Data
+T
+An example of a compressed file format is MIDI
+1
+Digital data
+T
+Processing data immediately as it is collected is called speed-time processing
+1
+Digital Data
+F
+Use of a digital communication application to obtain personal information from users is called phishing
+1
+Digital Data
+T
+Use of a digital communication application to overload the users inbox with unwanted content is called spamming
+1
+Digital Data
+T
+Use ergonomic hardware, furniture, wrist and foot rests promotes health problems
+1
+Health and Safety
+F
+Back pain problems is prevented by regular breaks
+1
+Health and Safety
+F
+A device which connects a number of networks together is a router
+1
+Network Technologies
+T
+Information can be accessed from anywhere with unlimited storage
+1
+Network Technologies
+F
+IoT is an advantage of using cloud computing to store software and data
+1
+Digital Data
+F
+All software and data used by a company are stored in the cloud to reduce their carbon footprint
+1
+Digital Data
+T

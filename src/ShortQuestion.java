@@ -37,11 +37,18 @@ public class ShortQuestion extends Question
       return answer;
    }
 
-   protected static void restoreOriginalQns()
+   protected static void restoreQns(char mode)
    {
+      String filePath = null;
       try
       {
-         File qnFile = new File(SHORT_QN_FILE_PATH);
+         if (mode == 'b'){
+            filePath = SHORT_QN_BACKUP_PATH;
+         }
+         else if(mode =='o'){
+            filePath=SHORT_QN_FILE_PATH;
+         }
+         File qnFile = new File(filePath);
          Scanner qnReader = new Scanner(qnFile);
          while (qnReader.hasNextLine())
          {
@@ -113,14 +120,22 @@ public class ShortQuestion extends Question
       {
          FileWriter qnWriter = new FileWriter(SHORT_QN_BACKUP_PATH);
          String points;
+         int qnCount=shortQnList.size();
          for (ShortQuestion shortQn : shortQnList)
          {
             qnWriter.write(shortQn.getQuestionText() + "\n");
             points = Integer.toString(shortQn.getPoints());
             qnWriter.write(points + "\n");
             qnWriter.write(shortQn.getTopic() + "\n");
-            qnWriter.write(shortQn.getAnswer() + "\n");
+            if(qnCount!=1){
+               qnWriter.write(shortQn.getAnswer() + "\n");
+            }
+            else{
+               qnWriter.write(shortQn.getAnswer());
+            }
+            qnCount--;
          }
+         qnWriter.flush();
          qnWriter.close();
          System.out.println("Short Answer Question Lists have been Successfully Backed Up");
       } catch (IOException ex)
@@ -136,7 +151,7 @@ public class ShortQuestion extends Question
       if (!f.exists())
       {
          System.out.println("Short Answer Question files were not found - backup files have been restored");
-         restoreOriginalQns();
+         restoreQns('o');
          serialize();
       }
    }
