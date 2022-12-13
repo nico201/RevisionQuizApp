@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class TrueFalseQuestion extends Question {
     private static final String TF_QN_FILE_PATH = "tfQns.txt";
     private static final String TF_QN_BACKUP_PATH = "tfQnBackup.txt";
+    private static final String TF_QN_SERIALIZED = "tfQns.ser";
     private static int count = 0;
     protected static ArrayList<TrueFalseQuestion> tfQnList = new ArrayList<>();
     protected char answer;
@@ -102,6 +103,14 @@ public class TrueFalseQuestion extends Question {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             Main.logException(ex);
+        }
+    }
+    protected static void fileCheck() {
+        File f = new File(TF_QN_SERIALIZED);
+        if (!f.exists()) {
+            System.out.println("True/False Question files were not found - backup files have been restored");
+            restoreOriginalQns();
+            serialize();
         }
     }
 

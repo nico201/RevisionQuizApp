@@ -4,6 +4,7 @@ import java.util.Scanner;
  * COM809: Group 5
  * Purpose: Admin Submenu - Gives Admins/SuperAdmins different access rights access/permissions
  *          are differentiated based on various permissions set in Admin class at instantiation
+ * Author: Victoria Campbell unless otherwise annotated.
  **/
 public class AdminSubMenu
 {
@@ -21,8 +22,8 @@ public class AdminSubMenu
          System.out.println("1: Show Full Leaderboard\n2: Reset All Student Scores\n3: Set Quiz Parameters\n4: Add New Topic\n5: Add New Question\n6: Remove topic\n7: Reset all question banks\n8: Backup all question banks\n9: Log Out & Return to Main Menu");
          if (Main.currentAdmin.isSuperAdmin())
          {
-            maxMenuOptions=10;
-            System.out.println("**** SUPER ADMIN **** \n10: View all Admin Permissions");
+            maxMenuOptions=11;
+            System.out.println("**** SUPER ADMIN **** \n10: View all Admin Permissions\n11: Backup All User Data");
          }
          System.out.println("Please enter a selection: ");
 
@@ -90,6 +91,9 @@ public class AdminSubMenu
                System.out.println("You do not have permission to view admin permissions. Please make another choice.");
             }
             display();
+            break;
+         case 11:
+            User.backupAllUsers();
             break;
          default:
          {
