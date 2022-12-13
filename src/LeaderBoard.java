@@ -1,29 +1,31 @@
-import javax.swing.*;
+/*
+/*
+ * COM809: Group 5
+ * Purpose: Leaderboard to display students' high scores in rank order;
+ * freshly populated from the student arraylist each time it is called.
+ */
 
-/**
- * Created by Aaron McCloskey on 27/11/2022
- * Leaderboard to display students' high scores in rank order
- * Freshly populated from the student arraylist each time it is called
- * Class Name: LeaderBoard.java
- **/
 public class LeaderBoard {
 
     private static final int STUDENTDISPLAY = 3; // No. of high scores seen by students
     private static final String[] leaderNames = new String[checkLeaderboardSize()];
     private static final int[] leaderScores = new int[checkLeaderboardSize()];
 
-    // method checks current No. of students in order to inform size of arrays needed
+
     private static int checkLeaderboardSize() {
+    /*
+    * Authors: Marcus Campbell
+    * Purpose: Checks current No. of students in order to inform size of arrays needed
+    */
         return (Student.studentList.size());
     }
 
-    private static void updateLeaderboard() {
-        // clear the arrays of any previous data
-        for (int index = 0; index <= (checkLeaderboardSize() - 1); index++) {
-            leaderScores[index] = 0;
-            leaderNames[index] = "clear";
-        }
 
+    private static void updateLeaderboard() {
+    /*
+    * Authors: Marcus Campbell
+    * Purpose: Freshly populates the leaderboard name and scores parallel arrays based on studentList
+    */
         // work through the student arraylist one by one
         for (Student studentUser : Student.studentList) {
 
@@ -87,28 +89,32 @@ public class LeaderBoard {
 
     }//updateLeaderboard
 
+
     protected static void printLeaderboard(String leaderboardUser) {
+    /*
+    * Authors: Marcus Campbell
+    * Purpose: Displays either student or admin leaderboard depending on parameter passed
+    */
         updateLeaderboard();
 
-        // display student leaderboard which only shows selected top subset
+        // display student leaderboard which only shows selected top subset of students
         if (leaderboardUser.equals("student")) {
-            System.out.println("\nStudent Leaderboard");
-            System.out.println("*******************");
-            System.out.println("Rank\tName\t\tHigh Score (%)");
-            for (int count = 1; count <= STUDENTDISPLAY; count++) {
-                System.out.println(count + ":\t\t" + leaderNames[count - 1] + "\t\t\t" + leaderScores[count - 1]);
+            System.out.println("\n********* Student Leaderboard ********");
+            System.out.printf("%-8s%-16s%-6s\n", "Rank", "Name", "High Score (%)");
+            for (int rank = 1; rank <= STUDENTDISPLAY; rank++) {
+                System.out.printf("%-8d%-16s%-6d\n", rank, leaderNames[rank - 1], leaderScores[rank - 1]);
             }//for
-        }//if
+        }//if student leaderboard
 
         // display admin leaderboard which shows all students
         else if (leaderboardUser.equals("admin")) {
-            System.out.println("\nAdmin Leaderboard");
-            System.out.println("*****************");
-            System.out.println("Rank\tName\t\tHigh Score (%)");
-            for (int count = 1; count <= checkLeaderboardSize(); count++) {
-                System.out.println(count + ":\t\t" + leaderNames[count - 1] + "\t\t\t" + leaderScores[count - 1]);
+            System.out.println("\n********* Admin Leaderboard **********");
+            System.out.printf("%-8s%-16s%-6s\n", "Rank", "Name", "High Score (%)");
+            for (int rank = 1; rank <= checkLeaderboardSize(); rank++) {
+                System.out.printf("%-8d%-16s%-6d\n", rank, leaderNames[rank - 1], leaderScores[rank - 1]);
             }//for
-        }//if
-    }
+        }//if admin leaderboard
+
+    }//printLeaderboard
 
 }//class
