@@ -157,5 +157,15 @@ abstract public class Question implements Serializable {
         topicNum = Integer.parseInt(topicChosen);
         return topicNum - 1;
     }
+    protected static void checkQuestionFiles(){
+        MultipleChoiceQuestion.fileCheck();
+        ShortQuestion.fileCheck();
+        TrueFalseQuestion.fileCheck();
+    }
+    protected static void resetAllQuestions(){
+        Question.resetAllQuestionBanks();
+        Question.serializeAllQuestionBanks();
+        Question.deserializeAllQuestionBanks();
+    }
 
 }//class

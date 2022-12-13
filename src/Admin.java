@@ -19,6 +19,7 @@ public class Admin extends User
 
    protected static ArrayList<Admin> adminList = new ArrayList<>();
    private static final String ADMIN_FILE_PATH = "admins.txt";
+   private static final String ADMIN_SERIALIZED = "admin.ser";
    protected static final String ADMIN_PASSPHRASE = "RosaleenIsALegend";
    private static final String SUPER_ADMIN_HASH = "0b28a5799a32c687dad2c5183718ceac";
 
@@ -54,6 +55,14 @@ public class Admin extends User
       return ("Admin username: " + getUsername() + "\nAdmin Rights:" + "\nCan Delete Topics: " + canDeleteTopics + "\nCan Reset Question Banks: " + canResetQuestionBanks + "\nCan Reset Quiz Scores: " + canResetScores);
    }
 
+   protected static void fileCheck() {
+      File f = new File(ADMIN_SERIALIZED);
+      if (!f.exists()) {
+         System.out.println("Admin files were not found - backup files have been restored");
+         populateAdminList();
+         serialize();
+      }
+   }
    protected void assignRights()
    {
       Scanner keyboard = new Scanner(System.in);

@@ -2,3 +2,5 @@ Date/Time, Exception Detail
 
 09/12/2022 10:48:46, null
 Password does not contain an Upper Case character
+13/12/2022 19:11:05, Question; local class incompatible: stream classdesc serialVersionUID = 2102597674115261064, local class serialVersionUID = -4307296684090590956
+13/12/2022 19:11:05, Question; local class incompatible: stream classdesc serialVersionUID = 2102597674115261064, local class serialVersionUID = -4307296684090590956

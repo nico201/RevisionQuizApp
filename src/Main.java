@@ -16,11 +16,15 @@ public class Main
 
    public static void main(String[] args)
    {
+      Question.resetAllQuestions();
+      User.resetAllUsers();
+
       Main.displayMainMenu();
    }
 
    public static void displayMainMenu()
    {
+      performSystemCheck();
       Scanner keyboard = new Scanner(System.in);
       String mainMenuChoiceInput;
       int menuChoice;
@@ -112,17 +116,26 @@ public class Main
    protected static boolean validMenuChoice(String inputString, int min, int max) {
        boolean isValidMenuChoice = false;
        int menuChoice;
-       if (TryParseInt(inputString)) {
-           menuChoice = Integer.parseInt(inputString);
-           if (menuChoice >= min && menuChoice <= max) {
-               isValidMenuChoice = true;
-           } else {
-               System.out.println("Menu choice out of range. Please try again!");
-           }
-       } else {
-           System.out.println("Not a valid integer. Please try again!");
+       if(!inputString.equals(null)){
+          if (TryParseInt(inputString)) {
+             menuChoice = Integer.parseInt(inputString);
+             if (menuChoice >= min && menuChoice <= max) {
+                isValidMenuChoice = true;
+             } else {
+                System.out.println("Menu choice out of range. Please try again!");
+             }
+          } else {
+             System.out.println("Not a valid integer. Please try again!");
+          }
        }
        return isValidMenuChoice;
+   }
+
+   protected static void performSystemCheck(){
+      //check presence of user files
+      User.checkUserFiles();
+      //check presence of question files
+      Question.checkQuestionFiles();
    }
 
 }//class

@@ -68,7 +68,6 @@ abstract public class User implements Serializable {
     public String toString() {
         return "This is a user profile";
     }
-
     protected static boolean hasDigit(String s) {
         boolean hasNumber = false;
         for (char c : s.toCharArray()) {
@@ -88,6 +87,20 @@ abstract public class User implements Serializable {
             }
         }
         return hasUpper;
+    }
+
+    protected static void checkUserFiles(){
+        Admin.fileCheck();
+        Student.fileCheck();
+    }
+
+    protected static void resetAllUsers(){
+        Admin.populateAdminList();
+        Admin.serialize();
+        Admin.deserialize();
+        Student.populateStudentList();
+        Student.serialize();
+        Student.deserialize();
     }
 
 }//class

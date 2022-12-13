@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class Student extends User {
     protected static ArrayList<Student> studentList = new ArrayList<>();
     private static final String STUDENT_FILE_PATH = "students.txt";
+    private static final String STUDENT_SERIALIZED = "students.ser";
     private int highestScore;
 
     protected Student() {
@@ -25,6 +26,15 @@ public class Student extends User {
     protected Student(String Forename, String Surname, String Password) throws PasswordException, UsernameException {
         super(Forename, Surname, Password);
         highestScore = 0;
+    }
+
+    protected static void fileCheck() {
+        File f = new File(STUDENT_SERIALIZED);
+        if (!f.exists()) {
+            System.out.println("Student files were not found - backup files have been restored");
+            populateStudentList();
+            serialize();
+        }
     }
 
     /*

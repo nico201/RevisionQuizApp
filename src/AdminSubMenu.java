@@ -4,6 +4,7 @@ import java.util.Scanner;
  * COM809: Group 5
  * Purpose: Admin Submenu - Gives Admins/SuperAdmins different access rights access/permissions
  *          are differentiated based on various permissions set in Admin class at instantiation
+ * Author: Victoria Campbell unless otherwise annotated.
  **/
 public class AdminSubMenu
 {
