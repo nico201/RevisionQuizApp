@@ -112,5 +112,9 @@ abstract public class User implements Serializable {
         Student.restoreStudents('b');
         Student.serialize();
     }
+    protected static void deserializeAllUsers(){
+        Admin.deserialize();
+        Student.deserialize();
+    }
 
 }//class

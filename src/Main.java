@@ -16,25 +16,21 @@ public class Main
 
    public static void main(String[] args)
    {
-      Question.resetAllQuestions();
-      User.resetAllUsers();
-
+      performSystemCheck();//if serialized files are not found they are automatically restored from the original text files
+      //deserialize all files
+      User.deserializeAllUsers();
+      Question.deserializeAllQuestionBanks();
       Main.displayMainMenu();
    }
 
    public static void displayMainMenu()
    {
-      performSystemCheck();
       Scanner keyboard = new Scanner(System.in);
       String mainMenuChoiceInput;
       int menuChoice;
 
       currentStudent = null;
       currentAdmin = null;
-
-      Student.deserialize();
-      Admin.deserialize();
-      Question.deserializeAllQuestionBanks();
 
       do
       {
@@ -57,14 +53,15 @@ public class Main
       } else
       {
          System.out.println("See you again soon!");
+         Admin.serialize();
+         Student.serialize();
+         Question.serializeAllQuestionBanks();
          System.exit(0);
       }
    }//main
 
    //populate all question arrayLists
    protected static void populateAllQuestions() {
-       //Question.resetAllQuestionBanks();
-       //Question.serializeAllQuestionBanks();
        Question.deserializeAllQuestionBanks();
    }
 
