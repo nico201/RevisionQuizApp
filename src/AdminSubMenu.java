@@ -3,14 +3,14 @@ import java.util.Scanner;
 /**
  * COM809: Group 5
  * Purpose: Admin Submenu - Gives Admins/SuperAdmins different access rights access/permissions
- *          are differentiated based on various permissions set in Admin class at instantiation
+ * are differentiated based on various permissions set in Admin class at instantiation
  * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 public class AdminSubMenu
 {
    private static final Scanner keyboard = new Scanner(System.in);
    private static String adminMenuInput;
-   private static int maxMenuOptions=9;
+   private static int maxMenuOptions = 9;
    private static int menuChoice;
    //private static boolean exit = false;
 
@@ -27,13 +27,13 @@ public class AdminSubMenu
          System.out.println("1: Show Full Leaderboard\n2: Reset All Student Scores\n3: Set Quiz Parameters\n4: Add New Topic\n5: Add New Question\n6: Remove topic\n7: Reset all question banks\n8: Backup all question banks\n9: Log Out & Return to Main Menu");
          if (Main.currentAdmin.getIsSuperAdmin())
          {
-            maxMenuOptions=13;
-            System.out.println("**** SUPER ADMIN **** \n10: View all Admin Permissions\n11: Backup All User Data\n12: Restore All User Data\n13: Restore Questions From Backup Data");
+            maxMenuOptions = 14;
+            System.out.println("**** SUPER ADMIN **** \n10: View all Admin Permissions\n11: Backup All User Data\n12: Restore All User Data from backup\n13: Restore All User Data from original\n14: Restore Questions From Backup Data");
          }
          System.out.println("Please enter a selection: ");
 
          adminMenuInput = keyboard.nextLine();
-      } while (!Main.validMenuChoice(adminMenuInput,1, maxMenuOptions));
+      } while (!Main.validMenuChoice(adminMenuInput, 1, maxMenuOptions));
       menuChoice = Integer.parseInt(adminMenuInput);
 
       switch (menuChoice)
@@ -43,9 +43,11 @@ public class AdminSubMenu
             display();
             break;
          case 2:
-            if (Main.currentAdmin.getCanResetScores()){
+            if (Main.currentAdmin.getCanResetScores())
+            {
                Student.resetAllHighScores();
-            } else{
+            } else
+            {
                System.out.println("You do not have permission to reset scores. Please make another choice.");
             }
             display();
@@ -63,18 +65,22 @@ public class AdminSubMenu
             Main.displayMainMenu();//return to main menu
             break;
          case 6:
-            if (Main.currentAdmin.getCanDeleteTopics()){
+            if (Main.currentAdmin.getCanDeleteTopics())
+            {
                int topicNum = Question.chosenTopic("Which topic would you like to remove all questions for?");
                Question.removeTopicQuestions(topicNum);
-            } else{
+            } else
+            {
                System.out.println("You do not have permission to delete topics. Please make another choice.");
             }
             display();
             break;
          case 7:
-            if (Main.currentAdmin.getCanResetQuestionBanks()){
+            if (Main.currentAdmin.getCanResetQuestionBanks())
+            {
                Question.resetAllQuestionBanks('o');//resets from original qn banks
-            } else{
+            } else
+            {
                System.out.println("You do not have permission to reset Question Banks. Please make another choice.");
             }
             display();
@@ -84,15 +90,15 @@ public class AdminSubMenu
             display();
             break;
          case 9:
-            Main.currentAdmin=null;
+            Main.currentAdmin = null;
             Main.displayMainMenu();//return to main menu
             break;
          case 10:
             if (Main.currentAdmin.getIsSuperAdmin())
             {
                Admin.viewAllAdminPermissions();
-            }
-            else{
+            } else
+            {
                System.out.println("You do not have permission to view admin permissions. Please make another choice.");
             }
             display();
@@ -102,25 +108,38 @@ public class AdminSubMenu
             display();
             break;
          case 12:
-            //Restore all users admins & students
+            //Restore all users admins & students from backup
             if (Main.currentAdmin.getIsSuperAdmin())
             {
                User.restoreAllUsersFromLatestBackup();
                System.out.println("All users restored from latest backup");
-            }
-            else{
+            } else
+            {
                System.out.println("You do not have permission to restore users from backup. Please make another choice.");
             }
             display();
             break;
          case 13:
+            //Restore all users admins & students from original
+            if (Main.currentAdmin.getIsSuperAdmin())
+            {
+               Admin.restoreAdmins('o');
+               Student.restoreStudents('o');
+               System.out.println("All users restored from original files");
+            } else
+            {
+               System.out.println("You do not have permission to restore users from backup. Please make another choice.");
+            }
+            display();
+            break;
+         case 14:
             //Restore all questions
             if (Main.currentAdmin.getIsSuperAdmin())
             {
                Question.restoreAllQnsFromLatestBackup();
                System.out.println("All questions restored from latest backup");
-            }
-            else{
+            } else
+            {
                System.out.println("You do not have permission to restore questions from backup. Please make another choice.");
             }
             display();
@@ -167,7 +186,7 @@ public class AdminSubMenu
          System.out.println("Please enter a selection: ");
          adminMenuInput = keyboard.nextLine();
          // Handle unexpected admin menu input
-      } while (!Main.validMenuChoice(adminMenuInput,1,4));
+      } while (!Main.validMenuChoice(adminMenuInput, 1, 4));
       menuChoice = Integer.parseInt(adminMenuInput);
       // Carry-out requested action
       switch (menuChoice)
