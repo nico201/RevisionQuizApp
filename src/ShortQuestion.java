@@ -101,7 +101,7 @@ public class ShortQuestion extends Question
       }
    }
    //Author: David
-   //Purpose: ??
+   //Purpose: Prompt, read in and store topic, question text, points and correct answer
    protected static void declareInitialiseAndUpdate_NewQuestionObject()
    {
       Scanner keyboard = new Scanner(System.in);

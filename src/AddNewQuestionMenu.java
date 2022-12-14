@@ -3,7 +3,8 @@ import java.util.Scanner;
 /**
  * COM809: Group 5
  * Purpose: Sub-menu for adding new questions
- Author: Vicky Campbell. Method authors explicitly annotated
+ * Author: Vicky Campbell. Method authors explicitly annotated
+ * Question Banks Created by: David Fadeyi
  **/
 public class AddNewQuestionMenu {
 
@@ -21,6 +22,8 @@ public class AddNewQuestionMenu {
         } while (!Main.validMenuChoice(adminMenuInput,1,4));
         menuChoice = Integer.parseInt(adminMenuInput);
 
+        //Author: David
+        //Purpose: Menu choice for Multiple Choice, True /False or Short Answer questions objects
         switch (menuChoice) {
             case 1:
                 MultipleChoiceQuestion.declareInitialiseAndUpdate_NewQuestionObject();

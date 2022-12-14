@@ -159,7 +159,7 @@ public class MultipleChoiceQuestion extends Question
       }
    }
    //Author: David
-   //Purpose: ??
+   //Purpose: Prompt, read in and store topic, question text, points, options 1, 2, 3, 4 and correct option
    protected static void declareInitialiseAndUpdate_NewQuestionObject()
    {
       Scanner keyboard = new Scanner(System.in);

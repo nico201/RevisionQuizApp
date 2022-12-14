@@ -84,7 +84,7 @@ public class TrueFalseQuestion extends Question {
         }
     }
     //Author: David
-    //Purpose: ??
+    //Purpose: Prompt, read in and store topic, question text, points and answer
     protected static void declareInitialiseAndUpdate_NewQuestionObject() {
         Scanner keyboard = new Scanner(System.in);
         TrueFalseQuestion tf1 = new TrueFalseQuestion(null, -1, null, '0');
