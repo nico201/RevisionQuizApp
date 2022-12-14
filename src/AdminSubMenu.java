@@ -4,7 +4,7 @@ import java.util.Scanner;
  * COM809: Group 5
  * Purpose: Admin Submenu - Gives Admins/SuperAdmins different access rights access/permissions
  *          are differentiated based on various permissions set in Admin class at instantiation
- * Author: Victoria Campbell unless otherwise annotated.
+ * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 public class AdminSubMenu
 {
@@ -14,16 +14,21 @@ public class AdminSubMenu
    private static int menuChoice;
    //private static boolean exit = false;
 
+   //method to display admin sub-menu
+   //options displayed are determined by the adminType
+   //admin sees options 1-9, although some actions may be restricted based on permissions granted upon creation
+   //superAdmin sees extended menu with 4 additional functions (options 1-13)
+   //if standard admin tries to execute these access is denied
    public static void display()
    {
       do
       {
          System.out.println("\n********** Admin Area **********");
          System.out.println("1: Show Full Leaderboard\n2: Reset All Student Scores\n3: Set Quiz Parameters\n4: Add New Topic\n5: Add New Question\n6: Remove topic\n7: Reset all question banks\n8: Backup all question banks\n9: Log Out & Return to Main Menu");
-         if (Main.currentAdmin.isSuperAdmin())
+         if (Main.currentAdmin.getIsSuperAdmin())
          {
-            maxMenuOptions=11;
-            System.out.println("**** SUPER ADMIN **** \n10: View all Admin Permissions\n11: Backup All User Data");
+            maxMenuOptions=13;
+            System.out.println("**** SUPER ADMIN **** \n10: View all Admin Permissions\n11: Backup All User Data\n12: Restore All User Data\n13: Restore Questions From Backup Data");
          }
          System.out.println("Please enter a selection: ");
 
@@ -68,7 +73,7 @@ public class AdminSubMenu
             break;
          case 7:
             if (Main.currentAdmin.getCanResetQuestionBanks()){
-               Question.resetAllQuestionBanks();
+               Question.resetAllQuestionBanks('o');//resets from original qn banks
             } else{
                System.out.println("You do not have permission to reset Question Banks. Please make another choice.");
             }
@@ -83,7 +88,7 @@ public class AdminSubMenu
             Main.displayMainMenu();//return to main menu
             break;
          case 10:
-            if (Main.currentAdmin.isSuperAdmin())
+            if (Main.currentAdmin.getIsSuperAdmin())
             {
                Admin.viewAllAdminPermissions();
             }
@@ -94,6 +99,31 @@ public class AdminSubMenu
             break;
          case 11:
             User.backupAllUsers();
+            display();
+            break;
+         case 12:
+            //Restore all users admins & students
+            if (Main.currentAdmin.getIsSuperAdmin())
+            {
+               User.restoreAllUsersFromLatestBackup();
+               System.out.println("All users restored from latest backup");
+            }
+            else{
+               System.out.println("You do not have permission to restore users from backup. Please make another choice.");
+            }
+            display();
+            break;
+         case 13:
+            //Restore all questions
+            if (Main.currentAdmin.getIsSuperAdmin())
+            {
+               Question.restoreAllQnsFromLatestBackup();
+               System.out.println("All questions restored from latest backup");
+            }
+            else{
+               System.out.println("You do not have permission to restore questions from backup. Please make another choice.");
+            }
+            display();
             break;
          default:
          {
@@ -103,6 +133,7 @@ public class AdminSubMenu
       }
    }
 
+   // Authors: Marcus Campbell
    // this is a 'dummy' option for user peace of mind - makes no actual changes
    private static void addNewTopic()
    {

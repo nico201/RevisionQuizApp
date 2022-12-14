@@ -8,6 +8,7 @@ import java.util.Iterator;
 /**
  * COM809: Group 5
  * Purpose: Base Question class from which TrueFalseQuestion, MultipleChoiceQuestion and ShortQuestion are all derived
+ * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 abstract public class Question implements Serializable {
     private String questionText;
@@ -15,22 +16,23 @@ abstract public class Question implements Serializable {
     private String topic;
     protected static List<String> qnUniqueTopicList;
 
+    //default constructor
     protected Question() {
         questionText = "";
         points = 0;
     }
-
+    //parameterised constructor
     protected Question(String QuestionText, int Points) {
         questionText = QuestionText;
         points = Points;
     }
-
+    //parameterised constructor
     protected Question(String QuestionText, int Points, String Topic) {
         questionText = QuestionText;
         points = Points;
         topic = Topic;
     }
-
+    //setters & getters
     protected void setQuestionText(String QuestionText) {
         questionText = QuestionText;
     }
@@ -55,18 +57,21 @@ abstract public class Question implements Serializable {
         return topic;
     }
 
-    protected static void resetAllQuestionBanks() {
-        TrueFalseQuestion.restoreOriginalQns();
-        ShortQuestion.restoreOriginalQns();
-        MultipleChoiceQuestion.restoreOriginalQns();
+    //method to reset all question banks
+    //has 2 modes
+    //restore from most recent (b)ackup or from the (o)riginal
+    protected static void resetAllQuestionBanks(char mode) {
+        TrueFalseQuestion.restoreQns(mode);
+        ShortQuestion.restoreQns(mode);
+        MultipleChoiceQuestion.restoreQns(mode);
     }
-
+    //method to serialize all question banks
     protected static void serializeAllQuestionBanks() {
         TrueFalseQuestion.serialize();
         ShortQuestion.serialize();
         MultipleChoiceQuestion.serialize();
     }
-
+    //method to deserialize all question banks
     protected static void deserializeAllQuestionBanks() {
         TrueFalseQuestion.deserialize();
         ShortQuestion.deserialize();
@@ -96,7 +101,8 @@ abstract public class Question implements Serializable {
         // Populate qnUniqueTopicList only with unique topics from across all question banks
         qnUniqueTopicList = qnTopicList.stream().distinct().collect(Collectors.toList());
     }
-
+    //method to remove all questions that match a specified topic, from all question banks
+    //Iterator used to allow removal of question objects in place, while still iterating through the list
     protected static void removeTopicQuestions(int topicPosition) {
         String removalTopic = qnUniqueTopicList.get(topicPosition);
         int qnsRemoved = 0;
@@ -132,13 +138,15 @@ abstract public class Question implements Serializable {
         serializeAllQuestionBanks();
         System.out.println("Question banks have been updated");
     }
-
+    //method to write all question banks to their respective backup text files, leaving original question banks intact
     protected static void backupAllQuestions() {
         TrueFalseQuestion.backupQnsToFile();
         MultipleChoiceQuestion.backupQnsToFile();
         ShortQuestion.backupQnsToFile();
     }
 
+    //method to determine the numerical index of the selected topic
+    // based on the dynamically generated list of unique topics
     protected static int chosenTopic(String selectionText) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("\nQuestion Topics:");
@@ -157,13 +165,22 @@ abstract public class Question implements Serializable {
         topicNum = Integer.parseInt(topicChosen);
         return topicNum - 1;
     }
+    //method to check presence of all serialized question files, required for the system to function
+    //if not present they are restored from original text files
     protected static void checkQuestionFiles(){
         MultipleChoiceQuestion.fileCheck();
         ShortQuestion.fileCheck();
         TrueFalseQuestion.fileCheck();
     }
+    //method to reset all question files to that of the original text file
     protected static void resetAllQuestions(){
-        Question.resetAllQuestionBanks();
+        Question.resetAllQuestionBanks('o');
+        Question.serializeAllQuestionBanks();
+        Question.deserializeAllQuestionBanks();
+    }
+    //method to restore all question files from most recent backup
+    protected static void restoreAllQnsFromLatestBackup(){
+        Question.resetAllQuestionBanks('b');
         Question.serializeAllQuestionBanks();
         Question.deserializeAllQuestionBanks();
     }

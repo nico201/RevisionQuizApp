@@ -7,6 +7,7 @@ import java.util.Scanner;
 /**
  * COM809: Group 5
  * Purpose: Startup screen & Main menu
+ * Author: Vicky Campbell & Aaron McCloskey. Method authors explicitly annotated
  **/
 
 public class Main
@@ -16,25 +17,21 @@ public class Main
 
    public static void main(String[] args)
    {
-      Question.resetAllQuestions();
-      User.resetAllUsers();
-
+      performSystemCheck();//if serialized files are not found they are automatically restored from the original text files
+      //deserialize all files
+      User.deserializeAllUsers();
+      Question.deserializeAllQuestionBanks();
       Main.displayMainMenu();
    }
 
    public static void displayMainMenu()
    {
-      performSystemCheck();
       Scanner keyboard = new Scanner(System.in);
       String mainMenuChoiceInput;
       int menuChoice;
 
       currentStudent = null;
       currentAdmin = null;
-
-      Student.deserialize();
-      Admin.deserialize();
-      Question.deserializeAllQuestionBanks();
 
       do
       {
@@ -57,17 +54,19 @@ public class Main
       } else
       {
          System.out.println("See you again soon!");
+         Admin.serialize();
+         Student.serialize();
+         Question.serializeAllQuestionBanks();
          System.exit(0);
       }
    }//main
 
    //populate all question arrayLists
    protected static void populateAllQuestions() {
-       //Question.resetAllQuestionBanks();
-       //Question.serializeAllQuestionBanks();
        Question.deserializeAllQuestionBanks();
    }
 
+   //Author: Vicky Campbell
    //simple method to prompt user to retry/exit
    protected static boolean exitLogin() {
        Scanner keyboard = new Scanner(System.in);
@@ -82,6 +81,7 @@ public class Main
        return exitChoice != 1;
    }
 
+   //Author: Vicky Campbell
    //custom method to log exceptions to file
    //values are CSV so that they are suitable for export and further analysis by developer/tester
    protected static void logException(Exception ex) {
@@ -98,6 +98,7 @@ public class Main
        }
    }
 
+   //Author: Vicky Campbell
    //custom method to verify if input string is a valid integer
    protected static boolean TryParseInt(String inputString) {
 
@@ -111,6 +112,7 @@ public class Main
        return validInt;
    }
 
+   //Author: Vicky Campbell
    //custom method to validate if input sting is a valid integer and in the specified range of menu choices available
    //can also be reused for any range not, just menu choices
    protected static boolean validMenuChoice(String inputString, int min, int max) {
@@ -131,6 +133,9 @@ public class Main
        return isValidMenuChoice;
    }
 
+   //Author: Vicky Campbell
+   //Simple method to verify existence of serialized files required for the system to operate correctly
+   //If not found they are recreated from the original data in the text files
    protected static void performSystemCheck(){
       //check presence of user files
       User.checkUserFiles();

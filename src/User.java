@@ -4,25 +4,27 @@ import java.util.Random;
 /**
  * COM809: Group 5
  * Purpose: abstract base class for user creation
+ * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 abstract public class User implements Serializable {
-    private static String error = null;
     private String forename;
     private String surname;
     protected String username;
     protected String password;
+    private static String error = null;
 
+    //default canstructor
     protected User() {
         username = "";
         password = "";
     }
-
+    //parameterised constructor
     protected User(String Username, String Password) throws PasswordException {
         error = null;
         username = Username;
         setPassword(Password);
     }
-
+    //parameterised constructor
     protected User(String Forename, String Surname, String Password) throws UsernameException, PasswordException {
         error = null;
         forename = Forename;
@@ -30,7 +32,9 @@ abstract public class User implements Serializable {
         setUsername();
         setPassword(Password);
     }
+    //getters & setters
 
+    //custom setter for username
     protected void setUsername() throws UsernameException {
         if (forename.length() > 2 && surname.length() > 2) {
             Random rnd = new Random();
@@ -45,6 +49,7 @@ abstract public class User implements Serializable {
         return username;
     }
 
+    //custom setter for password
     protected void setPassword(String Password) throws PasswordException {
         if (Password.length() <= 8)
             error += "\nPassword is not at least 8 characters";
@@ -65,9 +70,11 @@ abstract public class User implements Serializable {
         return password;
     }
 
+    //base toString method
     public String toString() {
         return "This is a user profile";
     }
+    //method to validate if digit is present in string
     protected static boolean hasDigit(String s) {
         boolean hasNumber = false;
         for (char c : s.toCharArray()) {
@@ -77,7 +84,7 @@ abstract public class User implements Serializable {
         }
         return hasNumber;
     }
-
+    //method to validate if upperCase is present in string
     private static boolean hasUpper(String s) {
         boolean hasUpper = false;
         for (char c : s.toCharArray()) {
@@ -93,18 +100,33 @@ abstract public class User implements Serializable {
         Admin.fileCheck();
         Student.fileCheck();
     }
-
+    //method to restore all admins/students
+    //restores from original text files
     protected static void resetAllUsers(){
-        Admin.populateAdminList();
+        Admin.restoreAdmins('o');
         Admin.serialize();
         Admin.deserialize();
-        Student.populateStudentList();
+        Student.restoreStudents('o');
         Student.serialize();
         Student.deserialize();
     }
+    //method to back up all admin & Student data to text file
     protected static void backupAllUsers(){
         Admin.backupToFile();
         Student.backupToFile();
+    }
+    //method to restore all admins/students
+    //restores from most recent backup file
+    protected static void restoreAllUsersFromLatestBackup(){
+        Admin.restoreAdmins('b');
+        Admin.serialize();
+        Student.restoreStudents('b');
+        Student.serialize();
+    }
+    //method to deserialize all admins/students from file
+    protected static void deserializeAllUsers(){
+        Admin.deserialize();
+        Student.deserialize();
     }
 
 }//class

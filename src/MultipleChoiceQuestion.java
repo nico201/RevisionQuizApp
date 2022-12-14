@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 /**
  * COM809: Group 5
- * Purpose: UPDATE  COMMENTS ABOUT PROGRAM HERE
+ * Multiple Choice Question Class - Derived from Question base Class
+ * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 public class MultipleChoiceQuestion extends Question
 {
@@ -24,6 +25,7 @@ public class MultipleChoiceQuestion extends Question
    private String option4;
    private int correctOption;
 
+   //parameterised constructor
    private MultipleChoiceQuestion(String QuestionText, int Points, String Topic, String Opt1, String Opt2, String Opt3, String Opt4, int CorrectOption)
    {
 
@@ -35,7 +37,7 @@ public class MultipleChoiceQuestion extends Question
       correctOption = CorrectOption;
       count++;
    }
-
+   //getters/setters
    protected void setOption1(String Option1)
    {
       option1 = Option1;
@@ -87,11 +89,23 @@ public class MultipleChoiceQuestion extends Question
    }
 
    //class methods
-   protected static void restoreOriginalQns()
+   //method to restore all multiple choice questions from text file
+   //has 2 modes
+   //b - restore from most recent backup file
+   //o - restore from original text file
+   protected static void restoreQns(char mode)
    {
+      String filePath;
       try
       {
-         File mcQnFile = new File(MULTIPLE_CHOICE_QN_FILE_PATH);
+         if (mode == 'b'){
+            filePath = MC_QN_BACKUP_PATH;
+         }
+         else {
+            filePath=MULTIPLE_CHOICE_QN_FILE_PATH;
+         }
+
+         File mcQnFile = new File(filePath);
          Scanner mcQnReader = new Scanner(mcQnFile);
          while (mcQnReader.hasNextLine())
          {
@@ -112,7 +126,7 @@ public class MultipleChoiceQuestion extends Question
          System.out.println("An error occurred." + e.getMessage());
       }
    }
-
+   //method to serialize all multiple choice questions
    protected static void serialize()
    {
       try
@@ -125,7 +139,7 @@ public class MultipleChoiceQuestion extends Question
          Main.logException(ex);
       }
    }
-
+   //method to deserialize all multiple choice questions
    protected static void deserialize()
    {
       try
@@ -144,7 +158,8 @@ public class MultipleChoiceQuestion extends Question
          throw new RuntimeException(e);
       }
    }
-
+   //Author: David
+   //Purpose: ??
    protected static void declareInitialiseAndUpdate_NewQuestionObject()
    {
       Scanner keyboard = new Scanner(System.in);
@@ -170,7 +185,7 @@ public class MultipleChoiceQuestion extends Question
       mcQnList.add(mcq1);
       serialize();
    }
-
+   //method to write current question list to separate backup text file for later restoration if required
    protected static void backupQnsToFile()
    {
       try
@@ -178,6 +193,7 @@ public class MultipleChoiceQuestion extends Question
          FileWriter qnWriter = new FileWriter(MC_QN_BACKUP_PATH);
          String points;
          String correct;
+         int qnCount=mcQnList.size();
          for (MultipleChoiceQuestion mcQn : mcQnList)
          {
             qnWriter.write(mcQn.getQuestionText() + "\n");
@@ -189,8 +205,16 @@ public class MultipleChoiceQuestion extends Question
             qnWriter.write(mcQn.getOption3() + "\n");
             qnWriter.write(mcQn.getOption4() + "\n");
             correct = Integer.toString(mcQn.getCorrectOption());
-            qnWriter.write(correct + "\n");
+            //ensures additional blank line not written out after last value
+            if(qnCount!=1){
+               qnWriter.write(correct + "\n");
+            }
+            else{
+               qnWriter.write(correct);
+            }
+            qnCount--;
          }
+         qnWriter.flush();
          qnWriter.close();
          System.out.println("Multiple Choice Question Lists have been Successfully Backed Up");
       } catch (IOException ex)
@@ -199,14 +223,14 @@ public class MultipleChoiceQuestion extends Question
          Main.logException(ex);
       }
    }
-
+   //method to check if serialized file is present, restores it from original text file if not
    protected static void fileCheck()
    {
       File f = new File(MC_QN_SERIALIZED);
       if (!f.exists())
       {
          System.out.println("Multiple Choice Question files were not found - backup files have been restored");
-         restoreOriginalQns();
+         restoreQns('o');
          serialize();
       }
    }

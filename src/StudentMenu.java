@@ -3,10 +3,10 @@ import java.util.Scanner;
 /**
  * COM809: Group 5
  * Purpose: Student Menu System
+ *  * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 public class StudentMenu
 {
-
    protected static void display()
    {
       Scanner keyboard = new Scanner(System.in);
@@ -41,7 +41,7 @@ public class StudentMenu
          }
       }
    }
-
+   //method to register new student
    protected static void studentSignUp()
    {
       Scanner keyboard = new Scanner(System.in);
@@ -108,6 +108,7 @@ public class StudentMenu
       }
    }
 
+   //method to validate login of existing student
    protected static void existingStudentLogin()
    {
       Scanner keyboard = new Scanner(System.in);

@@ -38,7 +38,7 @@ public class QuizMenu {
                 Main.populateAllQuestions();
                 // Get student topic selection
                 topicIndex = Question.chosenTopic("Which topic would you like to be quizzed on?");
-                // Get choosen topic
+                // Get chosen topic
                 chosenTopic = Question.qnUniqueTopicList.get(topicIndex);
                 // Run 'topic' quiz on requested topic with pre-defined number of questions
                 executeQuiz(chosenTopic);
@@ -86,7 +86,8 @@ public class QuizMenu {
             Main.displayMainMenu();
         }
     }
-
+    //Author: Vicky Campbell
+    //Simple method to determine if user wants to retake the quiz & validate input
     protected static boolean retakeQuiz() {
         Scanner keyboard = new Scanner(System.in);
         String choice;
