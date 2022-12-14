@@ -7,6 +7,7 @@ import java.util.Scanner;
 /**
  * COM809: Group 5
  * Purpose: Derived short answer question class
+ * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 public class ShortQuestion extends Question
 {
@@ -19,14 +20,14 @@ public class ShortQuestion extends Question
    private static int count = 0;
    protected static ArrayList<ShortQuestion> shortQnList = new ArrayList<>();
 
-
+   //parameterised constructor
    protected ShortQuestion(String QuestionText, int Points, String Topic, String Answer)
    {
       super(QuestionText, Points, Topic);
       answer = Answer;
       count++;
    }
-
+   //getters & setters
    protected void setAnswer(String Answer)
    {
       answer = Answer;
@@ -37,6 +38,10 @@ public class ShortQuestion extends Question
       return answer;
    }
 
+   //method to restore all short answer questions from text file
+   //has 2 modes
+   //b - restore from most recent backup file
+   //o - restore from original text file
    protected static void restoreQns(char mode)
    {
       String filePath = null;
@@ -66,7 +71,7 @@ public class ShortQuestion extends Question
          Main.logException(ex);
       }
    }
-
+   //method to serialize all short answer questions
    protected static void serialize()
    {
       try
@@ -81,7 +86,7 @@ public class ShortQuestion extends Question
          Main.logException(ex);
       }
    }
-
+   //method to deserialize all short answer questions
    protected static void deserialize()
    {
       try
@@ -95,7 +100,8 @@ public class ShortQuestion extends Question
          Main.logException(ex);
       }
    }
-
+   //Author: David
+   //Purpose: ??
    protected static void declareInitialiseAndUpdate_NewQuestionObject()
    {
       Scanner keyboard = new Scanner(System.in);
@@ -113,7 +119,7 @@ public class ShortQuestion extends Question
       shortQnList.add(sq1);
       serialize();
    }
-
+   //method to write current question list to separate backup text file for later restoration if required
    protected static void backupQnsToFile()
    {
       try
@@ -144,7 +150,7 @@ public class ShortQuestion extends Question
          Main.logException(ex);
       }
    }
-
+   //method to check if serialized file is present, restores it from original text file if not
    protected static void fileCheck()
    {
       File f = new File(SHORT_QN_SERIALIZED);

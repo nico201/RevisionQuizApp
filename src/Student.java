@@ -7,32 +7,35 @@ import java.util.Scanner;
 /**
  * COM809: Group 5
  * Purpose: Subclass of User for creation of student objects
+ * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 public class Student extends User
 {
+   private int highestScore;
    protected static ArrayList<Student> studentList = new ArrayList<>();
    private static final String STUDENT_FILE_PATH = "students.txt";
    private static final String STUDENT_BACKUP_FILE_PATH = "studentBackup.txt";
    private static final String STUDENT_SERIALIZED = "students.ser";
-   private int highestScore;
 
+   //default constructor
    protected Student()
    {
       highestScore = 0;
    }
 
+   //parameterised constructor
    protected Student(String Username, String Password, int HighScore) throws PasswordException
    {
       super(Username, Password);
       highestScore = HighScore;
    }
-
+   //parameterised constructor
    protected Student(String Forename, String Surname, String Password) throws PasswordException, UsernameException
    {
       super(Forename, Surname, Password);
       highestScore = 0;
    }
-
+   //method to check if serialized file is found, if not, it restores the original admin data from text file
    protected static void fileCheck()
    {
       File f = new File(STUDENT_SERIALIZED);
@@ -53,6 +56,7 @@ public class Student extends User
       this.highestScore = 0;
    }
 
+   //method to ensure score is only updated if greater than the current high score
    protected void setHighestScore(int HighestScore)
    {
       if (HighestScore > highestScore)
@@ -70,6 +74,9 @@ public class Student extends User
       return highestScore;
    }
 
+   //method to restore all students - has 2 modes
+   //b - restore from most recent backup file
+   //o - restore from original text file
    protected static void restoreStudents(char mode)
    {
       String filePath = null;
@@ -99,7 +106,8 @@ public class Student extends User
          System.out.println("An error occurred." + e.getMessage());
       }
    }
-
+   //method to back up all student data to text file
+   //separate text file used so that original data is not overwritten
    protected static void backupToFile()
    {
       try
@@ -129,7 +137,7 @@ public class Student extends User
          Main.logException(ex);
       }
    }
-
+   //method to serialize all student data to file
    protected static void serialize()
    {
       try
@@ -142,7 +150,7 @@ public class Student extends User
          Main.logException(ex);
       }
    }
-
+   //method to deserialize all student data from file
    protected static void deserialize()
    {
       try
@@ -161,7 +169,7 @@ public class Student extends User
          throw new RuntimeException(e);
       }
    }
-
+   //method to determine if generated username is unique
    protected static boolean userIsUnique(String Username)
    {
       boolean isUnique = true;

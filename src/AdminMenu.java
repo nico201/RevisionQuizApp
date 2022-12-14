@@ -3,6 +3,7 @@ import java.util.Scanner;
 /**
  * COM809: Group 5
  * Purpose: Menu for Admins (Login/Registration)
+ * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 public class AdminMenu
 {
@@ -14,14 +15,7 @@ public class AdminMenu
       Scanner keyboard = new Scanner(System.in);
       String adminMenuInput;
       int menuChoice;
-//      Student.deserialize();
-//      //Admin.populateAdminList();//
-//      //Admin.serialize();//
-//      Admin.deserialize();
-//      Question.deserializeAllQuestionBanks();
-//      //Question.resetAllQuestionBanks();
-//      //Question.serializeAllQuestionBanks();
-//      //Question.deserializeAllQuestionBanks();
+
       do
       {
          System.out.println("\nWelcome to Admin Login/Registration");
@@ -62,7 +56,7 @@ public class AdminMenu
          }
       }
    }
-
+   //method to register new admin
    public static void adminSignUp(char adminType)
    {
       Scanner keyboard = new Scanner(System.in);
@@ -85,6 +79,7 @@ public class AdminMenu
             if (Admin.userIsUnique(adminUser.getUsername()))
             {
                validRegistration = true;
+               //if new admin is a superadmin, they can assign rights to the new account
                if (adminType == 's')
                {
                   adminUser.assignRights();
@@ -124,7 +119,7 @@ public class AdminMenu
       } while (!validRegistration && !signUpExit);
    }
 
-
+   //method to validate login of existing admin
    public static void existingAdminLogin()
    {
       Scanner keyboard = new Scanner(System.in);
@@ -166,7 +161,7 @@ public class AdminMenu
          display();
       }
    }
-
+   //method to allow user to try again/exit menu
    private static boolean exitLogin()
    {
       Scanner keyboard = new Scanner(System.in);
@@ -181,7 +176,8 @@ public class AdminMenu
       exitChoice = Integer.parseInt(choice);
       return exitChoice != 1;
    }
-
+   //method to determine whether a valid admin passphrase has been entered
+   //determines user type based on the passphrase entered
    private static char validAdminAccess()
    {
       Scanner keyboard = new Scanner(System.in);

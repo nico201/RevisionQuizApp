@@ -7,21 +7,23 @@ import java.util.Scanner;
 /**
  * COM809: Group 5
  * Purpose: Derived class for True/False answer questions
+ * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 public class TrueFalseQuestion extends Question {
+    protected char answer;
     private static final String TF_QN_FILE_PATH = "tfQns.txt";
     private static final String TF_QN_BACKUP_PATH = "tfQnBackup.txt";
     private static final String TF_QN_SERIALIZED = "tfQns.ser";
     private static int count = 0;
     protected static ArrayList<TrueFalseQuestion> tfQnList = new ArrayList<>();
-    protected char answer;
 
+    //parameterised constructor
     protected TrueFalseQuestion(String QuestionText, int Points, String Topic, char Answer) {
         super(QuestionText, Points, Topic);
         answer = Answer;
         count++;
     }
-
+    //getters & setters
     protected void setAnswer(char Answer) {
         answer = Answer;
     }
@@ -30,6 +32,10 @@ public class TrueFalseQuestion extends Question {
         return answer;
     }
 
+    //method to restore all true false questions from text file
+    //has 2 modes
+    //b - restore from most recent backup file
+    //o - restore from original text file
     protected static void restoreQns(char mode)
     {
         String filePath = null;
@@ -56,7 +62,7 @@ public class TrueFalseQuestion extends Question {
             System.out.println("An error occurred." + e.getMessage());
         }
     }
-
+    //method to serialize all True False questions
     protected static void serialize() {
         try {
             ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get("tfQns.ser")));
@@ -67,19 +73,18 @@ public class TrueFalseQuestion extends Question {
             Main.logException(ex);
         }
     }
-
+    //method to deserialize all True False questions
     protected static void deserialize() {
         try {
             ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get("tfQns.ser")));
             tfQnList = (ArrayList<TrueFalseQuestion>) in.readObject();
 
-        } catch (NotSerializableException ex) {
-            //TODO: Fix Catch
         } catch (IOException | ClassNotFoundException ex) {
             Main.logException(ex);
         }
     }
-
+    //Author: David
+    //Purpose: ??
     protected static void declareInitialiseAndUpdate_NewQuestionObject() {
         Scanner keyboard = new Scanner(System.in);
         TrueFalseQuestion tf1 = new TrueFalseQuestion(null, -1, null, '0');
@@ -96,7 +101,7 @@ public class TrueFalseQuestion extends Question {
         tfQnList.add(tf1);
         serialize();
     }
-
+    //method to write current question list to separate backup text file for later restoration if required
     protected static void backupQnsToFile() {
         try {
             FileWriter qnWriter = new FileWriter(TF_QN_BACKUP_PATH);
@@ -122,6 +127,7 @@ public class TrueFalseQuestion extends Question {
             Main.logException(ex);
         }
     }
+    //method to check if serialized file is present, restores it from original text file if not
     protected static void fileCheck() {
         File f = new File(TF_QN_SERIALIZED);
         if (!f.exists()) {

@@ -3,6 +3,7 @@ import java.util.Scanner;
 /**
  * COM809: Group 5
  * Purpose: Sub-menu for adding new questions
+ Author: Vicky Campbell. Method authors explicitly annotated
  **/
 public class AddNewQuestionMenu {
 
@@ -43,7 +44,7 @@ public class AddNewQuestionMenu {
             AddNewQuestionMenu.display();
         }
     }
-
+    //method to determine if more questions are to be input
     private static boolean moreQuestions() {
         Scanner keyboard = new Scanner(System.in);
         String choice;

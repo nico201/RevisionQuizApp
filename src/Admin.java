@@ -9,6 +9,7 @@ import java.security.MessageDigest;
 /**
  * COM809: Group 5
  * Purpose: Extends User class to create an Admin profile;
+ * Author: Vicky Campbell. Method authors explicitly annotated
  **/
 public class Admin extends User
 {
@@ -24,6 +25,7 @@ public class Admin extends User
    protected static final String ADMIN_PASSPHRASE = "RosaleenIsALegend";
    private static final String SUPER_ADMIN_HASH = "0b28a5799a32c687dad2c5183718ceac";
 
+   //default constructor
    protected Admin()
    {
       super();
@@ -32,7 +34,7 @@ public class Admin extends User
       canResetQuestionBanks = false;
       canResetScores = false;
    }
-
+   //parameterised constructor
    protected Admin(String Username, String Password) throws PasswordException, UsernameException
    {
       super(Username, Password);
@@ -41,7 +43,7 @@ public class Admin extends User
       canResetQuestionBanks = false;
       canResetScores = false;
    }
-
+   //parameterised constructor
    protected Admin(String Username, String Password, boolean superAdmin, boolean DeleteTopics, boolean ResetQuestions, boolean ResetScore) throws PasswordException, UsernameException
    {
       super(Username, Password);
@@ -50,12 +52,12 @@ public class Admin extends User
       canResetQuestionBanks = ResetQuestions;
       canResetScores = ResetScore;
    }
-
+   //toString method
    public String toString()
    {
       return ("Admin username: " + getUsername() + "\nAdmin Rights:" + "\nCan Delete Topics: " + canDeleteTopics + "\nCan Reset Question Banks: " + canResetQuestionBanks + "\nCan Reset Quiz Scores: " + canResetScores);
    }
-
+   //method to check if serialized file is found, if not, it restores the original admin data from text file
    protected static void fileCheck()
    {
       File f = new File(ADMIN_SERIALIZED);
@@ -66,7 +68,7 @@ public class Admin extends User
          serialize();
       }
    }
-
+   //method to assign permissions/rights to admin user (can oly be called by a superAdmin)
    protected void assignRights()
    {
       Scanner keyboard = new Scanner(System.in);
@@ -107,7 +109,7 @@ public class Admin extends User
          }
       }
    }
-
+   //setters & getters for class members/attributes
    private void setUsername(String Username) throws UsernameException
    {
       String regex = "^[a-z]{2,}[0-9]{3}$";
@@ -133,16 +135,18 @@ public class Admin extends User
       isSuperAdmin = superAdmin;
    }
 
-   public boolean isSuperAdmin()
+   protected boolean getIsSuperAdmin()
    {
       return isSuperAdmin;
+   }
+   private void setIsSuperAdmin(boolean superAdmin){
+      isSuperAdmin = superAdmin;
    }
 
    private void setCanDeleteTopics(boolean deleteTopics)
    {
       canDeleteTopics = deleteTopics;
    }
-
    public boolean getCanDeleteTopics()
    {
       return canDeleteTopics;
@@ -168,10 +172,11 @@ public class Admin extends User
       return canResetScores;
    }
 
-
+   //method to restore all admins - has 2 modes
+   //b - restore from most recent backup file
+   //o - restore from original text file
    protected static void restoreAdmins(char mode)
    {
-
       String filePath = null;
       try
       {
@@ -203,7 +208,8 @@ public class Admin extends User
          System.out.println("An error occurred." + e.getMessage());
       }
    }
-
+   //method to back up all admin data to text file
+   //separate text file used so that original data is not overwritten
    protected static void backupToFile()
    {
       int userCount = adminList.size();
@@ -217,6 +223,8 @@ public class Admin extends User
             adminBackup.write(admin.isSuperAdmin + "\n");
             adminBackup.write(admin.canDeleteTopics + "\n");
             adminBackup.write(admin.canResetQuestionBanks + "\n");
+            //checks if it is the last line being written to file
+            //ensures blank line not written to file which would cause problems upon restore
             if (userCount != 1)
             {
                adminBackup.write(admin.canResetScores + "\n");
@@ -235,7 +243,7 @@ public class Admin extends User
          Main.logException(ex);
       }
    }
-
+   //method to serialize all admin data to file
    protected static void serialize()
    {
       try
@@ -248,7 +256,7 @@ public class Admin extends User
          Main.logException(ex);
       }
    }
-
+   //method to deserialize all admin data from file
    protected static void deserialize()
    {
       try
@@ -266,7 +274,7 @@ public class Admin extends User
          throw new RuntimeException(e);
       }
    }
-
+   //method to check uniqueness of username provided (true=unique)
    protected static boolean userIsUnique(String Username)
    {
       boolean isUnique = true;
@@ -280,7 +288,8 @@ public class Admin extends User
       }
       return isUnique;
    }
-
+   //method to check if the hash of the passphrase entered is equal to the hash of the required admin passphrase
+   //adapted from method found online (https://mkyong.com/java/java-md5-hashing-example/)
    protected static boolean validSuperAdmin(String inputString)
    {
       byte[] msg = inputString.getBytes();
@@ -302,9 +311,8 @@ public class Admin extends User
       String strHash = strBuilder.toString();
 
       return strHash.equals(Admin.SUPER_ADMIN_HASH);
-
    }
-
+   //method to output all admin permissions
    protected static void viewAllAdminPermissions()
    {
       for (Admin adm : adminList)
