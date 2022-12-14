@@ -9,6 +9,7 @@ import java.util.Iterator;
  * COM809: Group 5
  * Purpose: Base Question class from which TrueFalseQuestion, MultipleChoiceQuestion and ShortQuestion are all derived
  * Author: Vicky Campbell. Method authors explicitly annotated
+ * Question Banks Created by:
  **/
 abstract public class Question implements Serializable {
     private String questionText;
