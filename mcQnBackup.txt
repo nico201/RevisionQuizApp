@@ -1,0 +1,240 @@
+If a file is 6400 bits in size, how many bytes are required to store the file?
+1
+Digital Data
+8
+80
+800
+8000
+3
+Which statement contains only non-volatile devices?
+1
+Digital Data
+RAM, ROM, Cache, SSD
+RAM, Cache, SSD, Hard Disk Drive
+SSD, Hard Disk Drive, ROM, DVD
+SSD, Hard Disk Drive, Cache, ROM
+3
+Select the statement which correctly describes the bit rate of a sound recording.
+1
+Digital Data
+The number of bits processed over a certain period of time
+The number of times per second that a sound signal is captured
+The number of bits of information in each sample
+The number of times a sound is edited and recorded
+1
+Select the statement which is correct about real-time processing.
+1
+Software
+Real-time processing involves collecting data together and processing it at a later time
+Real-time processing is used for online booking systems and involves processing data as soon as it is entered into the system
+Real-time processing is used for online booking systems and involves collecting data and processing it at a later time
+Real-time processing is used to produce consumer bills like electricity bills and involves processing data as soon as it is entered into the system
+2
+Select the statement which is correct about data compression when using image files.
+1
+Software
+Compression will increase the file size and add additional detail to improve the image
+Compression will increase the file size and remove detail not visible to the human eye from the image
+Compression will decrease the file size and add additional detail to improve the image
+Compression will decrease the file size and remove detail not visible to the human eye from the image
+4
+When playing movies via the Internet, buffering is used. Select the statement which is TRUE about the buffering process
+1
+Digital data
+It prevents lag when streaming a video file
+It stores the downloaded file in ROM before playback
+It increases the download speed of the user’s internet connection
+It permanently stores data following a file download
+1
+Mobile phones use an ADC to change sound input using a microphone into a format the computer can understand. What do the letters ADC stand for?
+1
+Digital data
+Analogue to Digital Changer
+Audio to Digital Converter
+Analogue to Digital Converter
+Audio to Digital Changer
+3
+Big data can be defined by 3V’s. What do the 3V’s stand for?
+1
+Databases
+Variety, Validity, Velocity
+Variety, Velocity, Virtual
+Volume, Virtual, Validity
+Volume, Variety, Velocity
+4
+Select the correct definition for the term backup
+1
+Cyberspace, network security and data transfer
+A file which has been restored following damage to the original
+A copy of an original file used to restore data
+An encrypted version of a file
+A record of outdated files stored in another location
+2
+GPS stands for
+1
+Moral and ethical considerations
+Goal Positioning System
+Global Positioning Satellite
+Global Positioning System
+Global Postal System
+3
+Choose the correct name for the law that protects digitally created media
+1
+Legislation
+Copyright Designs and Patterns Act 1988
+Copyright Designs and Patents Act 1988
+Copyright Digital and Patents Act 1988
+Copyright Digital Patterns Act 1988
+2
+FTP stands for
+1
+Cyberspace, network security and data transfer
+Field Transfer Protocol
+File Translation Protocol
+Field Translation Protocol
+File Transfer Protocol
+4
+A computer system stores data in
+1
+Digital data
+Analogue format
+Digital format
+Information format
+Doubled format
+2
+MPEG stands for
+1
+Digital data
+Moving Photographic Experts Group
+Moving Picture Experts Group
+Moving Pixel Experts Group
+Moving Portable Experts Group
+2
+Select the list which contains only image file formats
+1
+Digital data
+PNG, GIF, MIDI, PDF
+TIFF, PNG, GIF, JPEG
+GIF, PNG, PDF, CSV
+JPEG, TIFF, PNG, PDF
+2
+Select the correct name of the legislation which protects the rights of customers when shopping online
+1
+Legislation
+Customer Card Regulations
+Consumer Card Regulations
+Customer Contracts Regulations
+Consumer Contracts Regulations
+4
+Select the statement which is correct about the Data Protection Act
+1
+Legislation
+The Data Protection Act protects the rights of individuals whose data is being stored and their data can be shared with any organisation who requests it
+The Data Protection Act protects the rights of organisations storing data so that they can make full use of the data
+The Data Protection Act protects the rights of organisations storing data and prevents them from sharing data with other organisations who request it
+The Data Protection Act protects the rights of individuals whose data is being stored and ensures their data is accurate and up to date
+4
+Select the list which correctly details only methods which will help reduce eye strain in computer users
+1
+Health and safety
+Anti-glare screens, regular breaks, ergonomic mice and keyboards
+Ergonomic mice and keyboards, regular free eye tests, screens with adjustable brightness and contrast
+Appropriate lighting, swivel screens, regular free eye tests
+Appropriate lighting, anti-glare screens, screens with adjustable brightness and contrast
+4
+Many electronic devices now use GPS. What do the letters GPS stand for?
+1
+Moral and ethical considerations
+Global Placement System
+Geographical Positioning System
+Global Positioning System
+Geographical Placement System
+3
+Select the correct meaning for the term VLookup, which is used with spreadsheet applications.
+1
+Spreadsheet
+Value Lookup
+Vertical Lookup
+Variable Lookup
+Valid Lookup
+2
+Conditional formatting can be used in spreadsheets. Identify the statement that is not true about conditional formatting when it is applied within a spreadsheet
+1
+Spreadsheet
+It can be used to change the cell colour if a specified condition is met
+If a condition is not met nothing will happen to the appearance of the cell
+It can be used to change the formula in a cell if a condition is met
+It can be applied to more than one cell at a time
+3
+Select the statement which correctly describes bit rate when representing sounds
+1
+Digital data
+The bit rate is the number of bits used to store each sound sample
+The bit rate is the speed at which the sound has been recorded
+The bit rate is the amount of data, measured in bits, that is processed in a given amount of time
+The bit rate is the number of audio sound samples captured every second
+3
+Select the statement which is true about data
+1
+Digital data
+Data is facts and figures which has been processed and given a meaning
+Data is facts and figures which has not been processed but has meaning
+Data is facts and figures which has not been processed and has no meaning
+Data is facts and figures which has been processed but has no meaning
+3
+Select the statement in which the units of data storage are listed in ascending order (smallest to largest).
+1
+Digital data
+bit, byte, nibble, kilobyte
+kilobyte, megabyte, terabyte, gigabyte
+nibble, byte, kilobyte, megabyte
+nibble, bit, byte, kilobyte
+3
+Select the statement which is true about a buffer when transferring moving images
+1
+Digital data
+A buffer is a continuous stream of data
+A buffer is a memory location used to store a downloaded part of a video before it is watched
+A buffer is a large video downloading from the Internet whilst it is being watched
+A buffer slows down video streaming and improves the user’s experience
+2
+RSI stands for
+1
+Health and safety
+Repetitive State Injury
+Repetitive Strain Injury
+Remote Strain Injury
+Remote State Injury
+2
+Select the statement which describes the data encryption process
+1
+Cyberspace, network security and data transfer
+Encryption allows data to be transferred securely and data can only be read with a key
+Encryption allows data to be transferred securely and data can be accessed without a key
+Encryption prevents data from being transferred securely and data can be accessed without a key
+Encryption prevents data from being transferred securely and data can only be read with a key
+1
+Max placed an item in his online shopping basket. Even though he did not press the purchase button, the company charged his bank account. Which law did the company break?
+1
+Legislation
+Consumer Control Regulations
+Consumer Contracts Requirements
+Consumer Contracts Regulations
+Consumer Control Requirements
+3
+Select the statement which correctly describes the role of the Information Commissioner
+1
+Legislation
+The person within an organisation who ensures the Data Protection Act is followed.
+The person who makes the public aware of their rights under the Data Protection Act.
+The person who collects data to be held by an organisation
+The person who contacts the public to inform them that data is being stored about them
+3
+What do the letters HTTPS stand for?
+1
+Cyberspace, network security and data transfer
+HyperText Transmission Protocol Safety
+HyperText Transfer Protocol Secure
+HyperText Transmission Protocol Secure
+HyperText Transfer Protocol Safety
+2

@@ -30,9 +30,18 @@ public class TrueFalseQuestion extends Question {
         return answer;
     }
 
-    protected static void restoreOriginalQns() {
-        try {
-            File qnFile = new File(TF_QN_FILE_PATH);
+    protected static void restoreQns(char mode)
+    {
+        String filePath = null;
+        try
+        {
+            if (mode == 'b'){
+                filePath = TF_QN_BACKUP_PATH;
+            }
+            else if(mode =='o'){
+                filePath=TF_QN_FILE_PATH;
+            }
+            File qnFile = new File(filePath);
             Scanner qnReader = new Scanner(qnFile);
             while (qnReader.hasNextLine()) {
                 String qnText = qnReader.nextLine();
@@ -91,13 +100,21 @@ public class TrueFalseQuestion extends Question {
     protected static void backupQnsToFile() {
         try {
             FileWriter qnWriter = new FileWriter(TF_QN_BACKUP_PATH);
+            int qnCount = tfQnList.size();
             for (TrueFalseQuestion tfQn : tfQnList) {
                 qnWriter.write(tfQn.getQuestionText() + "\n");
                 String points = Integer.toString(tfQn.getPoints());
                 qnWriter.write(points + "\n");
                 qnWriter.write(tfQn.getTopic() + "\n");
-                qnWriter.write(tfQn.getAnswer() + "\n");
+                if(qnCount!=1){
+                    qnWriter.write(tfQn.getAnswer() + "\n");
+                }
+                else{
+                    qnWriter.write(tfQn.getAnswer());
+                }
+                qnCount--;
             }
+            qnWriter.flush();
             qnWriter.close();
             System.out.println("True False Question Lists have been Successfully Backed Up");
         } catch (IOException ex) {
@@ -109,7 +126,7 @@ public class TrueFalseQuestion extends Question {
         File f = new File(TF_QN_SERIALIZED);
         if (!f.exists()) {
             System.out.println("True/False Question files were not found - backup files have been restored");
-            restoreOriginalQns();
+            restoreQns('o');
             serialize();
         }
     }

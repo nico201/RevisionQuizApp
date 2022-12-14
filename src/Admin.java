@@ -56,14 +56,17 @@ public class Admin extends User
       return ("Admin username: " + getUsername() + "\nAdmin Rights:" + "\nCan Delete Topics: " + canDeleteTopics + "\nCan Reset Question Banks: " + canResetQuestionBanks + "\nCan Reset Quiz Scores: " + canResetScores);
    }
 
-   protected static void fileCheck() {
+   protected static void fileCheck()
+   {
       File f = new File(ADMIN_SERIALIZED);
-      if (!f.exists()) {
+      if (!f.exists())
+      {
          System.out.println("Admin files were not found - backup files have been restored");
-         populateAdminList();
+         restoreAdmins('o');
          serialize();
       }
    }
+
    protected void assignRights()
    {
       Scanner keyboard = new Scanner(System.in);
@@ -80,8 +83,8 @@ public class Admin extends User
          canDeleteTopics = true;
          canResetQuestionBanks = true;
          canResetScores = true;
-      }
-      else {
+      } else
+      {
          System.out.println("Can admin delete questions? Y or N");
          delQns = keyboard.next().trim().toLowerCase().substring(0, 1);
          System.out.println("Can admin delete students? Y or N");
@@ -89,7 +92,7 @@ public class Admin extends User
          System.out.println("Can admin reset scores? Y or N");
          resetScore = keyboard.next().trim().toLowerCase().substring(0, 1);
 
-         isSuperAdmin=false;
+         isSuperAdmin = false;
          if (delQns.equalsIgnoreCase("y"))
          {
             canDeleteTopics = true;
@@ -166,12 +169,21 @@ public class Admin extends User
    }
 
 
-   protected static void populateAdminList()
+   protected static void restoreAdmins(char mode)
    {
+
+      String filePath = null;
       try
       {
-         File teacherFile = new File(ADMIN_FILE_PATH);
-         Scanner adminReader = new Scanner(teacherFile);
+         if (mode == 'b')
+         {
+            filePath = ADMIN_BACKUP_FILE_PATH;
+         } else if (mode == 'o')
+         {
+            filePath = ADMIN_FILE_PATH;
+         }
+         File adminFile = new File(filePath);
+         Scanner adminReader = new Scanner(adminFile);
          while (adminReader.hasNextLine())
          {
             String Username = adminReader.nextLine();
@@ -192,20 +204,33 @@ public class Admin extends User
       }
    }
 
-   protected static void backupToFile() {
-      try {
+   protected static void backupToFile()
+   {
+      int userCount = adminList.size();
+      try
+      {
          FileWriter adminBackup = new FileWriter(ADMIN_BACKUP_FILE_PATH);
-         for (Admin admin : adminList) {
+         for (Admin admin : adminList)
+         {
             adminBackup.write(admin.getUsername() + "\n");
             adminBackup.write(admin.getPassword() + "\n");
             adminBackup.write(admin.isSuperAdmin + "\n");
             adminBackup.write(admin.canDeleteTopics + "\n");
             adminBackup.write(admin.canResetQuestionBanks + "\n");
-            adminBackup.write(admin.canResetScores + "\n");
+            if (userCount != 1)
+            {
+               adminBackup.write(admin.canResetScores + "\n");
+            } else
+            {
+               adminBackup.write(String.valueOf(admin.canResetScores));
+            }
+            userCount--;
          }
+         adminBackup.flush();
          adminBackup.close();
          System.out.println("Student Details have been Successfully Backed Up");
-      } catch (IOException ex) {
+      } catch (IOException ex)
+      {
          System.out.println(ex.getMessage());
          Main.logException(ex);
       }
@@ -288,5 +313,6 @@ public class Admin extends User
          System.out.println(details + "\n");
       }
    }
+
 
 }//class

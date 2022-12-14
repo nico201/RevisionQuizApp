@@ -55,10 +55,10 @@ abstract public class Question implements Serializable {
         return topic;
     }
 
-    protected static void resetAllQuestionBanks() {
-        TrueFalseQuestion.restoreOriginalQns();
-        ShortQuestion.restoreOriginalQns();
-        MultipleChoiceQuestion.restoreOriginalQns();
+    protected static void resetAllQuestionBanks(char mode) {
+        TrueFalseQuestion.restoreQns(mode);
+        ShortQuestion.restoreQns(mode);
+        MultipleChoiceQuestion.restoreQns(mode);
     }
 
     protected static void serializeAllQuestionBanks() {
@@ -163,7 +163,12 @@ abstract public class Question implements Serializable {
         TrueFalseQuestion.fileCheck();
     }
     protected static void resetAllQuestions(){
-        Question.resetAllQuestionBanks();
+        Question.resetAllQuestionBanks('o');
+        Question.serializeAllQuestionBanks();
+        Question.deserializeAllQuestionBanks();
+    }
+    protected static void restoreAllQnsFromLatestBackup(){
+        Question.resetAllQuestionBanks('b');
         Question.serializeAllQuestionBanks();
         Question.deserializeAllQuestionBanks();
     }

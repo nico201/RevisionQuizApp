@@ -95,16 +95,26 @@ abstract public class User implements Serializable {
     }
 
     protected static void resetAllUsers(){
-        Admin.populateAdminList();
+        Admin.restoreAdmins('o');
         Admin.serialize();
         Admin.deserialize();
-        Student.populateStudentList();
+        Student.restoreStudents('o');
         Student.serialize();
         Student.deserialize();
     }
     protected static void backupAllUsers(){
         Admin.backupToFile();
         Student.backupToFile();
+    }
+    protected static void restoreAllUsersFromLatestBackup(){
+        Admin.restoreAdmins('b');
+        Admin.serialize();
+        Student.restoreStudents('b');
+        Student.serialize();
+    }
+    protected static void deserializeAllUsers(){
+        Admin.deserialize();
+        Student.deserialize();
     }
 
 }//class
